@@ -25,7 +25,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "allow-declarations": true,
     "baseUrl": ".",
     "paths": {
       "@entities/*": [
@@ -43,7 +42,8 @@
     }
   },
   "exclude": [
-    "node_modules","docs"
+    "node_modules",
+    "docs"
   ],
   "include": [
     "./src/**/*.ts"

@@ -1,7 +1,7 @@
 import { Book } from '@entities/models/Book';
 
 export interface UpdateBook {
-  add(params: UpdateBook.Params): Promise<UpdateBook.Return>;
+  update(bookId: string, params: UpdateBook.Params): Promise<UpdateBook.Return>;
 }
 
 export namespace UpdateBook {

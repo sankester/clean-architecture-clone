@@ -24,15 +24,20 @@ export class BookRepository
   }
 
   async update(
+    bookId: string,
     params: UpdateBookRepository.Params
   ): Promise<UpdateBookRepository.Return> {
-    const doc = await BookModel.findByIdAndUpdate(params);
+    const doc = await BookModel.findByIdAndUpdate(bookId, params);
     return doc as any;
   }
 
   async delete(
     bookId: DeleteBookRepository.Params
   ): Promise<DeleteBookRepository.Return> {
-    return await BookModel.deleteOne(bookId);
+    const deleted = await BookModel.findByIdAndDelete(bookId);
+    if (deleted) {
+      return true;
+    }
+    return false;
   }
 }

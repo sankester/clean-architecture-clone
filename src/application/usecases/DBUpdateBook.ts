@@ -4,8 +4,11 @@ import { UpdateBook } from '@entities/usecases/UpdateBook';
 export class DBUpdateBook implements UpdateBook {
   constructor(private readonly updateBookreporitory: UpdateBookRepository) {}
 
-  async add(params: UpdateBook.Params): Promise<UpdateBook.Return> {
-    const data = await this.updateBookreporitory.update(params);
+  async update(
+    bookId: string,
+    params: UpdateBook.Params
+  ): Promise<UpdateBook.Return> {
+    const data = await this.updateBookreporitory.update(bookId, params);
     return data;
   }
 }
