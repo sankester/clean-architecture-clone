@@ -5,8 +5,8 @@ import setupLogger from "./logger";
 
 const app = express();
 
-setupLogger(app);
 setupMiddleware(app);
+setupLogger(app);
 setupRoute(app);
 
 export default app;

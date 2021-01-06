@@ -37,6 +37,8 @@ Simple clean architecture with nodejs and typescript
 
 ### Khusus Test
 
+- mongodb-memory-server
+
 ## Reference
 
 [Node Clean Architecture -Deep Dive](https://roystack.home.blog/2019/10/22/node-clean-architecture-deep-dive)
