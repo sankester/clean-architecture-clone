@@ -1,9 +1,9 @@
 export const notFound = {
-  description: "Not Found",
+  description: 'Not Found',
   content: {
-    "application/json": {
+    'application/json': {
       schema: {
-        $ref: "#/schemas/errorResponse",
+        $ref: '#/schemas/errorResponse',
       },
     },
   },

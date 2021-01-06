@@ -1,5 +1,5 @@
-import { bookPath } from "./paths/book-path";
+import { bookPath } from './paths/book-path';
 
 export default {
-  "/book": bookPath,
+  '/book': bookPath,
 };

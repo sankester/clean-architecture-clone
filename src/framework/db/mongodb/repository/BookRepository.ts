@@ -1,8 +1,8 @@
-import { AddBookRepository } from "@application/protocol/db/book/AddBookRepository";
-import { DeleteBookRepository } from "@application/protocol/db/book/DeleteBookRepository";
-import { GetAllBookRepository } from "@application/protocol/db/book/GetAllBookRepository";
-import { UpdateBookRepository } from "@application/protocol/db/book/UpdateBookRepository";
-import BookModel from "../models/BookModel";
+import { AddBookRepository } from '@application/protocol/db/book/AddBookRepository';
+import { DeleteBookRepository } from '@application/protocol/db/book/DeleteBookRepository';
+import { GetAllBookRepository } from '@application/protocol/db/book/GetAllBookRepository';
+import { UpdateBookRepository } from '@application/protocol/db/book/UpdateBookRepository';
+import BookModel from '@framework/db/mongodb/models/BookModel';
 
 export class BookRepository
   implements

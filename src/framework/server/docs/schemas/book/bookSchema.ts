@@ -1,18 +1,18 @@
 export const bookSchema = {
-  type: "object",
+  type: 'object',
   properties: {
     id: {
-      type: "string",
+      type: 'string',
     },
     title: {
-      type: "string",
+      type: 'string',
     },
     author: {
-      type: "string",
+      type: 'string',
     },
     issn: {
-      type: "string",
+      type: 'string',
     },
   },
-  required: ["id", "title", "author", "issn"],
+  required: ['id', 'title', 'author', 'issn'],
 };

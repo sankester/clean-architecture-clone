@@ -1,4 +1,4 @@
-import { booksSchema, bookSchema } from "./schemas/book";
+import { booksSchema, bookSchema } from './schemas/book';
 import { errorSchema, errorResponse } from './schemas/error';
 
 export default {

@@ -1,5 +1,5 @@
-import { Controller } from "@adapter/protocols/Controller";
-import { DeleteBookController } from "@adapter/controller";
+import { Controller } from '@adapter/protocols/Controller';
+import { DeleteBookController } from '@adapter/controller';
 import { makeDbDeleteBook } from '@framework/server/factories/db';
 
 export const makeDeleteBookController = (): Controller => {

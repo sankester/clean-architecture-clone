@@ -1,8 +1,8 @@
-import { AddBook } from "@entities/usecases/AddBook";
-import { HttpResponse } from "@adapter/protocols";
-import { Controller } from "@adapter/protocols/Controller";
-import { logger } from "@adapter/utils/winston";
-import { ResponseFactory } from "@adapter/presentation/contracts/ResponseFactory";
+import { AddBook } from '@entities/usecases/AddBook';
+import { HttpResponse } from '@adapter/protocols';
+import { Controller } from '@adapter/protocols/Controller';
+import { logger } from '@adapter/utils/winston';
+import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
 
 export class AddBookController implements Controller {
   constructor(private readonly addBook: AddBook) {}
@@ -20,7 +20,7 @@ export class AddBookController implements Controller {
           )
         : ok(
             makeBody()
-              .setError("transaction_error", AddBookController.ErrorMessage)
+              .setError('transaction_error', AddBookController.ErrorMessage)
               .build()
           );
     } catch (error) {
@@ -37,7 +37,7 @@ export namespace AddBookController {
     issn: string;
   };
 
-  export const ErrorMessage = "gagal menambah data buku";
+  export const ErrorMessage = 'gagal menambah data buku';
 
-  export const SuccessMessage = "berhasil menambah data buku";
+  export const SuccessMessage = 'berhasil menambah data buku';
 }

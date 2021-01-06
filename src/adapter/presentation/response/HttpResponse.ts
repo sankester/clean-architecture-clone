@@ -1,4 +1,4 @@
-import { HttpBody } from "./HttpBody";
+import { HttpBody } from './HttpBody';
 
 export class HttpResponse {
   constructor(

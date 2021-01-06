@@ -1,4 +1,6 @@
-import { HttpBody } from "../response/HttpBody";
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { HttpBody } from '../response/HttpBody';
 
 export class HttpBodyBuilder {
   private success: HttpBody.HttpBodySuccess;
@@ -7,19 +9,17 @@ export class HttpBodyBuilder {
 
   private data: any;
 
-  constructor() {}
-
-  setSuccess(message: string) {
+  setSuccess(message: string): HttpBodyBuilder {
     this.success = { message };
     return this;
   }
 
-  setError(type: string, message: string) {
+  setError(type: string, message: string): HttpBodyBuilder {
     this.error = { type, message };
     return this;
   }
 
-  setData(value: any) {
+  setData(value: any): HttpBodyBuilder {
     this.data = value;
     return this;
   }

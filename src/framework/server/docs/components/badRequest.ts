@@ -1,9 +1,9 @@
 export const badRequest = {
-  description: "Bad Request",
+  description: 'Bad Request',
   content: {
-    "application/json": {
+    'application/json': {
       schema: {
-        $ref: "#/schemas/errorResponse",
+        $ref: '#/schemas/errorResponse',
       },
     },
   },

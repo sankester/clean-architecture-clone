@@ -1,12 +1,12 @@
 export const booksSchema = {
-  type: "object",
+  type: 'object',
   properties: {
     data: {
-      type: "array",
+      type: 'array',
       items: {
-        $ref: "#/schemas/book",
+        $ref: '#/schemas/book',
       },
     },
   },
-  required: ["data"],
+  required: ['data'],
 };

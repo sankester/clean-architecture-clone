@@ -1,4 +1,4 @@
-import { UpdateBook } from "@entities/usecases/UpdateBook";
+import { UpdateBook } from '@entities/usecases/UpdateBook';
 
 export interface UpdateBookRepository {
   update(

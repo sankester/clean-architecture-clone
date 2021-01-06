@@ -1,4 +1,4 @@
-import { Book } from "@entities/models/Book";
+import { Book } from '@entities/models/Book';
 
 export interface UpdateBook {
   add(params: UpdateBook.Params): Promise<UpdateBook.Return>;

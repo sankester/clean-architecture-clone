@@ -1,2 +1,2 @@
 export * from './errorSchema';
-export * from './errorResponseSchema'
+export * from './errorResponseSchema';

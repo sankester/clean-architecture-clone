@@ -1,12 +1,12 @@
 export const errorSchema = {
-  type: "object",
+  type: 'object',
   properties: {
-    type : {
-      type: "string",
+    type: {
+      type: 'string',
     },
     message: {
-      type: "string",
+      type: 'string',
     },
   },
-  required: ["type", "message"],
+  required: ['type', 'message'],
 };

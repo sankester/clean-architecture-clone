@@ -1,12 +1,12 @@
 /* istanbul ignore file */
 
-import mongoose from "mongoose";
-import { MongoMemoryServer } from "mongodb-memory-server";
+import mongoose from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
-import config from "@adapter/config";
-import { logger } from "@adapter/utils/winston";
+import config from '@adapter/config';
+import { logger } from '@adapter/utils/winston';
 
-mongoose.set("debug", process.env.DEBUG !== undefined);
+mongoose.set('debug', process.env.DEBUG !== undefined);
 
 const opts = {
   useNewUrlParser: true,
@@ -33,30 +33,32 @@ class MongoConnection {
 
   public async open(): Promise<void> {
     try {
-      if (config.mongo.url === "inmemory") {
-        logger.debug("connecting to inmemory mongo db");
+      if (config.mongo.url === 'inmemory') {
+        logger.debug('connecting to inmemory mongo db');
         this._mongoServer = new MongoMemoryServer();
         const mongoUrl = await this._mongoServer.getUri();
-        logger.info("mongoUrl:", mongoUrl);
+        logger.info('mongoUrl:', mongoUrl);
         await mongoose.connect(mongoUrl, opts);
       } else {
-        logger.debug("connecting to mongo db: " + config.mongo.url);
+        logger.debug('connecting to mongo db: ' + config.mongo.url);
         mongoose.connect(config.mongo.url, opts);
       }
 
-      mongoose.connection.on("connected", () => {
-        logger.info("Mongo: connected");
+      mongoose.connection.on('connected', () => {
+        logger.info('Mongo: connected');
       });
 
-      mongoose.connection.on("disconnected", () => {
-        logger.error("Mongo: disconnected");
+      mongoose.connection.on('disconnected', () => {
+        logger.error('Mongo: disconnected');
       });
 
-      mongoose.connection.on("error", (err) => {
+      mongoose.connection.on('error', (err) => {
         logger.error(`Mongo:  ${String(err)}`);
-        if (err.name === "MongoNetworkError") {
+        if (err.name === 'MongoNetworkError') {
           setTimeout(function () {
-            mongoose.connect(config.mongo.url, opts).catch(() => {});
+            mongoose.connect(config.mongo.url, opts).catch((err) => {
+              logger.debug(`${err}`);
+            });
           }, 5000);
         }
       });
@@ -69,8 +71,8 @@ class MongoConnection {
   public async close(): Promise<void> {
     try {
       await mongoose.disconnect();
-      if (config.mongo.url === "inmemory") {
-        await this._mongoServer!.stop();
+      if (config.mongo.url === 'inmemory') {
+        await this._mongoServer?.stop();
       }
     } catch (err) {
       logger.error(`db.open: ${err}`);

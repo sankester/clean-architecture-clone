@@ -1,2 +1,2 @@
 export * from './bookSchema';
-export * from './booksSchema'
+export * from './booksSchema';

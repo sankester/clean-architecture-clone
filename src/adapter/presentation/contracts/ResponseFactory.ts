@@ -1,7 +1,7 @@
-import { HttpBodyBuilder } from "../builder/HttpBodyBuilder";
-import { HttpResponseFactory } from "./HttpResponseFactory";
+import { HttpBodyBuilder } from '../builder/HttpBodyBuilder';
+import { HttpResponseFactory } from './HttpResponseFactory';
 
 export interface ResponseFactory {
-    makeResponse(): HttpResponseFactory
-    makeBody(): HttpBodyBuilder
+  makeResponse(): HttpResponseFactory;
+  makeBody(): HttpBodyBuilder;
 }

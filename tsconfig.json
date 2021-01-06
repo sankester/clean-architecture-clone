@@ -25,6 +25,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
+    "allow-declarations": true,
     "baseUrl": ".",
     "paths": {
       "@entities/*": [

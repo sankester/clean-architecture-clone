@@ -1,10 +1,10 @@
-import dotenvExtended from "dotenv-extended";
-import dotenvParseVariables from "dotenv-parse-variables";
+import dotenvExtended from 'dotenv-extended';
+import dotenvParseVariables from 'dotenv-parse-variables';
 
 const env = dotenvExtended.load({
   path: process.env.ENV_FILE,
-  defaults: "./config/.env.defaults",
-  schema: "./config/.env.schema",
+  defaults: './config/.env.defaults',
+  schema: './config/.env.schema',
   includeProcessEnv: true,
   silent: false,
   errorOnMissing: true,
@@ -14,14 +14,14 @@ const env = dotenvExtended.load({
 const parsedEnv = dotenvParseVariables(env);
 
 type LogLevel =
-  | "silent"
-  | "error"
-  | "warn"
-  | "info"
-  | "http"
-  | "verbose"
-  | "debug"
-  | "silly";
+  | 'silent'
+  | 'error'
+  | 'warn'
+  | 'info'
+  | 'http'
+  | 'verbose'
+  | 'debug'
+  | 'silly';
 
 interface Config {
   // logger

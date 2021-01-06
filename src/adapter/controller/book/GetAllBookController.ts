@@ -1,7 +1,9 @@
-import { logger } from "@adapter/utils/winston";
-import { Controller } from "@adapter/protocols/Controller";
-import { HttpResponse } from "@adapter/protocols";
-import { GetAllBook } from "@entities/usecases/GetAllBook";
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { logger } from '@adapter/utils/winston';
+import { Controller } from '@adapter/protocols/Controller';
+import { HttpResponse } from '@adapter/protocols';
+import { GetAllBook } from '@entities/usecases/GetAllBook';
 import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
 
 export class GetAllBookController implements Controller {
@@ -11,10 +13,12 @@ export class GetAllBookController implements Controller {
     _request: any,
     { makeBody, makeResponse }: ResponseFactory
   ): Promise<HttpResponse> {
-    const { noContent, ok, serverError } = makeResponse()
+    const { noContent, ok, serverError } = makeResponse();
     try {
       const docs = await this.getAllBook.findAll();
-      return docs.length > 0 ? ok(makeBody().setData(docs).build()) : noContent()
+      return docs.length > 0
+        ? ok(makeBody().setData(docs).build())
+        : noContent();
     } catch (error) {
       logger.error(`GetAllBookController: ${error}`);
       return serverError(error);

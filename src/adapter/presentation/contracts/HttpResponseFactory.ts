@@ -1,5 +1,5 @@
-import { HttpResponse } from "@adapter/presentation/response/HttpResponse";
-import { HttpBody } from '../response/HttpBody';
+import { HttpResponse } from '@adapter/presentation/response/HttpResponse';
+import { HttpBody } from '@adapter/presentation/response/HttpBody';
 
 export interface HttpResponseFactory {
   badRequest(error: Error): HttpResponse;

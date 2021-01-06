@@ -1,2 +1,2 @@
-export * from "./content-type";
-export * from "./no-chace";
+export * from './content-type';
+export * from './no-chace';

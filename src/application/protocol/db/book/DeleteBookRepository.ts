@@ -1,7 +1,9 @@
-import { DeleteBook } from "@entities/usecases/DeleteBook";
+import { DeleteBook } from '@entities/usecases/DeleteBook';
 
 export interface DeleteBookRepository {
-  delete(bookId: DeleteBookRepository.Params): Promise<DeleteBookRepository.Return>;
+  delete(
+    bookId: DeleteBookRepository.Params
+  ): Promise<DeleteBookRepository.Return>;
 }
 
 export namespace DeleteBookRepository {

@@ -1,9 +1,9 @@
 export const unauthorized = {
-  description: "Unautorized",
+  description: 'Unautorized',
   content: {
-    "application/json": {
+    'application/json': {
       schema: {
-        $ref: "#/schemas/errorResponse",
+        $ref: '#/schemas/errorResponse',
       },
     },
   },

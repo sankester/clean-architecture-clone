@@ -1,9 +1,9 @@
 export const forbidden = {
-  description: "Forbidden Access",
+  description: 'Forbidden Access',
   content: {
-    "application/json": {
+    'application/json': {
       schema: {
-        $ref: "#/schemas/errorResponse",
+        $ref: '#/schemas/errorResponse',
       },
     },
   },

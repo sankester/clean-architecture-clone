@@ -1,4 +1,4 @@
-import { Book } from "../models/Book";
+import { Book } from '@entities/models/Book';
 
 export interface GetAllBook {
   findAll(): Promise<GetAllBook.Return>;

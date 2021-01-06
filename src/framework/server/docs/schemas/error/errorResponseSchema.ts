@@ -1,9 +1,9 @@
 export const errorResponse = {
-  type: "object",
+  type: 'object',
   properties: {
     error: {
-      $ref: "#/schemas/error",
+      $ref: '#/schemas/error',
     },
   },
-  required: ["error"],
+  required: ['error'],
 };
