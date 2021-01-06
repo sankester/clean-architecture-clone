@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-export const useNoCache = (
+export const noCache = (
   _req: Request,
   res: Response,
   next: NextFunction

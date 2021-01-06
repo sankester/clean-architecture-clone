@@ -17,6 +17,7 @@ Simple clean architecture with nodejs and typescript
 - morgan - _log request_
 - morgan-body - _log request body_
 - winston - _custom system logger_
+- swagger-ui-express - _api documentation_
 
 ### Khusus Deveploper
 
@@ -34,6 +35,7 @@ Simple clean architecture with nodejs and typescript
 - @types/morgan
 - @types/node
 - @types/validator
+- @types/swagger-ui-express
 
 ### Khusus Test
 

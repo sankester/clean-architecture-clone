@@ -54,6 +54,6 @@ export class HttpMakeResponse implements HttpResponseFactory {
   }
 
   noContent(): HttpResponse {
-    return new HttpResponse(201, null);
+    return new HttpResponse(204, null);
   }
 }

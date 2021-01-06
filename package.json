@@ -7,9 +7,9 @@
   "private": true,
   "repository": "github:sankester/clean-architecture-clone",
   "scripts": {
-    "start": "ENV_FILE=./config/.env.prod node ./dist/framework/api/server.js",
-    "dev": "ENV_FILE=./config/.env.dev nodemon ./dist/framework/api/server.js",
-    "dev:ts": "ENV_FILE=./config/.env.dev nodemon ./src/framework/api/server.ts",
+    "start": "ENV_FILE=./config/.env.prod node ./dist/framework/server/server.js",
+    "dev": "ENV_FILE=./config/.env.dev nodemon ./dist/framework/server/server.js",
+    "dev:ts": "ENV_FILE=./config/.env.dev nodemon ./src/framework/server/server.ts",
     "build": "rm -rf ./dist && tsc",
     "watch": "rm -rf ./dist && tsc --watch",
     "db:up": "./script/run_dev_dbs.sh -r",
@@ -26,6 +26,7 @@
     "mongoose": "^5.11.10",
     "morgan": "^1.10.0",
     "morgan-body": "^2.6.4",
+    "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3"
   },
   "devDependencies": {
@@ -35,6 +36,7 @@
     "@types/express": "^4.17.9",
     "@types/morgan": "^1.9.2",
     "@types/node": "^14.14.19",
+    "@types/swagger-ui-express": "^4.1.2",
     "@types/validator": "^13.1.2",
     "mongodb-memory-server": "^6.9.2",
     "nodemon": "^2.0.6",
