@@ -1,6 +1,6 @@
 # Clean architecture
 
-Simple clean architecture
+Simple clean architecture with nodejs and typescript
 
 ## Packages
 
