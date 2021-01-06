@@ -1,0 +1,46 @@
+# Clean architecture
+
+Simple clean architecture
+
+## Packages
+
+### Default
+
+- bcrypt - _for encription_
+- body-parser - _parsing http body_
+- cors - _handle cors request_
+- dotenv-extended - _for configuration_
+- dotenv-parse-variables - _for parsing configuration variable_
+- express - _router framework_
+- module-alias - _aliases module for simple access_
+- mongoose - _mongodb object modeling_
+- morgan - _log request_
+- morgan-body - _log request body_
+- winston - _custom system logger_
+
+### Khusus Deveploper
+
+- typescript
+- nodemon
+- mongodb-memory-server - _use mongodb in memory_
+- tsconfig-paths - _module aliases for typescript_
+
+**Types package**
+
+- @types/bcrypt
+- @types/cors
+- @types/dotenv-parse-variables
+- @types/express
+- @types/morgan
+- @types/node
+- @types/validator
+
+### Khusus Test
+
+## Reference
+
+[Node Clean Architecture -Deep Dive](https://roystack.home.blog/2019/10/22/node-clean-architecture-deep-dive)
+
+[clean-ts-api](https://github.com/rmanguinho/clean-ts-api)
+
+[Backend API Server Development with Node.js from Scratch to Production](https://losikov.medium.com/backend-api-server-development-with-node-js-from-scratch-to-production-fe3d3b860003)

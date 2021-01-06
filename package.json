@@ -1,0 +1,53 @@
+{
+  "name": "clean-architecture-clone",
+  "version": "1.0.0",
+  "description": "clean architecture clone",
+  "author": "sankester",
+  "license": "MIT",
+  "private": true,
+  "repository": "github:sankester/clean-architecture-clone",
+  "scripts": {
+    "start": "ENV_FILE=./config/.env.prod node ./dist/framework/api/server.js",
+    "dev": "ENV_FILE=./config/.env.dev nodemon ./dist/framework/api/server.js",
+    "dev:ts": "ENV_FILE=./config/.env.dev nodemon ./src/framework/api/server.ts",
+    "build": "rm -rf ./dist && tsc",
+    "watch": "rm -rf ./dist && tsc --watch",
+    "db:up": "./script/run_dev_dbs.sh -r",
+    "db:down": "./script/run_dev_dbs.sh -k"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv-extended": "^2.9.0",
+    "dotenv-parse-variables": "^1.0.1",
+    "express": "^4.17.1",
+    "module-alias": "^2.2.2",
+    "mongoose": "^5.11.10",
+    "morgan": "^1.10.0",
+    "morgan-body": "^2.6.4",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/cors": "^2.8.9",
+    "@types/dotenv-parse-variables": "^0.2.0",
+    "@types/express": "^4.17.9",
+    "@types/morgan": "^1.9.2",
+    "@types/node": "^14.14.19",
+    "@types/validator": "^13.1.2",
+    "mongodb-memory-server": "^6.9.2",
+    "nodemon": "^2.0.6",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.1.3"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "_moduleAliases": {
+    "@entities": "dist/entities/",
+    "@application": "dist/application/",
+    "@adapter": "dist/adapter/",
+    "@framework": "dist/framework/"
+  }
+}
