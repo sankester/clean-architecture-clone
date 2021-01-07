@@ -38,14 +38,13 @@
       ],
       "@framework/*": [
         "src/framework/*",
-      ]
+      ],
+      "@tests/*": ["tests/*"],
     }
   },
   "exclude": [
     "node_modules",
     "docs"
   ],
-  "include": [
-    "./src/**/*.ts"
-  ]
+  "include": ["src", "tests"],
 }

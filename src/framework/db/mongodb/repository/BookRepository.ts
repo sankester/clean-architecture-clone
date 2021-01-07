@@ -15,7 +15,7 @@ export class BookRepository
     return docs as any;
   }
 
-  async add(data: AddBookRepository.Params): Promise<AddBookRepository.Return> {
+  async add(data: AddBookRepository.Params): Promise<AddBookRepository.Result> {
     const doc = await BookModel.create(data);
     if (doc) {
       return true;
@@ -26,14 +26,14 @@ export class BookRepository
   async update(
     bookId: string,
     params: UpdateBookRepository.Params
-  ): Promise<UpdateBookRepository.Return> {
+  ): Promise<UpdateBookRepository.Result> {
     const doc = await BookModel.findByIdAndUpdate(bookId, params);
     return doc as any;
   }
 
   async delete(
     bookId: DeleteBookRepository.Params
-  ): Promise<DeleteBookRepository.Return> {
+  ): Promise<DeleteBookRepository.Result> {
     const deleted = await BookModel.findByIdAndDelete(bookId);
     if (deleted) {
       return true;

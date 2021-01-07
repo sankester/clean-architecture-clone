@@ -1,4 +1,4 @@
-import { DeleteBook } from '@entities/usecases/DeleteBook';
+import { DeleteBook } from '@entities/usecases/book/DeleteBook';
 import { DeleteBookRepository } from '@application/protocol/db/book/DeleteBookRepository';
 
 export class DBDeleteBook implements DeleteBook {

@@ -1,5 +1,5 @@
 import { AddBookRepository } from '@application/protocol/db/book/AddBookRepository';
-import { AddBook } from '@entities/usecases/AddBook';
+import { AddBook } from '@entities/usecases/book/AddBook';
 
 export class DBAddBook implements AddBook {
   constructor(private readonly addBookreporitory: AddBookRepository) {}

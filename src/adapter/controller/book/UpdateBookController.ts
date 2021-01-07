@@ -1,7 +1,7 @@
 import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
 import { HttpResponse } from '@adapter/protocols';
 import { Controller } from '@adapter/protocols/Controller';
-import { UpdateBook } from '@entities/usecases/UpdateBook';
+import { UpdateBook } from '@entities/usecases/book/UpdateBook';
 import { logger } from '@adapter/utils/winston';
 
 export class UpdateBookController implements Controller {

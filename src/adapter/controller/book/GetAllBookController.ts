@@ -3,7 +3,7 @@
 import { logger } from '@adapter/utils/winston';
 import { Controller } from '@adapter/protocols/Controller';
 import { HttpResponse } from '@adapter/protocols';
-import { GetAllBook } from '@entities/usecases/GetAllBook';
+import { GetAllBook } from '@entities/usecases/book/GetAllBook';
 import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
 
 export class GetAllBookController implements Controller {

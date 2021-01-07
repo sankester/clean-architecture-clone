@@ -3,3 +3,4 @@ node_modules
 dist
 docker
 yarn-error.log
+coverage

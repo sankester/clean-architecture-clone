@@ -1,13 +1,13 @@
-import { UpdateBook } from '@entities/usecases/UpdateBook';
+import { UpdateBook } from '@entities/usecases/book/UpdateBook';
 
 export interface UpdateBookRepository {
   update(
     bookId: string,
     params: UpdateBookRepository.Params
-  ): Promise<UpdateBookRepository.Return>;
+  ): Promise<UpdateBookRepository.Result>;
 }
 
 export namespace UpdateBookRepository {
   export type Params = UpdateBook.Params;
-  export type Return = UpdateBook.Return | null;
+  export type Result = UpdateBook.Return | null;
 }

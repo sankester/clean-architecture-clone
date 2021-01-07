@@ -1,4 +1,4 @@
-import { AddBook } from '@entities/usecases/AddBook';
+import { AddBook } from '@entities/usecases/book/AddBook';
 import { HttpResponse } from '@adapter/protocols';
 import { Controller } from '@adapter/protocols/Controller';
 import { logger } from '@adapter/utils/winston';

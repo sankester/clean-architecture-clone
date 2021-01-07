@@ -1,10 +1,10 @@
-import { AddBook } from '@entities/usecases/AddBook';
+import { AddBook } from '@entities/usecases/book/AddBook';
 
 export interface AddBookRepository {
-  add(data: AddBookRepository.Params): Promise<AddBookRepository.Return>;
+  add(data: AddBookRepository.Params): Promise<AddBookRepository.Result>;
 }
 
 export namespace AddBookRepository {
   export type Params = AddBook.Params;
-  export type Return = AddBook.Return;
+  export type Result = AddBook.Return;
 }

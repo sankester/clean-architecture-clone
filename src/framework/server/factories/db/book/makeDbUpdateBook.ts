@@ -1,5 +1,5 @@
-import { UpdateBook } from '@entities/usecases/UpdateBook';
-import { DBUpdateBook } from '@application/usecases/DBUpdateBook';
+import { UpdateBook } from '@entities/usecases/book/UpdateBook';
+import { DBUpdateBook } from '@application/usecases/book/DBUpdateBook';
 import { BookRepository } from '@framework/db/mongodb/repository/BookRepository';
 
 export const makeDbUpdateBook = (): UpdateBook => {

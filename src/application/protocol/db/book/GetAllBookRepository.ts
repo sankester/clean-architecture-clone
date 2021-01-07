@@ -1,4 +1,4 @@
-import { GetAllBook } from '@entities/usecases/GetAllBook';
+import { GetAllBook } from '@entities/usecases/book/GetAllBook';
 
 export interface GetAllBookRepository {
   findAll(): Promise<GetAllBookRepository.Return>;

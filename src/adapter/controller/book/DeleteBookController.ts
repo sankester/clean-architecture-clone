@@ -1,6 +1,6 @@
 import { HttpResponse } from '@adapter/protocols';
 import { Controller } from '@adapter/protocols/Controller';
-import { DeleteBook } from '@entities/usecases/DeleteBook';
+import { DeleteBook } from '@entities/usecases/book/DeleteBook';
 import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
 import { logger } from '@adapter/utils/winston';
 
