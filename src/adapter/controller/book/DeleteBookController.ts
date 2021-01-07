@@ -1,20 +1,27 @@
-import { HttpResponse } from '@adapter/protocols';
-import { Controller } from '@adapter/protocols/Controller';
-import { DeleteBook } from '@entities/usecases/book/DeleteBook';
+import { HttpResponse } from '@adapter/contracts';
+import { Controller } from '@adapter/contracts/Controller';
 import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
 import { logger } from '@adapter/utils/winston';
+import { DeleteBook } from '@entities/usecases/book/DeleteBook';
+import { Validation } from '../../contracts/Validation';
 
 export class DeleteBookController implements Controller {
-  constructor(private readonly deleteBook: DeleteBook) {}
+  constructor(
+    private readonly validation: Validation,
+    private readonly deleteBook: DeleteBook
+  ) {}
 
   async handle(
     request: DeleteBookController.Request,
     { makeBody, makeResponse }: ResponseFactory
   ): Promise<HttpResponse> {
+    const { ok, badRequest, serverError } = makeResponse();
     try {
-      console.log(request);
+      const error = await this.validation.validate(request);
+      if (error) {
+        return badRequest(error);
+      }
       const { bookId } = request;
-
       const deleted = await this.deleteBook.delete(bookId);
       const body =
         deleted === true
@@ -23,10 +30,10 @@ export class DeleteBookController implements Controller {
               'transaction_error',
               DeleteBookController.ErrorResponse
             );
-      return makeResponse().ok(body.build());
+      return ok(body.build());
     } catch (error) {
       logger.error(`DeleteBookController: ${error}`);
-      return makeResponse().serverError(error);
+      return serverError(error);
     }
   }
 }

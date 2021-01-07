@@ -1,8 +1,8 @@
 import { GetAllBook } from '@entities/usecases/book/GetAllBook';
 import { DBGetAllBook } from '@application/usecases/book/DBGetAllBook';
-import { BookRepository } from '@framework/db/mongodb/repository/BookRepository';
+import { MongoBookRepository } from '@framework/db/mongodb/repository/MongoBookRepository';
 
 export const makeDbGetAllBook = (): GetAllBook => {
-  const bookRepository = new BookRepository();
+  const bookRepository = new MongoBookRepository();
   return new DBGetAllBook(bookRepository);
 };

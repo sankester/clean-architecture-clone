@@ -6,7 +6,7 @@ import {
   makeGetAllBookController,
   makeDeleteBookController,
   makeUpdateBookController,
-} from '../factories/controller';
+} from '../factories/book/controller';
 
 export default (app: Express): void => {
   logger.debug('setup router');

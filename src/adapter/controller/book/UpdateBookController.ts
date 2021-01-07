@@ -1,18 +1,26 @@
 import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
-import { HttpResponse } from '@adapter/protocols';
-import { Controller } from '@adapter/protocols/Controller';
+import { HttpResponse } from '@adapter/contracts';
+import { Controller } from '@adapter/contracts/Controller';
 import { UpdateBook } from '@entities/usecases/book/UpdateBook';
 import { logger } from '@adapter/utils/winston';
+import { Validation } from '../../contracts/Validation';
 
 export class UpdateBookController implements Controller {
-  constructor(private readonly updateBook: UpdateBook) {}
+  constructor(
+    private readonly validation: Validation,
+    private readonly updateBook: UpdateBook
+  ) {}
 
   async handle(
     request: AddBookController.Request,
     { makeResponse, makeBody }: ResponseFactory
   ): Promise<HttpResponse> {
-    const { ok, serverError } = makeResponse();
+    const { ok, serverError, badRequest } = makeResponse();
     try {
+      const error = await this.validation.validate(request);
+      if (error) {
+        return badRequest(error);
+      }
       const { bookId } = request;
       const params: UpdateBook.Params = {
         title: request.title,

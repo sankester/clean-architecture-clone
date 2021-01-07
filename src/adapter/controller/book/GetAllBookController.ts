@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { logger } from '@adapter/utils/winston';
-import { Controller } from '@adapter/protocols/Controller';
-import { HttpResponse } from '@adapter/protocols';
+import { Controller } from '@adapter/contracts/Controller';
+import { HttpResponse } from '@adapter/contracts';
 import { GetAllBook } from '@entities/usecases/book/GetAllBook';
 import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
 

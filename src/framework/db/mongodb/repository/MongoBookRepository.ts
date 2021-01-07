@@ -4,7 +4,7 @@ import { GetAllBookRepository } from '@application/protocol/db/book/GetAllBookRe
 import { UpdateBookRepository } from '@application/protocol/db/book/UpdateBookRepository';
 import BookModel from '@framework/db/mongodb/models/BookModel';
 
-export class BookRepository
+export class MongoBookRepository
   implements
     AddBookRepository,
     UpdateBookRepository,

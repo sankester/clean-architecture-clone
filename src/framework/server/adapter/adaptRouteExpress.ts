@@ -1,4 +1,4 @@
-import { Controller } from '@adapter/protocols';
+import { Controller } from '@adapter/contracts';
 import { Request, Response } from 'express';
 import { MakeResponse } from '@adapter/presentation/factories/MakeResponse';
 
