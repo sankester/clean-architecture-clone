@@ -1,7 +1,7 @@
-import { Controller } from '@adapter/contracts/Controller';
 import { AddBookController } from '@adapter/controller';
-import { makeAddBookValidation } from '../validations/makeAddBookValidation';
+import { Controller } from '@adapter/protocol/Controller';
 import { makeDbAddBook } from '../db/makeDbAddBook';
+import { makeAddBookValidation } from '../validations/makeAddBookValidation';
 
 export const makeAddBookController = (): Controller => {
   const controller = new AddBookController(

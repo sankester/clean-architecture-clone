@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 import winston from 'winston';
-import config from '@adapter/config';
+import config from '@framework/config';
 
 const prettyJson = winston.format.printf((info) => {
   if (info.message.constructor === Object) {

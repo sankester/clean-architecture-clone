@@ -1,5 +1,5 @@
-import { Controller } from '@adapter/contracts/Controller';
 import { DeleteBookController } from '@adapter/controller';
+import { Controller } from '@adapter/protocol/Controller';
 import { makeDbDeleteBook } from '@framework/server/factories/book/db';
 import { makeDeleteBookValidation } from '../validations/makeDeleteBookValidation';
 

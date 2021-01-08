@@ -1,26 +1,21 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { logger } from '@adapter/utils/winston';
-import { Controller } from '@adapter/contracts/Controller';
-import { HttpResponse } from '@adapter/contracts';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Response } from '@adapter/presentation/protocol/Response';
+import { Controller } from '@adapter/protocol/Controller';
 import { GetAllBook } from '@entities/usecases/book/GetAllBook';
-import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 
 export class GetAllBookController implements Controller {
   constructor(private readonly getAllBook: GetAllBook) {}
 
-  async handle(
-    _request: any,
-    { makeBody, makeResponse }: ResponseFactory
-  ): Promise<HttpResponse> {
-    const { noContent, ok, serverError } = makeResponse();
+  async handle(_request: any): Promise<Response> {
+    const { noContent, ok, serverError } = makeResponseFactory();
     try {
       const docs = await this.getAllBook.findAll();
       return docs.length > 0
-        ? ok(makeBody().setData(docs).build())
+        ? ok(makeBodyBuilder().setData(docs).build())
         : noContent();
     } catch (error) {
-      logger.error(`GetAllBookController: ${error}`);
       return serverError(error);
     }
   }

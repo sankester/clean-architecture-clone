@@ -2,12 +2,12 @@ import { MissingParamError } from '@adapter/presentation/errors/MissingParams';
 import { plainToClass } from 'class-transformer';
 import { ClassType } from 'class-transformer/ClassTransformer';
 import { validate } from 'class-validator';
-import { Validation } from '../../contracts/Validation';
+import { Validation } from '../../protocol/Validation';
 
 export class RequestParamsValidation<T> implements Validation {
   constructor(private dto: ClassType<T>) {}
 
-  async validate(inputs: any): Promise<void | Error> {
+  async validate(inputs: any): Promise<void | Error | null> {
     const data = plainToClass(this.dto, inputs);
     const errors = await validate(data, {
       skipMissingProperties: true,

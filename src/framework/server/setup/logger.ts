@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import config from '@adapter/config/index';
+import config from '@framework/config/index';
 import morgan from 'morgan';
 import morganBody from 'morgan-body';
 import { expressDevLogger } from '../utils/express_dev_logger';

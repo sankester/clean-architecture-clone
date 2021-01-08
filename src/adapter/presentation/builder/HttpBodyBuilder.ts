@@ -1,11 +1,12 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { HttpBody } from '../response/HttpBody';
+import { ResponseBody } from '../protocol/ResponseBody';
+import { ResponseBodyBuilder } from '../protocol/ResponseBodyBuilder';
+import { ResponseBodyError } from '../protocol/ResponseBodyError';
+import { ResponseBodySuccess } from '../protocol/ResponseBodySuccess';
 
-export class HttpBodyBuilder {
-  private success: HttpBody.HttpBodySuccess;
+export class HttpBodyBuilder implements ResponseBodyBuilder {
+  private success: ResponseBodySuccess;
 
-  private error: HttpBody.HttpBodyError;
+  private error: ResponseBodyError;
 
   private data: any;
 
@@ -24,23 +25,17 @@ export class HttpBodyBuilder {
     return this;
   }
 
-  build(): HttpBody {
-    let body = {};
+  build(): ResponseBody {
+    const body = {};
     if (this.success) {
-      body = {
-        success: this.success,
-      };
+      body['success'] = this.success;
     }
     if (this.error) {
-      body = {
-        error: this.error,
-      };
+      body['error'] = this.error;
     }
     if (this.data) {
-      body = {
-        data: this.data,
-      };
+      body['data'] = this.data;
     }
-    return new HttpBody(body);
+    return body;
   }
 }

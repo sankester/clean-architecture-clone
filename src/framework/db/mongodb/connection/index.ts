@@ -3,8 +3,8 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-import config from '@adapter/config';
-import { logger } from '@adapter/utils/winston';
+import config from '@framework/config';
+import { logger } from '@framework/library/winston';
 
 mongoose.set('debug', process.env.DEBUG !== undefined);
 

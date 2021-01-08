@@ -1,10 +1,10 @@
+import { logger } from '@framework/library/winston';
 import { Express, Router } from 'express';
-import { logger } from '@adapter/utils/winston';
 import { adaptRoute } from '../adapter/adaptRouteExpress';
 import {
   makeAddBookController,
-  makeGetAllBookController,
   makeDeleteBookController,
+  makeGetAllBookController,
   makeUpdateBookController,
 } from '../factories/book/controller';
 
@@ -14,7 +14,7 @@ export default (app: Express): void => {
   app.use('/api', router);
 
   router.post('/book', adaptRoute(makeAddBookController()));
-  router.put('/book/:bookId', adaptRoute(makeUpdateBookController()));
   router.get('/book', adaptRoute(makeGetAllBookController()));
+  router.put('/book/:bookId', adaptRoute(makeUpdateBookController()));
   router.delete('/book/:bookId', adaptRoute(makeDeleteBookController()));
 };

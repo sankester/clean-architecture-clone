@@ -4,7 +4,7 @@
 
 import express from 'express';
 
-import { logger } from '@adapter/utils/winston';
+import { logger } from '@framework/library/winston';
 
 export const expressDevLogger = (
   req: express.Request,

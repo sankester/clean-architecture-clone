@@ -1,4 +1,4 @@
-import { Validation } from '@adapter/contracts/Validation';
+import { Validation } from '@adapter/protocol/Validation';
 import { RequestParamsValidation } from '@adapter/validation/validator/RequestParamsValidation';
 import { DeleteBookDto } from './dto/DeleteBookDto';
 

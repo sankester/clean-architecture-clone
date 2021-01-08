@@ -1,9 +1,9 @@
-import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
-import { HttpResponse } from '@adapter/contracts';
-import { Controller } from '@adapter/contracts/Controller';
+import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { Response } from '@adapter/presentation/protocol/Response';
+import { Controller } from '@adapter/protocol/Controller';
+import { Validation } from '@adapter/protocol/Validation';
 import { UpdateBook } from '@entities/usecases/book/UpdateBook';
-import { logger } from '@adapter/utils/winston';
-import { Validation } from '../../contracts/Validation';
 
 export class UpdateBookController implements Controller {
   constructor(
@@ -11,11 +11,8 @@ export class UpdateBookController implements Controller {
     private readonly updateBook: UpdateBook
   ) {}
 
-  async handle(
-    request: AddBookController.Request,
-    { makeResponse, makeBody }: ResponseFactory
-  ): Promise<HttpResponse> {
-    const { ok, serverError, badRequest } = makeResponse();
+  async handle(request: UpdateBookController.Request): Promise<Response> {
+    const { ok, serverError, badRequest } = makeResponseFactory();
     try {
       const error = await this.validation.validate(request);
       if (error) {
@@ -28,19 +25,19 @@ export class UpdateBookController implements Controller {
         issn: request.issn,
       };
       const updated = await this.updateBook.update(bookId, params);
-      let body = makeBody();
+      let body = makeBodyBuilder();
       body = updated
-        ? body.setData(updated)
-        : body.setError('transaction_error', AddBookController.ErrorMessage);
+        ? body.setData(updated).setSuccess(UpdateBookController.SuccessMessage)
+        : body.setError('transaction_error', UpdateBookController.ErrorMessage);
       return ok(body.build());
     } catch (error) {
-      logger.error(`UpdateBookController: ${error}`);
       return serverError(error);
     }
   }
 }
 
-export namespace AddBookController {
+/* istanbul ignore next */
+export namespace UpdateBookController {
   export type Request = UpdateBook.Params & { bookId: string };
 
   export const ErrorMessage = 'gagal merubah data buku';

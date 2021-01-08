@@ -1,9 +1,9 @@
-import { HttpResponse } from '@adapter/contracts';
-import { Controller } from '@adapter/contracts/Controller';
-import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
-import { logger } from '@adapter/utils/winston';
+import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { Response } from '@adapter/presentation/protocol/Response';
+import { Controller } from '@adapter/protocol/Controller';
+import { Validation } from '@adapter/protocol/Validation';
 import { DeleteBook } from '@entities/usecases/book/DeleteBook';
-import { Validation } from '../../contracts/Validation';
 
 export class DeleteBookController implements Controller {
   constructor(
@@ -11,11 +11,8 @@ export class DeleteBookController implements Controller {
     private readonly deleteBook: DeleteBook
   ) {}
 
-  async handle(
-    request: DeleteBookController.Request,
-    { makeBody, makeResponse }: ResponseFactory
-  ): Promise<HttpResponse> {
-    const { ok, badRequest, serverError } = makeResponse();
+  async handle(request: DeleteBookController.Request): Promise<Response> {
+    const { ok, badRequest, serverError } = makeResponseFactory();
     try {
       const error = await this.validation.validate(request);
       if (error) {
@@ -25,25 +22,25 @@ export class DeleteBookController implements Controller {
       const deleted = await this.deleteBook.delete(bookId);
       const body =
         deleted === true
-          ? makeBody().setSuccess(DeleteBookController.SuccessResponse)
-          : makeBody().setError(
+          ? makeBodyBuilder().setSuccess(DeleteBookController.SuccesMessage)
+          : makeBodyBuilder().setError(
               'transaction_error',
-              DeleteBookController.ErrorResponse
+              DeleteBookController.ErrorMessage
             );
       return ok(body.build());
     } catch (error) {
-      logger.error(`DeleteBookController: ${error}`);
       return serverError(error);
     }
   }
 }
 
+/* istanbul ignore next */
 export namespace DeleteBookController {
   export type Request = {
     bookId: string;
   };
 
-  export const ErrorResponse = 'gagal menghapus buku';
+  export const ErrorMessage = 'gagal menghapus buku';
 
-  export const SuccessResponse = 'berhasil menghapus data buku';
+  export const SuccesMessage = 'berhasil menghapus data buku';
 }

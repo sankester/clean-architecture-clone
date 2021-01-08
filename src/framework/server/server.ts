@@ -1,7 +1,7 @@
 import 'module-alias/register';
-import app from './setup/app';
-import { logger } from '@adapter/utils/winston';
 import MongoConnection from '@framework/db/mongodb/connection/index';
+import { logger } from '@framework/library/winston';
+import app from './setup/app';
 
 const start = async () => {
   try {

@@ -1,8 +1,8 @@
-import { HttpResponse } from '@adapter/contracts';
-import { Controller } from '@adapter/contracts/Controller';
-import { Validation } from '@adapter/contracts/Validation';
-import { ResponseFactory } from '@adapter/presentation/contracts/ResponseFactory';
-import { logger } from '@adapter/utils/winston';
+import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { Response } from '@adapter/presentation/protocol/Response';
+import { Controller } from '@adapter/protocol/Controller';
+import { Validation } from '@adapter/protocol/Validation';
 import { AddBook } from '@entities/usecases/book/AddBook';
 
 export class AddBookController implements Controller {
@@ -11,11 +11,9 @@ export class AddBookController implements Controller {
     private readonly addBook: AddBook
   ) {}
 
-  async handle(
-    request: AddBookController.Request,
-    { makeBody, makeResponse }: ResponseFactory
-  ): Promise<HttpResponse> {
-    const { created, ok, serverError, badRequest } = makeResponse();
+  async handle(request: AddBookController.Request): Promise<Response> {
+    const { created, ok, serverError, badRequest } = makeResponseFactory();
+
     try {
       const error = await this.validation.validate(request);
       if (error) {
@@ -24,24 +22,24 @@ export class AddBookController implements Controller {
       const isSuccess = await this.addBook.add(request);
       return isSuccess
         ? created(
-            makeBody().setSuccess(AddBookController.SuccessMessage).build()
+            makeBodyBuilder()
+              .setSuccess(AddBookController.SuccessMessage)
+              .build()
           )
         : ok(
-            makeBody()
+            makeBodyBuilder()
               .setError('transaction_error', AddBookController.ErrorMessage)
               .build()
           );
     } catch (error) {
-      logger.error(`AddBookController: ${error.message}`);
       return serverError(error);
     }
   }
 }
 
+/* istanbul ignore next */
 export namespace AddBookController {
   export type Request = AddBook.Params;
-
   export const ErrorMessage = 'gagal menambah data buku';
-
   export const SuccessMessage = 'berhasil menambah data buku';
 }
