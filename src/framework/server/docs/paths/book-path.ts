@@ -24,4 +24,37 @@ export const bookPath = {
       },
     },
   },
+  post: {
+    tags: ['Book'],
+    summary: 'Create new book',
+    description: 'create new book and save in database',
+    requestBody: {
+      required: true,
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/schemas/addBookParams',
+          },
+        },
+      },
+    },
+    responses: {
+      201: {
+        description: 'Success created new book',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: '#/schemas/successResponse',
+            },
+          },
+        },
+      },
+      400: {
+        $ref: '#/components/badRequest',
+      },
+      500: {
+        $ref: '#/components/serverError',
+      },
+    },
+  },
 };

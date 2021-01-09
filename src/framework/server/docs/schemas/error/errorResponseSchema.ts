@@ -5,5 +5,4 @@ export const errorResponse = {
       $ref: '#/schemas/error',
     },
   },
-  required: ['error'],
 };

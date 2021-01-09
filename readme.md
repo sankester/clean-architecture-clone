@@ -2,6 +2,115 @@
 
 Simple clean architecture with nodejs and typescript
 
+## Layering
+
+### Entitiy
+
+- Book
+
+### Application Use Cases
+
+- Get All Book
+- Add Book
+- Update Book
+- Delete Book
+
+### Adapter
+
+**Controller**
+
+- `GetAllBookConttroller`
+- `AddBookController`
+- `UpdateBookController`
+- `DeleteBookController`
+
+**Presentation**
+
+> All about formatting to response format
+
+**Validation**
+
+- validation with `composite pattern`
+- validation with `class-validator` & `class-transforme`
+
+### Framework And Driver
+
+**Framework**
+
+- `Express`
+
+**Database**
+
+- `Mongodb`
+
+## API Contract
+
+### Book
+
+- Get All Book
+
+  **GET** - `http://localhost:3000/api/book`
+
+  Accept: `application/json`
+
+  Content-Type: `application/json`
+
+- Create Book
+
+  **POST** - `http://localhost:3000/api/book`
+
+  Accept: `application/json`
+
+  Content-Type: `application/json`
+
+  Request Body
+
+  ```js
+  {
+      title: string,
+      author: string,
+      issn: string
+  }
+  ```
+
+- update Book
+
+  **PUT** - `http://localhost:3000/api/book/{bookId}`
+
+  Accept: `application/json`
+
+  Content-Type: `application/json`
+
+  Request Params
+
+  - `bookId: string`
+
+  Request Body
+
+  ```js
+  {
+      title: string,
+      author: string,
+      issn: string
+  }
+  ```
+
+- Delete Book
+
+  **DELETE** - `http://localhost:3000/api/book/{bookId}`
+
+  Accept: `application/json`
+
+  Content-Type: `application/json`
+
+  Request Params
+
+  - `bookId: string`
+
+## API Swagger Docs
+
+API docs in **`http:localhost:3000/api-docs`**
+
 ## Packages
 
 ### Default
