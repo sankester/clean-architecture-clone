@@ -26,9 +26,8 @@ Simple clean architecture with nodejs and typescript
 - nodemon
 - mongodb-memory-server - _use mongodb in memory_
 - tsconfig-paths - _module aliases for typescript_
-- eslint, @typescript-eslint/parser,  @typescript-eslint/eslint-plugin - _linter_
+- eslint, @typescript-eslint/parser, @typescript-eslint/eslint-plugin - _linter_
 - prettier, eslint-config-prettier, eslint-plugin-prettier - _formatter_
-
 
 **Types package**
 
@@ -43,11 +42,12 @@ Simple clean architecture with nodejs and typescript
 
 ### Khusus Test
 
-- mongodb-memory-server
-- jest
-- ts-jest
-- faker & @types/faker
-- bson-objectid
+- mongodb-memory-server - _mongodb run in memory_
+- jest - _unit testing_
+- ts-jest - _jest for typescript_
+- faker & @types/faker - _mockup helper_
+- bson-objectid - _mock objectid_
+- supertest & @types/supertest - _request to server_
 
 ## Reference
 

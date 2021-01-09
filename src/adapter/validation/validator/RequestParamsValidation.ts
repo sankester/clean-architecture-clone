@@ -15,10 +15,8 @@ export class RequestParamsValidation<T> implements Validation {
     if (errors.length > 0) {
       const error = {};
       for (const errorItem of errors) {
-        if (errorItem.constraints) {
-          error[errorItem.property] =
-            errorItem.constraints[Object.keys(errorItem.constraints)[0]];
-        }
+        const constrain: any = errorItem.constraints;
+        error[errorItem.property] = constrain[Object.keys(constrain)[0]];
       }
 
       return new MissingParamError(JSON.stringify(error));

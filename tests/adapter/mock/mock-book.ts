@@ -7,6 +7,7 @@ import { GetAllBook } from '@entities/usecases/book/GetAllBook';
 import { UpdateBook } from '@entities/usecases/book/UpdateBook';
 import { mockBookModel } from '@tests/entities/mock';
 import faker from 'faker';
+import FakeObjectId from 'bson-objectid';
 
 export class AddBookSpy implements AddBook {
   params: AddBook.Params;
@@ -65,12 +66,12 @@ export const mockAddBookRequest = (): AddBookController.Request => ({
 });
 
 export const mockUpdateBookRequest = (): UpdateBookController.Request => ({
-  bookId: faker.random.uuid(),
+  bookId: FakeObjectId.generate(),
   title: faker.lorem.sentence(),
   author: faker.name.firstName(),
   issn: faker.lorem.slug(5),
 });
 
 export const mockDeleteBookRequest = (): DeleteBookController.Request => ({
-  bookId: faker.random.uuid(),
+  bookId: FakeObjectId.generate(),
 });
