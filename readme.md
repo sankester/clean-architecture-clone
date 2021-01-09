@@ -47,6 +47,7 @@ Simple clean architecture with nodejs and typescript
 - jest
 - ts-jest
 - faker & @types/faker
+- bson-objectid
 
 ## Reference
 

@@ -1,10 +1,9 @@
 /* istanbul ignore file */
 
-import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
-
 import config from '@framework/config';
 import { logger } from '@framework/library/winston';
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import mongoose from 'mongoose';
 
 mongoose.set('debug', process.env.DEBUG !== undefined);
 
@@ -17,6 +16,7 @@ const opts = {
   autoIndex: config.mongo.autoIndex,
   serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
   socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+  useFindAndModify: false,
 };
 
 class MongoConnection {

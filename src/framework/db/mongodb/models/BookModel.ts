@@ -1,39 +1,34 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Document, Model, model, Schema } from 'mongoose';
 
-interface IBookDocument extends Document {
+export interface IBookDocument extends Document {
   title: string;
   author: string;
   issn: string;
-  created: Date;
 }
 
-const userSchema = new Schema<IBookDocument>(
+const bookSchema = new Schema<IBookDocument>(
   {
     title: { type: String, required: true },
     author: { type: String, required: true },
     issn: { type: String, required: true },
-    created: { type: Date, default: Date.now },
   },
-  { strict: true }
+  { strict: true, timestamps: true }
 ).index({ title: 1 });
 
-userSchema.set('toJSON', {
-  transform: function (
-    _doc: any,
-    ret: { created: { getTime: () => any }; __v: any; _id: any; password: any },
-    _options: any
-  ) {
-    ret.created = ret.created.getTime();
+bookSchema.set('toJSON', {
+  transform: function (_doc: any, ret: any, _options: any) {
     ret['id'] = ret._id;
     delete ret.__v;
     delete ret._id;
+    delete ret.createdAt;
+    delete ret.updatedAt;
   },
 });
 
 export type IBookModel = Model<IBookDocument>;
 export const BookModel: IBookModel = model<IBookDocument, IBookModel>(
-  'user',
-  userSchema
+  'book',
+  bookSchema
 );
 export default BookModel;

@@ -1,5 +1,5 @@
 Arguments: 
-  /home/sankester/.nvm/versions/node/v14.15.0/bin/node /usr/bin/yarn add reflec-metadata
+  /home/sankester/.nvm/versions/node/v14.15.0/bin/node /usr/bin/yarn add bson-object-id
 
 PATH: 
   /home/sankester/.nvm/versions/node/v14.15.0/bin:/home/sankester/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/reflec-metadata: Not found
+  Error: https://registry.yarnpkg.com/bson-object-id: Not found
       at Request.params.callback [as _callback] (/usr/lib/node_modules/yarn/lib/cli.js:66988:18)
       at Request.self.callback (/usr/lib/node_modules/yarn/lib/cli.js:140749:22)
       at Request.emit (events.js:315:20)
@@ -43,7 +43,7 @@ npm manifest:
       "watch": "rm -rf ./dist && tsc -p tsconfig-build.json --watch",
       "db:up": "./script/run_dev_dbs.sh -r",
       "db:down": "./script/run_dev_dbs.sh -k",
-      "tests": "jest"
+      "tests": "ENV_FILE=./config/.env.test jest"
     },
     "dependencies": {
       "bcrypt": "^5.0.0",

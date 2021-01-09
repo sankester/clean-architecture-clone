@@ -17,17 +17,16 @@ export class MongoBookRepository
 
   async add(data: AddBookRepository.Params): Promise<AddBookRepository.Result> {
     const doc = await BookModel.create(data);
-    if (doc) {
-      return true;
-    }
-    return false;
+    return !!doc;
   }
 
   async update(
     bookId: string,
     params: UpdateBookRepository.Params
   ): Promise<UpdateBookRepository.Result> {
-    const doc = await BookModel.findByIdAndUpdate(bookId, params);
+    const doc = await BookModel.findByIdAndUpdate(bookId, params, {
+      new: true,
+    });
     return doc as any;
   }
 
