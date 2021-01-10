@@ -1,5 +1,5 @@
 import { DeleteBook } from '@entities/usecases/book/DeleteBook';
-import { DeleteBookRepository } from '@application/protocol/db/book/DeleteBookRepository';
+import { DeleteBookRepository } from '@application/protocol/repositories/book/DeleteBookRepository';
 
 export class DBDeleteBook implements DeleteBook {
   constructor(private readonly deleteBookRepository: DeleteBookRepository) {}

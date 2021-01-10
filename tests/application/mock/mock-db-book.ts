@@ -1,9 +1,9 @@
-import { AddBookRepository } from '@application/protocol/db/book/AddBookRepository';
-import { DeleteBookRepository } from '@application/protocol/db/book/DeleteBookRepository';
-import { UpdateBookRepository } from '@application/protocol/db/book/UpdateBookRepository';
+import { AddBookRepository } from '@application/protocol/repositories/book/AddBookRepository';
+import { DeleteBookRepository } from '@application/protocol/repositories/book/DeleteBookRepository';
+import { UpdateBookRepository } from '@application/protocol/repositories/book/UpdateBookRepository';
 import { Book } from '@entities/models/Book';
 import { mockListBook } from '../../entities/mock/mock-book';
-import { GetAllBookRepository } from '@application/protocol/db/book/GetAllBookRepository';
+import { GetAllBookRepository } from '@application/protocol/repositories/book/GetAllBookRepository';
 import { GetAllBook } from '@entities/usecases/book/GetAllBook';
 
 export class AddBookRepositorySpy implements AddBookRepository {

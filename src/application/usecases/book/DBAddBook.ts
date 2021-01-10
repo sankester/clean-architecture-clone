@@ -1,4 +1,4 @@
-import { AddBookRepository } from '@application/protocol/db/book/AddBookRepository';
+import { AddBookRepository } from '@application/protocol/repositories/book/AddBookRepository';
 import { AddBook } from '@entities/usecases/book/AddBook';
 
 export class DBAddBook implements AddBook {

@@ -4,26 +4,31 @@ import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseF
 import { Controller } from '@adapter/protocol/Controller';
 import { throwError } from '../../entities/mock/test-helper';
 import { GetAllBookSpy } from '../mock/mock-book';
+import { Presenter } from '@adapter/protocol/Presenter';
+import { GetAllBookPresenter } from '../../../src/adapter/presentation/presenter/book/GetAllBookPresenter';
 
 type SubjectType = {
   subject: Controller;
+  presenter: Presenter;
   getAllBookSpy: GetAllBookSpy;
 };
 
 const makeSubjectTest = (): SubjectType => {
   const getAllBookSpy = new GetAllBookSpy();
-  const subject = new GetAllBookController(getAllBookSpy);
+  const presenter = new GetAllBookPresenter();
+  const subject = new GetAllBookController(presenter, getAllBookSpy);
   return {
     subject,
+    presenter,
     getAllBookSpy,
   };
 };
 
 describe('Get All Book Controller Test', () => {
   it('should return 200 if success ', async () => {
-    const { subject, getAllBookSpy } = makeSubjectTest();
-
-    const response = await subject.handle({});
+    const { subject, presenter, getAllBookSpy } = makeSubjectTest();
+    await subject.handle({});
+    const response = presenter.getResponse();
     const expectResponse = makeBodyBuilder()
       .setData(getAllBookSpy.data)
       .build();
@@ -31,16 +36,18 @@ describe('Get All Book Controller Test', () => {
   });
 
   it('should return 204 if empty data', async () => {
-    const { subject, getAllBookSpy } = makeSubjectTest();
+    const { subject, presenter, getAllBookSpy } = makeSubjectTest();
     getAllBookSpy.data = [];
-    const response = await subject.handle({});
+    await subject.handle({});
+    const response = presenter.getResponse();
     expect(response).toEqual(makeResponseFactory().noContent());
   });
 
   it('should reutn 500 if findAll throw', async () => {
-    const { subject, getAllBookSpy } = makeSubjectTest();
+    const { subject, presenter, getAllBookSpy } = makeSubjectTest();
     jest.spyOn(getAllBookSpy, 'findAll').mockImplementationOnce(throwError);
-    const response = await subject.handle({});
+    await subject.handle({});
+    const response = presenter.getResponse();
     expect(response).toEqual(makeResponseFactory().serverError(new Error()));
   });
 });

@@ -2,12 +2,15 @@ import { DeleteBookController } from '@adapter/controller/book/DeleteBookControl
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { Controller } from '@adapter/protocol/Controller';
+import { Presenter } from '@adapter/protocol/Presenter';
+import { DeleteBookPresenter } from '@adapter/presentation/presenter/book/DeleteBookPresenter';
 import { throwError } from '../../entities/mock/test-helper';
 import { DeleteBookSpy, mockDeleteBookRequest } from '../mock/mock-book';
 import { ValidationSpy } from '../mock/mock-validation';
 
 type SubjectType = {
   subject: Controller;
+  presenter: Presenter;
   validationSpy: ValidationSpy;
   deleteBookSpy: DeleteBookSpy;
 };
@@ -15,9 +18,15 @@ type SubjectType = {
 const makeSubjectTest = (): SubjectType => {
   const deleteBookSpy = new DeleteBookSpy();
   const validationSpy = new ValidationSpy();
-  const subject = new DeleteBookController(validationSpy, deleteBookSpy);
+  const presenter = new DeleteBookPresenter();
+  const subject = new DeleteBookController(
+    presenter,
+    validationSpy,
+    deleteBookSpy
+  );
   return {
     subject,
+    presenter,
     validationSpy,
     deleteBookSpy,
   };
@@ -32,10 +41,11 @@ describe('Delete Book Controller Test', () => {
   });
 
   it('should return 400 if validation fails', async () => {
-    const { subject, validationSpy } = makeSubjectTest();
+    const { subject, presenter, validationSpy } = makeSubjectTest();
     const request = mockDeleteBookRequest();
     validationSpy.error = new Error();
-    const response = await subject.handle(request);
+    await subject.handle(request);
+    const response = presenter.getResponse();
     expect(response).toMatchObject(
       makeResponseFactory().badRequest(validationSpy.error)
     );
@@ -50,29 +60,32 @@ describe('Delete Book Controller Test', () => {
   });
 
   it('should reutn 500 if deleteBook throw', async () => {
-    const { subject, deleteBookSpy } = makeSubjectTest();
+    const { subject, presenter, deleteBookSpy } = makeSubjectTest();
     jest.spyOn(deleteBookSpy, 'delete').mockImplementationOnce(throwError);
-    const response = await subject.handle(mockDeleteBookRequest());
+    await subject.handle(mockDeleteBookRequest());
+    const response = presenter.getResponse();
     expect(response).toEqual(makeResponseFactory().serverError(new Error()));
   });
 
   it('should return 200 if success ', async () => {
-    const { subject, deleteBookSpy } = makeSubjectTest();
+    const { subject, presenter, deleteBookSpy } = makeSubjectTest();
     const data = mockDeleteBookRequest();
     deleteBookSpy.bookId = data.bookId;
-    const response = await subject.handle(data);
+    await subject.handle(data);
+    const response = presenter.getResponse();
     const expectResponse = makeBodyBuilder()
-      .setSuccess(DeleteBookController.SuccesMessage)
+      .setSuccess(DeleteBookPresenter.SuccesMessage)
       .build();
     expect(response).toEqual(makeResponseFactory().ok(expectResponse));
   });
 
   it('should return 200 transaction_error fail save data', async () => {
-    const { subject, deleteBookSpy } = makeSubjectTest();
+    const { subject, presenter, deleteBookSpy } = makeSubjectTest();
     deleteBookSpy.bookId = 'error';
-    const response = await subject.handle(mockDeleteBookRequest());
+    await subject.handle(mockDeleteBookRequest());
+    const response = presenter.getResponse();
     const expectResponse = makeBodyBuilder()
-      .setError('transaction_error', DeleteBookController.ErrorMessage)
+      .setError('transaction_error', DeleteBookPresenter.ErrorMessage)
       .build();
     expect(response).toEqual(makeResponseFactory().ok(expectResponse));
   });

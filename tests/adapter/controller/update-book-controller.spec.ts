@@ -5,9 +5,12 @@ import { Controller } from '@adapter/protocol/Controller';
 import { throwError } from '../../entities/mock/test-helper';
 import { mockUpdateBookRequest, UpdateBookSpy } from '../mock/mock-book';
 import { ValidationSpy } from '../mock/mock-validation';
+import { Presenter } from '@adapter/protocol/Presenter';
+import { UpdateBookPresenter } from '../../../src/adapter/presentation/presenter/book/UpdateBookPresenter';
 
 type SubjectType = {
   subject: Controller;
+  presenter: Presenter;
   validationSpy: ValidationSpy;
   updateBookSpy: UpdateBookSpy;
 };
@@ -15,9 +18,15 @@ type SubjectType = {
 const makeSubjectTest = (): SubjectType => {
   const updateBookSpy = new UpdateBookSpy();
   const validationSpy = new ValidationSpy();
-  const subject = new UpdateBookController(validationSpy, updateBookSpy);
+  const presenter = new UpdateBookPresenter();
+  const subject = new UpdateBookController(
+    presenter,
+    validationSpy,
+    updateBookSpy
+  );
   return {
     subject,
+    presenter,
     validationSpy,
     updateBookSpy,
   };
@@ -32,10 +41,11 @@ describe('Update Book Controller Test', () => {
   });
 
   it('should return 400 if validation fails', async () => {
-    const { subject, validationSpy } = makeSubjectTest();
+    const { subject, presenter, validationSpy } = makeSubjectTest();
     const request = mockUpdateBookRequest();
     validationSpy.error = new Error();
-    const response = await subject.handle(request);
+    await subject.handle(request);
+    const response = presenter.getResponse();
     expect(response).toMatchObject(
       makeResponseFactory().badRequest(validationSpy.error)
     );
@@ -54,19 +64,21 @@ describe('Update Book Controller Test', () => {
   });
 
   it('should reutn 500 if updateBook throw', async () => {
-    const { subject, updateBookSpy } = makeSubjectTest();
+    const { subject, presenter, updateBookSpy } = makeSubjectTest();
     jest.spyOn(updateBookSpy, 'update').mockImplementationOnce(throwError);
-    const response = await subject.handle(mockUpdateBookRequest());
+    await subject.handle(mockUpdateBookRequest());
+    const response = presenter.getResponse();
     expect(response).toEqual(makeResponseFactory().serverError(new Error()));
   });
 
   it('should return 200 if success ', async () => {
-    const { subject, updateBookSpy } = makeSubjectTest();
+    const { subject, presenter, updateBookSpy } = makeSubjectTest();
     const data = mockUpdateBookRequest();
     updateBookSpy.bookId = data.bookId;
-    const response = await subject.handle(data);
+    await subject.handle(data);
+    const response = presenter.getResponse();
     const expectResponse = makeBodyBuilder()
-      .setSuccess(UpdateBookController.SuccessMessage)
+      .setSuccess(UpdateBookPresenter.SuccessMessage)
       .setData({
         id: data.bookId,
         title: data.title,
@@ -78,11 +90,12 @@ describe('Update Book Controller Test', () => {
   });
 
   it('should return 200 transaction_error fail save data', async () => {
-    const { subject, updateBookSpy } = makeSubjectTest();
+    const { subject, presenter, updateBookSpy } = makeSubjectTest();
     updateBookSpy.bookId = 'error';
-    const response = await subject.handle(mockUpdateBookRequest());
+    await subject.handle(mockUpdateBookRequest());
+    const response = presenter.getResponse();
     const expectResponse = makeBodyBuilder()
-      .setError('transaction_error', UpdateBookController.ErrorMessage)
+      .setError('transaction_error', UpdateBookPresenter.ErrorMessage)
       .build();
     expect(response).toEqual(makeResponseFactory().ok(expectResponse));
   });

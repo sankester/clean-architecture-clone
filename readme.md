@@ -26,12 +26,15 @@ Simple clean architecture with nodejs and typescript
 
 **Presentation**
 
-> All about formatting to response format
+- `GetAllBookPresenter`
+- `AddBookPresenter`
+- `UpdateBookPresenter`
+- `DeleteBookPresenter`
 
 **Validation**
 
 - validation with `composite pattern`
-- validation with `class-validator` & `class-transforme`
+- validation with `class-validator` & `class-transformer`
 
 ### Framework And Driver
 
@@ -42,6 +45,10 @@ Simple clean architecture with nodejs and typescript
 **Database**
 
 - `Mongodb`
+
+## API Swagger Docs
+
+API docs in **`http:localhost:3000/api-docs`**
 
 ## API Contract
 
@@ -107,9 +114,15 @@ Simple clean architecture with nodejs and typescript
 
   - `bookId: string`
 
-## API Swagger Docs
+## Design Pattern
 
-API docs in **`http:localhost:3000/api-docs`**
+- Singleton
+- Factory
+- Abstract Factory
+- Builder
+- Adapter
+- Composite
+- Template Method
 
 ## Packages
 

@@ -1,4 +1,4 @@
-import { UpdateBookRepository } from '@application/protocol/db/book/UpdateBookRepository';
+import { UpdateBookRepository } from '@application/protocol/repositories/book/UpdateBookRepository';
 import { UpdateBook } from '@entities/usecases/book/UpdateBook';
 
 export class DBUpdateBook implements UpdateBook {

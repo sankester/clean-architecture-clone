@@ -1,6 +1,8 @@
-import { AddBookController } from '@adapter/controller/book/AddBookController';
 import { HTTP_RESPONSE_ERROR } from '@adapter/presentation/constant/HttpResponseError';
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
+import { AddBookPresenter } from '@adapter/presentation/presenter/book/AddBookPresenter';
+import { DeleteBookPresenter } from '@adapter/presentation/presenter/book/DeleteBookPresenter';
+import { UpdateBookPresenter } from '@adapter/presentation/presenter/book/UpdateBookPresenter';
 import MongoConnection from '@framework/db/mongodb/connection/index';
 import BookModel from '@framework/db/mongodb/models/BookModel';
 import app from '@framework/server/setup/app';
@@ -9,8 +11,6 @@ import FakeObjectId from 'bson-objectid';
 import faker from 'faker';
 import request from 'supertest';
 import { mockUpdateBookParams } from '../../../entities/mock/mock-book';
-import { DeleteBookController } from '../../../../src/adapter/controller/book/DeleteBookController';
-import { UpdateBookController } from '../../../../src/adapter/controller/book/UpdateBookController';
 
 const mockBookDatabase = async () => {
   const docs = await BookModel.create([
@@ -59,7 +59,7 @@ describe('Book Route Test', () => {
       const params = mockAddBookParams();
       const res = await request(app).post('/api/book').send(params).expect(201);
       const expectedRes = makeBodyBuilder()
-        .setSuccess(AddBookController.SuccessMessage)
+        .setSuccess(AddBookPresenter.SuccessMessage)
         .build();
       expect(res.body).toMatchObject(expectedRes);
     });
@@ -86,9 +86,7 @@ describe('Book Route Test', () => {
         .send(params)
         .expect(200);
 
-      expect(res.body.success.message).toBe(
-        UpdateBookController.SuccessMessage
-      );
+      expect(res.body.success.message).toBe(UpdateBookPresenter.SuccessMessage);
 
       expect(res.body.data).toMatchObject({
         id: docs[0]._id.toString(),
@@ -122,7 +120,7 @@ describe('Book Route Test', () => {
         .delete(`/api/book/${docs[0]._id}`)
         .expect(200);
       expect(res.body).toHaveProperty('success');
-      expect(res.body.success.message).toBe(DeleteBookController.SuccesMessage);
+      expect(res.body.success.message).toBe(DeleteBookPresenter.SuccesMessage);
     });
 
     it('should response 200 error on not found entity', async () => {
@@ -132,7 +130,7 @@ describe('Book Route Test', () => {
 
       expect(res.body).toHaveProperty('error');
       expect(res.body.error.type).toBe('transaction_error');
-      expect(res.body.error.message).toBe(DeleteBookController.ErrorMessage);
+      expect(res.body.error.message).toBe(DeleteBookPresenter.ErrorMessage);
     });
 
     it('should response 400 on invalid params', async () => {
