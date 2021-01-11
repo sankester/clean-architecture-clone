@@ -123,6 +123,7 @@ API docs in **`http:localhost:3000/api-docs`**
 - Adapter
 - Composite
 - Template Method
+- Dependency Injection
 
 ## Packages
 

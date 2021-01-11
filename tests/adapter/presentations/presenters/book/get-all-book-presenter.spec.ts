@@ -1,8 +1,8 @@
-import { Presenter } from '../../../../../src/adapter/protocol/Presenter';
-import { GetAllBookPresenter } from '../../../../../src/adapter/presentation/presenter/book/GetAllBookPresenter';
+import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { GetAllBookPresenter } from '@adapter/presentation/presenter/book/GetAllBookPresenter';
+import { Presenter } from '@adapter/protocol/Presenter';
 import { mockBookModel } from '../../../../entities/mock/mock-book';
-import { makeResponseFactory } from '../../../../../src/adapter/presentation/helpers/makeResponseFactory';
-import { makeBodyBuilder } from '../../../../../src/adapter/presentation/helpers/makeBodyBuiler';
 
 const makeSubjectTest = (): Presenter => new GetAllBookPresenter();
 

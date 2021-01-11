@@ -1,8 +1,8 @@
-import { Presenter } from '@adapter/protocol/Presenter';
+import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { UpdateBookPresenter } from '@adapter/presentation/presenter/book/UpdateBookPresenter';
+import { Presenter } from '@adapter/protocol/Presenter';
 import { mockBookModel } from '../../../../entities/mock/mock-book';
-import { makeResponseFactory } from '../../../../../src/adapter/presentation/helpers/makeResponseFactory';
-import { makeBodyBuilder } from '../../../../../src/adapter/presentation/helpers/makeBodyBuiler';
 
 const makeSubjectTest = (): Presenter => new UpdateBookPresenter();
 
