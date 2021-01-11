@@ -1,5 +1,5 @@
 import { EmailInUseError } from '@adapter/presentation/errors/EmailInUseError';
-import { SignUpPresenter } from '@adapter/presentation/presenter/account/SignUpPresenter';
+import { SignUpPresenter } from '@adapter/presentation/presenters/account/SignUpPresenter';
 import { AddAccount } from '@entities/usecases/account/AddAccount';
 import { Authentication } from '@entities/usecases/account/Authentication';
 import { makeResponseFactory } from '../../presentation/helpers/makeResponseFactory';

@@ -1,4 +1,4 @@
-import { LoginPresenter } from '@adapter/presentation/presenter/account/LoginPresenter';
+import { LoginPresenter } from '@adapter/presentation/presenters/account/LoginPresenter';
 import { Authentication } from '@entities/usecases/account/Authentication';
 import { makeResponseFactory } from '../../presentation/helpers/makeResponseFactory';
 import { Controller } from '../../protocol/Controller';

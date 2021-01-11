@@ -1,7 +1,7 @@
 import { AddBookController } from '@adapter/controller/book/AddBookController';
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
-import { AddBookPresenter } from '@adapter/presentation/presenter/book/AddBookPresenter';
+import { AddBookPresenter } from '@adapter/presentation/presenters/book/AddBookPresenter';
 import { Controller } from '@adapter/protocol/Controller';
 import { Presenter } from '@adapter/protocol/Presenter';
 import { mockAddBookParams } from '../../../entities/mock/mock-book';

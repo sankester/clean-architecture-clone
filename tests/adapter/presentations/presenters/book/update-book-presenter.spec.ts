@@ -1,6 +1,6 @@
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
-import { UpdateBookPresenter } from '@adapter/presentation/presenter/book/UpdateBookPresenter';
+import { UpdateBookPresenter } from '@adapter/presentation/presenters/book/UpdateBookPresenter';
 import { Presenter } from '@adapter/protocol/Presenter';
 import { mockBookModel } from '../../../../entities/mock/mock-book';
 

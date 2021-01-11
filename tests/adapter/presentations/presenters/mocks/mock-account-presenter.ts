@@ -1,4 +1,4 @@
-import { SignUpPresenter } from '@adapter/presentation/presenter/account/SignUpPresenter';
+import { SignUpPresenter } from '@adapter/presentation/presenters/account/SignUpPresenter';
 import faker from 'faker';
 
 export const mockAuthenticationPresenter = (): SignUpPresenter.Data => ({

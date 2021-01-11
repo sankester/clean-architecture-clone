@@ -1,5 +1,5 @@
 import { SingupController } from '@adapter/controller/account/SignUpController';
-import { SignUpPresenter } from '@adapter/presentation/presenter/account/SignUpPresenter';
+import { SignUpPresenter } from '@adapter/presentation/presenters/account/SignUpPresenter';
 import { Handler } from '../../protocol/Handler';
 import { makeDbAddAccount } from '../usecases/makeDbAddAccount';
 import { makeDbAuthentication } from '../usecases/makeDBAuthentication';

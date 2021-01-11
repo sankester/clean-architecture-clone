@@ -1,6 +1,6 @@
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
-import { AddBookPresenter } from '@adapter/presentation/presenter/book/AddBookPresenter';
+import { AddBookPresenter } from '@adapter/presentation/presenters/book/AddBookPresenter';
 import { Presenter } from '@adapter/protocol/Presenter';
 
 const makeSubjectTest = (): Presenter => {

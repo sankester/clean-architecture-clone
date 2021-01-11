@@ -1,7 +1,7 @@
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { Presenter } from '@adapter/protocol/Presenter';
-import { LoginPresenter } from '@adapter/presentation/presenter/account/LoginPresenter';
+import { LoginPresenter } from '@adapter/presentation/presenters/account/LoginPresenter';
 import { mockAuthenticationPresenter } from '../mocks/mock-account-presenter';
 
 const makeSubjectTest = (): Presenter => new LoginPresenter();

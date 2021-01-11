@@ -1,7 +1,7 @@
 import { UpdateBookController } from '@adapter/controller/book/UpdateBookController';
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
-import { UpdateBookPresenter } from '@adapter/presentation/presenter/book/UpdateBookPresenter';
+import { UpdateBookPresenter } from '@adapter/presentation/presenters/book/UpdateBookPresenter';
 import { Controller } from '@adapter/protocol/Controller';
 import { Presenter } from '@adapter/protocol/Presenter';
 import { throwError } from '../../../entities/mock/test-helper';

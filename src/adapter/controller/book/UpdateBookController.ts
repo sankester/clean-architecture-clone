@@ -2,7 +2,7 @@ import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseF
 import { Controller } from '@adapter/protocol/Controller';
 import { Validation } from '@adapter/protocol/Validation';
 import { UpdateBook } from '@entities/usecases/book/UpdateBook';
-import { UpdateBookPresenter } from '../../presentation/presenter/book/UpdateBookPresenter';
+import { UpdateBookPresenter } from '../../presentation/presenters/book/UpdateBookPresenter';
 import { Presenter } from '../../protocol/Presenter';
 
 export class UpdateBookController implements Controller {

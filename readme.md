@@ -10,13 +10,13 @@ Simple clean architecture with nodejs and typescript
 
 ### Application Use Cases
 
-- Get All Book
-- Add Book
-- Update Book
-- Delete Book
-- Add Account
-- Get Account By Email
-- Check Account By Email
+- `Get All Book`
+- `Add Book`
+- `Update Book`
+- `Delete Book`
+- `Add Account`
+- `Get Account By Email`
+- `Check Account By Email`
 
 ### Adapter
 
@@ -195,12 +195,18 @@ API docs in **`http:localhost:3000/api-docs`**
 ## Design Pattern
 
 - Singleton
+  ex: in connection database
 - Factory
+  ex: in make controller inframework etc. 
 - Abstract Factory
 - Builder
+  ex: in HttpBodyBuilder class 
 - Adapter
+  ex: router, controller etc
 - Composite
+  ex: in validation etc
 - Template Method
+  ex: in presentasion
 - Dependency Injection
 
 ## Packages
@@ -222,7 +228,7 @@ API docs in **`http:localhost:3000/api-docs`**
 - swagger-ui-express - _api documentation_
 - class-validator & class-transformer - _validate input request_
 
-### Khusus Deveploper
+### For Deveploper
 
 - typescript
 - nodemon
@@ -231,7 +237,7 @@ API docs in **`http:localhost:3000/api-docs`**
 - eslint, @typescript-eslint/parser, @typescript-eslint/eslint-plugin - _linter_
 - prettier, eslint-config-prettier, eslint-plugin-prettier - _formatter_
 
-### Khusus Test
+### For Test
 
 - mongodb-memory-server - _mongodb run in memory_
 - jest - _unit testing_

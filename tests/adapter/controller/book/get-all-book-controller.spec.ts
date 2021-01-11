@@ -5,7 +5,7 @@ import { Controller } from '@adapter/protocol/Controller';
 import { throwError } from '../../../entities/mock/test-helper';
 import { GetAllBookSpy } from '../../mock/mock-book';
 import { Presenter } from '@adapter/protocol/Presenter';
-import { GetAllBookPresenter } from '@adapter/presentation/presenter/book/GetAllBookPresenter';
+import { GetAllBookPresenter } from '@adapter/presentation/presenters/book/GetAllBookPresenter';
 
 type SubjectType = {
   subject: Controller;

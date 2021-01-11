@@ -2,7 +2,7 @@
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { Controller } from '@adapter/protocol/Controller';
 import { GetAllBook } from '@entities/usecases/book/GetAllBook';
-import { GetAllBookPresenter } from '../../presentation/presenter/book/GetAllBookPresenter';
+import { GetAllBookPresenter } from '../../presentation/presenters/book/GetAllBookPresenter';
 import { Presenter } from '../../protocol/Presenter';
 
 export class GetAllBookController implements Controller {

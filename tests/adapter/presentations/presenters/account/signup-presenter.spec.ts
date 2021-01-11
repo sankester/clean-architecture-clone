@@ -1,6 +1,6 @@
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
-import { SignUpPresenter } from '@adapter/presentation/presenter/account/SignUpPresenter';
+import { SignUpPresenter } from '@adapter/presentation/presenters/account/SignUpPresenter';
 import { Presenter } from '@adapter/protocol/Presenter';
 import { mockAuthenticationPresenter } from '../mocks/mock-account-presenter';
 

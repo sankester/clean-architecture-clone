@@ -1,8 +1,8 @@
 import { HTTP_RESPONSE_ERROR } from '@adapter/presentation/constant/HttpResponseError';
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
-import { AddBookPresenter } from '@adapter/presentation/presenter/book/AddBookPresenter';
-import { DeleteBookPresenter } from '@adapter/presentation/presenter/book/DeleteBookPresenter';
-import { UpdateBookPresenter } from '@adapter/presentation/presenter/book/UpdateBookPresenter';
+import { AddBookPresenter } from '@adapter/presentation/presenters/book/AddBookPresenter';
+import { DeleteBookPresenter } from '@adapter/presentation/presenters/book/DeleteBookPresenter';
+import { UpdateBookPresenter } from '@adapter/presentation/presenters/book/UpdateBookPresenter';
 import MongoConnection from '@framework/db/mongodb/connection/index';
 import BookModel from '@framework/db/mongodb/models/BookModel';
 import app from '@framework/server/setup/app';

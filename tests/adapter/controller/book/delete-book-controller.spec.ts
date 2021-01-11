@@ -3,7 +3,7 @@ import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { Controller } from '@adapter/protocol/Controller';
 import { Presenter } from '@adapter/protocol/Presenter';
-import { DeleteBookPresenter } from '@adapter/presentation/presenter/book/DeleteBookPresenter';
+import { DeleteBookPresenter } from '@adapter/presentation/presenters/book/DeleteBookPresenter';
 import { throwError } from '../../../entities/mock/test-helper';
 import { DeleteBookSpy, mockDeleteBookRequest } from '../../mock/mock-book';
 import { ValidationSpy } from '../../mock/mock-validation';

@@ -3,7 +3,7 @@ import { Controller } from '@adapter/protocol/Controller';
 import { Validation } from '@adapter/protocol/Validation';
 import { AddBook } from '@entities/usecases/book/AddBook';
 import { Presenter } from '../../protocol/Presenter';
-import { AddBookPresenter } from '../../presentation/presenter/book/AddBookPresenter';
+import { AddBookPresenter } from '../../presentation/presenters/book/AddBookPresenter';
 
 export class AddBookController implements Controller {
   constructor(

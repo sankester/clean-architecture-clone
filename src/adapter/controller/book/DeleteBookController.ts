@@ -2,7 +2,7 @@ import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseF
 import { Controller } from '@adapter/protocol/Controller';
 import { Validation } from '@adapter/protocol/Validation';
 import { DeleteBook } from '@entities/usecases/book/DeleteBook';
-import { DeleteBookPresenter } from '../../presentation/presenter/book/DeleteBookPresenter';
+import { DeleteBookPresenter } from '../../presentation/presenters/book/DeleteBookPresenter';
 import { Presenter } from '../../protocol/Presenter';
 
 export class DeleteBookController implements Controller {
