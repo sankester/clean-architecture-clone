@@ -1,15 +1,16 @@
-import { DBGetAllBook } from '@application/usecases/book/DBGetAllBook';
+import { DbGetAllBook } from '@application/usecases/book/DbGetAllBook';
+import { GetAllBook } from '@entities/usecases/book/GetAllBook';
 import { throwError } from '../../../entities/mock/test-helper';
 import { GetAllBookRepositorySpy } from '../../mock/mock-db-book';
 
 type SubjectTesType = {
-  subject: DBGetAllBook;
+  subject: GetAllBook;
   getAllBookRepositorySpy: GetAllBookRepositorySpy;
 };
 
 const makeSubjectTest = (): SubjectTesType => {
   const getAllBookRepositorySpy = new GetAllBookRepositorySpy();
-  const subject = new DBGetAllBook(getAllBookRepositorySpy);
+  const subject = new DbGetAllBook(getAllBookRepositorySpy);
   return {
     subject,
     getAllBookRepositorySpy,

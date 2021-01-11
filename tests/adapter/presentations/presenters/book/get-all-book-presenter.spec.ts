@@ -25,4 +25,12 @@ describe('GetAllBookPresenter Test', () => {
       makeResponseFactory().noContent()
     );
   });
+
+  it('should response 500 error when setOutput with serverError', () => {
+    const subject = makeSubjectTest();
+    const responseSet = makeResponseFactory().serverError(new Error());
+    subject.setOutput(responseSet);
+    const response = subject.getResponse();
+    expect(response).toMatchObject(responseSet);
+  });
 });

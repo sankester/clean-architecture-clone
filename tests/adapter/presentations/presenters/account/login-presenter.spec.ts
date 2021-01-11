@@ -1,28 +1,28 @@
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
-import { DeleteBookPresenter } from '@adapter/presentation/presenter/book/DeleteBookPresenter';
 import { Presenter } from '@adapter/protocol/Presenter';
+import { LoginPresenter } from '@adapter/presentation/presenter/account/LoginPresenter';
+import { mockAuthenticationPresenter } from '../mocks/mock-account-presenter';
 
-const makeSubjectTest = (): Presenter => new DeleteBookPresenter();
+const makeSubjectTest = (): Presenter => new LoginPresenter();
 
-describe('DeleteBookPresenter Test ', () => {
-  it('should response 200 with success message if this params is true', () => {
+describe('Sign Up Presenter Test', () => {
+  it('should response 200 with token data ', () => {
     const subject = makeSubjectTest();
-    subject.transform(true);
+
+    const data = mockAuthenticationPresenter();
+    subject.transform(data);
+    const response = subject.getResponse();
     const expected = makeResponseFactory().ok(
-      makeBodyBuilder().setSuccess(DeleteBookPresenter.SuccesMessage).build()
+      makeBodyBuilder().setData(data).build()
     );
-    expect(subject.getResponse()).toMatchObject(expected);
+    expect(response).toMatchObject(expected);
   });
 
-  it('should response 200 with error message if this params is false', () => {
+  it('should response 401 with unautorized if this params is null', () => {
     const subject = makeSubjectTest();
-    subject.transform(false);
-    const expected = makeResponseFactory().ok(
-      makeBodyBuilder()
-        .setError('transaction_error', DeleteBookPresenter.ErrorMessage)
-        .build()
-    );
+    subject.transform(null);
+    const expected = makeResponseFactory().unauthorized();
 
     expect(subject.getResponse()).toMatchObject(expected);
   });

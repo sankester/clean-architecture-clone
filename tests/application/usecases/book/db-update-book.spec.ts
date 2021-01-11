@@ -1,17 +1,18 @@
-import { DBUpdateBook } from '@application/usecases/book/DBUpdateBook';
+import { DbUpdateBook } from '@application/usecases/book/DBupdateBook';
+import { UpdateBook } from '@entities/usecases/book/UpdateBook';
 import faker from 'faker';
 import { mockUpdateBookParams } from '../../../entities/mock/mock-book';
 import { throwError } from '../../../entities/mock/test-helper';
 import { UpdateBookRepositorySpy } from '../../mock/mock-db-book';
 
 type SubjectTesType = {
-  subject: DBUpdateBook;
+  subject: UpdateBook;
   updateBookRepositorySpy: UpdateBookRepositorySpy;
 };
 
 const makeSubjectTest = function (): SubjectTesType {
   const updateBookRepositorySpy = new UpdateBookRepositorySpy();
-  const subject = new DBUpdateBook(updateBookRepositorySpy);
+  const subject = new DbUpdateBook(updateBookRepositorySpy);
   return {
     subject,
     updateBookRepositorySpy,

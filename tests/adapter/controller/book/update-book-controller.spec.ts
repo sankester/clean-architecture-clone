@@ -1,12 +1,12 @@
 import { UpdateBookController } from '@adapter/controller/book/UpdateBookController';
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { UpdateBookPresenter } from '@adapter/presentation/presenter/book/UpdateBookPresenter';
 import { Controller } from '@adapter/protocol/Controller';
-import { throwError } from '../../entities/mock/test-helper';
-import { mockUpdateBookRequest, UpdateBookSpy } from '../mock/mock-book';
-import { ValidationSpy } from '../mock/mock-validation';
 import { Presenter } from '@adapter/protocol/Presenter';
-import { UpdateBookPresenter } from '../../../src/adapter/presentation/presenter/book/UpdateBookPresenter';
+import { throwError } from '../../../entities/mock/test-helper';
+import { mockUpdateBookRequest, UpdateBookSpy } from '../../mock/mock-book';
+import { ValidationSpy } from '../../mock/mock-validation';
 
 type SubjectType = {
   subject: Controller;

@@ -1,16 +1,17 @@
-import { DBDeleteBook } from '@application/usecases/book/DBDeleteBook';
+import { DbDeleteBook } from '@application/usecases/book/DbDeleteBook';
 import faker from 'faker';
 import { throwError } from '../../../entities/mock/test-helper';
 import { DeleteBookRepositorySpy } from '../../mock/mock-db-book';
+import { DeleteBook } from '@entities/usecases/book/DeleteBook';
 
 type SubjectTesType = {
-  subject: DBDeleteBook;
+  subject: DeleteBook;
   deleteBookRepositorySpy: DeleteBookRepositorySpy;
 };
 
 const makeSubjectTest = function (): SubjectTesType {
   const deleteBookRepositorySpy = new DeleteBookRepositorySpy();
-  const subject = new DBDeleteBook(deleteBookRepositorySpy);
+  const subject = new DbDeleteBook(deleteBookRepositorySpy);
   return {
     subject,
     deleteBookRepositorySpy,

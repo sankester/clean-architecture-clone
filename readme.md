@@ -14,6 +14,9 @@ Simple clean architecture with nodejs and typescript
 - Add Book
 - Update Book
 - Delete Book
+- Add Account
+- Get Account By Email
+- Check Account By Email
 
 ### Adapter
 
@@ -23,6 +26,8 @@ Simple clean architecture with nodejs and typescript
 - `AddBookController`
 - `UpdateBookController`
 - `DeleteBookController`
+- `SignupController`
+- `LoginController`
 
 **Presentation**
 
@@ -30,6 +35,8 @@ Simple clean architecture with nodejs and typescript
 - `AddBookPresenter`
 - `UpdateBookPresenter`
 - `DeleteBookPresenter`
+- `SignUpPresentation`
+- `LoginPresentation`
 
 **Validation**
 
@@ -52,6 +59,62 @@ API docs in **`http:localhost:3000/api-docs`**
 
 ## API Contract
 
+### Account
+
+- Signup
+
+  **POST** - `http://localhost:3000/api/signup`
+
+  Accept: `application/json`
+
+  Content-Type: `application/json`
+
+  Request Body
+
+  ```js
+  {
+      name: string,
+      email: string,
+      password: string
+  }
+  ```
+
+  Response
+
+  ```js
+  {
+    accessToken: string,
+    name: string
+  }
+  ```
+
+- Login
+
+  **POST** - `http://localhost:3000/api/login`
+
+  Accept: `application/json`
+
+  Content-Type: `application/json`
+
+  Request Body
+
+  ```js
+  {
+      email: string,
+      password: string
+  }
+  ```
+
+  Response
+
+  ```js
+  {
+    accessToken: string,
+    name: string
+  }
+
+  ```
+
 ### Book
 
 - Get All Book
@@ -61,6 +124,20 @@ API docs in **`http:localhost:3000/api-docs`**
   Accept: `application/json`
 
   Content-Type: `application/json`
+
+  Response
+
+  ```js
+  {
+    data: [
+      {
+        title: string,
+        author: string,
+        issn: string,
+      },
+    ];
+  }
+  ```
 
 - Create Book
 
@@ -79,6 +156,7 @@ API docs in **`http:localhost:3000/api-docs`**
       issn: string
   }
   ```
+  
 
 - update Book
 
@@ -129,7 +207,8 @@ API docs in **`http:localhost:3000/api-docs`**
 
 ### Default
 
-- bcrypt - _for encription_
+- bcrypt - _for hashing_
+- jsonwebtoken - _for encrypting_
 - body-parser - _parsing http body_
 - cors - _handle cors request_
 - dotenv-extended - _for configuration_
@@ -152,25 +231,28 @@ API docs in **`http:localhost:3000/api-docs`**
 - eslint, @typescript-eslint/parser, @typescript-eslint/eslint-plugin - _linter_
 - prettier, eslint-config-prettier, eslint-plugin-prettier - _formatter_
 
-**Types package**
-
-- @types/bcrypt
-- @types/cors
-- @types/dotenv-parse-variables
-- @types/express
-- @types/morgan
-- @types/node
-- @types/validator
-- @types/swagger-ui-express
-
 ### Khusus Test
 
 - mongodb-memory-server - _mongodb run in memory_
 - jest - _unit testing_
 - ts-jest - _jest for typescript_
-- faker & @types/faker - _mockup helper_
+- faker - _mockup helper_
 - bson-objectid - _mock objectid_
-- supertest & @types/supertest - _request to server_
+- supertest - _request to server_
+
+### Types package
+
+- @types/bcrypt
+- @types/jsonwebtoken
+- @types/cors
+- @types/dotenv-parse-variables
+- @types/express
+- @types/morgan
+- @types/node
+- @types/faker
+- @types/validator
+- @types/supertest
+- @types/swagger-ui-express
 
 ## Reference
 

@@ -4,10 +4,10 @@ import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseF
 import { AddBookPresenter } from '@adapter/presentation/presenter/book/AddBookPresenter';
 import { Controller } from '@adapter/protocol/Controller';
 import { Presenter } from '@adapter/protocol/Presenter';
-import { mockAddBookParams } from '../../entities/mock/mock-book';
-import { throwError } from '../../entities/mock/test-helper';
-import { AddBookSpy, mockAddBookRequest } from '../mock/mock-book';
-import { ValidationSpy } from '../mock/mock-validation';
+import { mockAddBookParams } from '../../../entities/mock/mock-book';
+import { throwError } from '../../../entities/mock/test-helper';
+import { AddBookSpy, mockAddBookRequest } from '../../mock/mock-book';
+import { ValidationSpy } from '../../mock/mock-validation';
 
 type SubjectType = {
   subject: Controller;

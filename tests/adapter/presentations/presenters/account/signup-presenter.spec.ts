@@ -1,28 +1,30 @@
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
-import { AddBookPresenter } from '@adapter/presentation/presenter/book/AddBookPresenter';
+import { SignUpPresenter } from '@adapter/presentation/presenter/account/SignUpPresenter';
 import { Presenter } from '@adapter/protocol/Presenter';
+import { mockAuthenticationPresenter } from '../mocks/mock-account-presenter';
 
-const makeSubjectTest = (): Presenter => {
-  return new AddBookPresenter();
-};
+const makeSubjectTest = (): Presenter => new SignUpPresenter();
 
-describe('AddBookPresenter Test', () => {
-  it('should response 201 with success message if this params is true', () => {
+describe('Sign Up Presenter Test', () => {
+  it('should response 200 with token data ', () => {
     const subject = makeSubjectTest();
-    subject.transform(true);
-    const expected = makeResponseFactory().created(
-      makeBodyBuilder().setSuccess(AddBookPresenter.SuccessMessage).build()
+
+    const data = mockAuthenticationPresenter();
+    subject.transform(data);
+    const response = subject.getResponse();
+    const expected = makeResponseFactory().ok(
+      makeBodyBuilder().setData(data).build()
     );
-    expect(subject.getResponse()).toMatchObject(expected);
+    expect(response).toMatchObject(expected);
   });
 
-  it('should response 200 with error message if this params is false', () => {
+  it('should response 200 with error message if this params is null', () => {
     const subject = makeSubjectTest();
-    subject.transform(false);
+    subject.transform(null);
     const expected = makeResponseFactory().ok(
       makeBodyBuilder()
-        .setError('transaction_error', AddBookPresenter.ErrorMessage)
+        .setError('transaction_error', SignUpPresenter.ErrorMessage)
         .build()
     );
 

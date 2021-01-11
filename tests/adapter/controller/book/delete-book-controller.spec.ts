@@ -4,9 +4,9 @@ import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseF
 import { Controller } from '@adapter/protocol/Controller';
 import { Presenter } from '@adapter/protocol/Presenter';
 import { DeleteBookPresenter } from '@adapter/presentation/presenter/book/DeleteBookPresenter';
-import { throwError } from '../../entities/mock/test-helper';
-import { DeleteBookSpy, mockDeleteBookRequest } from '../mock/mock-book';
-import { ValidationSpy } from '../mock/mock-validation';
+import { throwError } from '../../../entities/mock/test-helper';
+import { DeleteBookSpy, mockDeleteBookRequest } from '../../mock/mock-book';
+import { ValidationSpy } from '../../mock/mock-validation';
 
 type SubjectType = {
   subject: Controller;
