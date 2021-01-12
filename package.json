@@ -14,7 +14,8 @@
     "watch": "rm -rf ./dist && tsc -p tsconfig-build.json --watch",
     "db:up": "./script/run_dev_dbs.sh -r",
     "db:down": "./script/run_dev_dbs.sh -k",
-    "tests": "ENV_FILE=./config/.env.test jest"
+    "tests": "ENV_FILE=./config/.env.test jest",
+    "tests:co": "ENV_FILE=./config/.env.test jest --coverage"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",

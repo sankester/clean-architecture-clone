@@ -1,6 +1,6 @@
 import { makeUpdateBookValidation } from '@framework/server/factories/validations/book/makeUpdateBookValidation';
 import faker from 'faker';
-import { mockUpdateBookRequest } from '../../../../adapter/mock/mock-book';
+import { mockUpdateBookRequest } from '../../../../../adapter/mock/mock-book';
 
 const makeSubjectTest = () => {
   return makeUpdateBookValidation();
