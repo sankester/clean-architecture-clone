@@ -1,2 +1,2 @@
-export * from './composite/ValidationComposite';
+export * from './validator/composite/ValidationComposite';
 export * from './validator';

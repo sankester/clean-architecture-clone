@@ -11,7 +11,7 @@ import FakeObjectId from 'bson-objectid';
 import faker from 'faker';
 import request from 'supertest';
 import { mockUpdateBookParams } from '../../../entities/mock/mock-book';
-import { mockAccessToken } from './mock/mock-token';
+import { mockAccessToken } from '../mock/mock-token';
 
 const mockBookDatabase = async () => {
   const docs = await BookModel.create([

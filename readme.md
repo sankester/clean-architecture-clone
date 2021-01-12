@@ -204,17 +204,21 @@ API docs in **`http:localhost:3000/api-docs`**
 - Abstract Factory
 
 - Builder
+
   ex: in HttpBodyBuilder class
 
 - Adapter
+
   ex: router, controller etc
 
 - Composite
+
   ex: in validation etc
 
 - Template Method
+
   ex: in presentasion
-  
+
 - Dependency Injection
 
 ## Packages
