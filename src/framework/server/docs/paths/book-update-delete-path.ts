@@ -1,5 +1,10 @@
 export const bookUpdateDeletePath = {
   put: {
+    security: [
+      {
+        apiKeyAuth: [],
+      },
+    ],
     tags: ['Book'],
     summary: 'Update Book',
     description: 'Update book in server',
@@ -42,6 +47,9 @@ export const bookUpdateDeletePath = {
           },
         },
       },
+      403: {
+        $ref: '#/components/forbidden',
+      },
       400: {
         $ref: '#/components/badRequest',
       },
@@ -51,6 +59,11 @@ export const bookUpdateDeletePath = {
     },
   },
   delete: {
+    security: [
+      {
+        apiKeyAuth: [],
+      },
+    ],
     tags: ['Book'],
     summary: 'Delete Book',
     description: 'Delete book in server',
@@ -85,6 +98,9 @@ export const bookUpdateDeletePath = {
       },
       400: {
         $ref: '#/components/badRequest',
+      },
+      403: {
+        $ref: '#/components/forbidden',
       },
       500: {
         $ref: '#/components/serverError',

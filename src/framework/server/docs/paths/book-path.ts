@@ -25,6 +25,11 @@ export const bookPath = {
     },
   },
   post: {
+    security: [
+      {
+        apiKeyAuth: [],
+      },
+    ],
     tags: ['Book'],
     summary: 'Create new book',
     description: 'create new book and save in database',
@@ -51,6 +56,9 @@ export const bookPath = {
       },
       400: {
         $ref: '#/components/badRequest',
+      },
+      403: {
+        $ref: '#/components/forbidden',
       },
       500: {
         $ref: '#/components/serverError',
