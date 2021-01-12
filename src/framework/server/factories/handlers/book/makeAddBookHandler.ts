@@ -1,8 +1,8 @@
 import { AddBookController } from '@adapter/controller';
 import { AddBookPresenter } from '@adapter/presentation/presenters/book/AddBookPresenter';
 import { Handler } from '../../protocol/Handler';
-import { makeDbAddBook } from '../usecases/makeDbAddBook';
-import { makeAddBookValidation } from '../validations/makeAddBookValidation';
+import { makeDbAddBook } from '../../usecases/book/makeDbAddBook';
+import { makeAddBookValidation } from '../../validations/book/makeAddBookValidation';
 
 export const makeAddBookHandler = (): Handler => {
   const presenter = new AddBookPresenter();

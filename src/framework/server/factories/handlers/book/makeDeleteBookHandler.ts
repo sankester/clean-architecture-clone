@@ -1,8 +1,8 @@
 import { DeleteBookController } from '@adapter/controller';
 import { DeleteBookPresenter } from '@adapter/presentation/presenters/book/DeleteBookPresenter';
-import { makeDbDeleteBook } from '@framework/server/factories/book/usecases';
+import { makeDbDeleteBook } from '@framework/server/factories/usecases/book/makeDbDeleteBook';
 import { Handler } from '../../protocol/Handler';
-import { makeDeleteBookValidation } from '../validations/makeDeleteBookValidation';
+import { makeDeleteBookValidation } from '../../validations/book/makeDeleteBookValidation';
 
 export const makeDeleteBookHandler = (): Handler => {
   const presenter = new DeleteBookPresenter();

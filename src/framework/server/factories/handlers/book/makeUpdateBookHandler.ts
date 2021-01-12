@@ -1,8 +1,8 @@
 import { UpdateBookController } from '@adapter/controller/book/UpdateBookController';
 import { UpdateBookPresenter } from '@adapter/presentation/presenters/book/UpdateBookPresenter';
-import { makeDbUpdateBook } from '@framework/server/factories/book/usecases';
 import { Handler } from '../../protocol/Handler';
-import { makeUpdateBookValidation } from '../validations/makeUpdateBookValidation';
+import { makeUpdateBookValidation } from '../../validations/book/makeUpdateBookValidation';
+import { makeDbUpdateBook } from '../../usecases/book/makeDbUpdateBook';
 
 export const makeUpdateBookHandler = (): Handler => {
   const presenter = new UpdateBookPresenter();

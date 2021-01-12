@@ -1,8 +1,8 @@
 import { LoginController } from '@adapter/controller/account/LoginController';
 import { LoginPresenter } from '@adapter/presentation/presenters/account/LoginPresenter';
-import { makeLoginValidation } from '../validation/makeLoginValidation';
 import { Handler } from '../../protocol/Handler';
-import { makeDbAuthentication } from '../usecases/makeDBAuthentication';
+import { makeDbAuthentication } from '../../usecases/account/makeDBAuthentication';
+import { makeLoginValidation } from '../../validations/account/makeLoginValidation';
 
 export const makeLoginHandler = (): Handler => {
   const presenter = new LoginPresenter();

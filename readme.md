@@ -156,7 +156,6 @@ API docs in **`http:localhost:3000/api-docs`**
       issn: string
   }
   ```
-  
 
 - update Book
 
@@ -195,18 +194,27 @@ API docs in **`http:localhost:3000/api-docs`**
 ## Design Pattern
 
 - Singleton
+
   ex: in connection database
+
 - Factory
-  ex: in make controller inframework etc. 
+
+  ex: in make controller in framework etc.
+
 - Abstract Factory
+
 - Builder
-  ex: in HttpBodyBuilder class 
+  ex: in HttpBodyBuilder class
+
 - Adapter
   ex: router, controller etc
+
 - Composite
   ex: in validation etc
+
 - Template Method
   ex: in presentasion
+  
 - Dependency Injection
 
 ## Packages

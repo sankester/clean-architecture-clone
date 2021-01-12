@@ -1,5 +1,5 @@
-import { Encrypter } from '@application/protocol/cryptography/Encrypter';
 import { Decrypter } from '@application/protocol/cryptography/Decrypter';
+import { Encrypter } from '@application/protocol/cryptography/Encrypter';
 import jwt from 'jsonwebtoken';
 
 export class JwtAdapter implements Encrypter, Decrypter {
@@ -9,7 +9,7 @@ export class JwtAdapter implements Encrypter, Decrypter {
     return jwt.sign({ id: plainText }, this.secret);
   }
 
-  descypt(encryptText: string): Promise<string> {
-    throw jwt.verify(encryptText, this.secret);
+  async descypt(encryptText: string): Promise<string> {
+    return jwt.verify(encryptText, this.secret) as any;
   }
 }

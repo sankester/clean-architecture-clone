@@ -1,5 +1,5 @@
-import { AddAccount } from '@entities/usecases/account/AddAccount';
 import { IsDefined, IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { AddAccount } from '@entities/usecases/account/AddAccount';
 
 export class SignUpDto implements AddAccount.Params {
   @IsDefined()

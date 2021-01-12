@@ -1,7 +1,7 @@
-import { adaptRoute } from './../adapter/adaptRouteExpress';
 import { Router } from 'express';
-import { makeSignUptHandler } from '../factories/account/handler/makeSignUpHandler';
-import { makeLoginHandler } from '../factories/account/handler/makeLoginHandler';
+import { makeLoginHandler } from '../factories/handlers/account/makeLoginHandler';
+import { makeSignUptHandler } from '../factories/handlers/account/makeSignUpHandler';
+import { adaptRoute } from './../adapter/adaptRouteExpress';
 
 export default (router: Router): void => {
   router.post('/signup', adaptRoute(makeSignUptHandler()));
