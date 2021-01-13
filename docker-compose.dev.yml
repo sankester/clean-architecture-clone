@@ -1,0 +1,45 @@
+version: "3.8"
+networks:
+  app-network:
+
+services:
+  # setup aps
+  clean-architecture-clone:
+    container_name: clean_architecture_clone
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: "no"
+    ports:
+      - 3000:3000
+    volumes:
+      - "./config:/app/config"
+      - "./src:/app/src"
+      - "./tests:/app/test"
+      # - /app/node_modules
+    environment:
+      - MONGO_URL=mongodb://mongo-server/cleandb   
+    networks:
+      - app-network  
+    depends_on: 
+      - mongo-server  
+  # setup mongo
+  mongo-server:
+    image: mongo
+    container_name: mongo-server
+    restart: "no"
+    ports:
+      - 27017
+    volumes:
+      - ./docker/mongodb:/data/db:delegated
+    networks:
+      - app-network
+  # setup redis    
+  redis-server:
+    image: redis
+    restart: "no"
+    ports:
+      - 6379
+    command: redis-server --save
+    networks:
+      - app-network
