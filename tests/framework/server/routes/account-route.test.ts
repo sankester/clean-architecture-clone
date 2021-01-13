@@ -1,10 +1,10 @@
+import { HTTP_RESPONSE_ERROR } from '@adapter/presentation/constant/HttpResponseError';
 import MongoConnection from '@framework/db/mongodb/connection/index';
+import AccountModel from '@framework/db/mongodb/models/AccountModel';
 import app from '@framework/server/setup/app';
 import { hash } from 'bcrypt';
 import faker from 'faker';
 import request from 'supertest';
-import { HTTP_RESPONSE_ERROR } from '../../../../src/adapter/presentation/constant/HttpResponseError';
-import AccountModel from '../../../../src/framework/db/mongodb/models/AccountModel';
 import { mockAddAccountParams } from '../../../entities/mock/mock-account';
 
 const mockAccountDatabase = async () => {

@@ -3,12 +3,12 @@ dist
 docker
 node_modules
 scripts
-tests
+#tests
 .eslintignore
 .eslintrc.yml
 .git
 .gitignore
 .prettierrc.yml
-jest.config.js
+#jest.config.js
 README.md
 LICENSE

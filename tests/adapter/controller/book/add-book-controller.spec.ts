@@ -7,47 +7,25 @@ import { Presenter } from '@adapter/protocol/Presenter';
 import { mockAddBookParams } from '../../../entities/mock/mock-book';
 import { throwError } from '../../../entities/mock/test-helper';
 import { AddBookSpy, mockAddBookRequest } from '../../mock/mock-book';
-import { ValidationSpy } from '../../mock/mock-validation';
 
 type SubjectType = {
   subject: Controller;
   presenter: Presenter;
-  validationSpy: ValidationSpy;
   addBookSpy: AddBookSpy;
 };
 
 const makeSubjectTest = (): SubjectType => {
   const addBookSpy = new AddBookSpy();
-  const validationSpy = new ValidationSpy();
   const presenter = new AddBookPresenter();
-  const subject = new AddBookController(presenter, validationSpy, addBookSpy);
+  const subject = new AddBookController(presenter, addBookSpy);
   return {
     subject,
     presenter,
-    validationSpy,
     addBookSpy,
   };
 };
 
 describe('Add Book Controller Test', () => {
-  it('should call validation with correct values', async () => {
-    const { subject, validationSpy } = makeSubjectTest();
-    const request = mockAddBookRequest();
-    await subject.handle(request);
-    expect(validationSpy.input).toMatchObject(request);
-  });
-
-  it('should return 400 if validation fails', async () => {
-    const { subject, presenter, validationSpy } = makeSubjectTest();
-    const request = mockAddBookRequest();
-    validationSpy.error = new Error();
-    await subject.handle(request);
-    const response = presenter.getResponse();
-    expect(response).toMatchObject(
-      makeResponseFactory().badRequest(validationSpy.error)
-    );
-  });
-
   it('should call addBook with correct params', async () => {
     const { subject, addBookSpy } = makeSubjectTest();
     const request = mockAddBookParams();

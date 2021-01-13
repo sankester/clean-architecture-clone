@@ -6,51 +6,25 @@ import { Controller } from '@adapter/protocol/Controller';
 import { Presenter } from '@adapter/protocol/Presenter';
 import { throwError } from '../../../entities/mock/test-helper';
 import { mockUpdateBookRequest, UpdateBookSpy } from '../../mock/mock-book';
-import { ValidationSpy } from '../../mock/mock-validation';
 
 type SubjectType = {
   subject: Controller;
   presenter: Presenter;
-  validationSpy: ValidationSpy;
   updateBookSpy: UpdateBookSpy;
 };
 
 const makeSubjectTest = (): SubjectType => {
   const updateBookSpy = new UpdateBookSpy();
-  const validationSpy = new ValidationSpy();
   const presenter = new UpdateBookPresenter();
-  const subject = new UpdateBookController(
-    presenter,
-    validationSpy,
-    updateBookSpy
-  );
+  const subject = new UpdateBookController(presenter, updateBookSpy);
   return {
     subject,
     presenter,
-    validationSpy,
     updateBookSpy,
   };
 };
 
 describe('Update Book Controller Test', () => {
-  it('should call validation with correct values', async () => {
-    const { subject, validationSpy } = makeSubjectTest();
-    const request = mockUpdateBookRequest();
-    await subject.handle(request);
-    expect(validationSpy.input).toMatchObject(request);
-  });
-
-  it('should return 400 if validation fails', async () => {
-    const { subject, presenter, validationSpy } = makeSubjectTest();
-    const request = mockUpdateBookRequest();
-    validationSpy.error = new Error();
-    await subject.handle(request);
-    const response = presenter.getResponse();
-    expect(response).toMatchObject(
-      makeResponseFactory().badRequest(validationSpy.error)
-    );
-  });
-
   it('should call updateBook with correct params', async () => {
     const { subject, updateBookSpy } = makeSubjectTest();
     const request = mockUpdateBookRequest();

@@ -9,54 +9,46 @@ import {
   mockLoginRequest,
 } from '@tests/adapter/mock/mock-account';
 import { throwError } from '../../../entities/mock/test-helper';
-import { ValidationSpy } from '../../mock/mock-validation';
 
 type SubjectType = {
   subject: Controller;
   presenter: Presenter;
-  validationSpy: ValidationSpy;
   authenticationSpy: AuthenticationSpy;
 };
 
 const makeSubjectTest = (): SubjectType => {
   const presenter = new LoginPresenter();
-  const validationSpy = new ValidationSpy();
   const authenticationSpy = new AuthenticationSpy();
-  const subject = new LoginController(
-    presenter,
-    validationSpy,
+  const subject = new LoginController(presenter, authenticationSpy);
 
-    authenticationSpy
-  );
-
-  return { subject, presenter, validationSpy, authenticationSpy };
+  return { subject, presenter, authenticationSpy };
 };
 
 describe('Login Controller Test', () => {
-  it('should call validation with correct request', async () => {
-    const { subject, validationSpy } = makeSubjectTest();
-    const data = mockLoginRequest();
-    await subject.handle(data);
-    expect(validationSpy.input).toMatchObject(data);
-  });
+  // it('should call validation with correct request', async () => {
+  //   const { subject, validationSpy } = makeSubjectTest();
+  //   const data = mockLoginRequest();
+  //   await subject.handle(data);
+  //   expect(validationSpy.input).toMatchObject(data);
+  // });
 
-  it('should response 400 bad request if invalid validation', async () => {
-    const { subject, presenter, validationSpy } = makeSubjectTest();
-    validationSpy.error = new Error();
-    await subject.handle(mockLoginRequest());
-    const response = presenter.getResponse();
-    const expected = makeResponseFactory().badRequest(new Error());
-    expect(response).toMatchObject(expected);
-  });
+  // it('should response 400 bad request if invalid validation', async () => {
+  //   const { subject, presenter, validationSpy } = makeSubjectTest();
+  //   validationSpy.error = new Error();
+  //   await subject.handle(mockLoginRequest());
+  //   const response = presenter.getResponse();
+  //   const expected = makeResponseFactory().badRequest(new Error());
+  //   expect(response).toMatchObject(expected);
+  // });
 
-  it('should response 500 server error if validationSpy throws', async () => {
-    const { subject, presenter, validationSpy } = makeSubjectTest();
-    jest.spyOn(validationSpy, 'validate').mockImplementationOnce(throwError);
-    await subject.handle(mockLoginRequest());
-    const response = presenter.getResponse();
-    const expected = makeResponseFactory().serverError(new Error());
-    expect(response).toMatchObject(expected);
-  });
+  // it('should response 500 server error if validationSpy throws', async () => {
+  //   const { subject, presenter, validationSpy } = makeSubjectTest();
+  //   jest.spyOn(validationSpy, 'validate').mockImplementationOnce(throwError);
+  //   await subject.handle(mockLoginRequest());
+  //   const response = presenter.getResponse();
+  //   const expected = makeResponseFactory().serverError(new Error());
+  //   expect(response).toMatchObject(expected);
+  // });
 
   it('call authentication with correct params', async () => {
     const { subject, authenticationSpy } = makeSubjectTest();

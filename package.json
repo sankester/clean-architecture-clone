@@ -13,7 +13,7 @@
     "watch": "rm -rf ./dist && tsc-watch -p tsconfig-build.json --onSuccess 'yarn dev'",
     "tests": "ENV_FILE=./config/.env.test jest",
     "tests:co": "ENV_FILE=./config/.env.test jest --coverage",
-    "dev:up": "docker-compose -f docker-compose.dev.yml up clean-architecture-clone",
+    "dev:up": "docker-compose -f docker-compose.dev.yml up --build clean-architecture-clone",
     "dev:down": "docker-compose -f docker-compose.dev.yml down"  
   },
   "dependencies": {

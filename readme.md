@@ -1,4 +1,4 @@
-# Clean architecture
+# Clean Architecture Clone
 
 Simple app with clean achitecture metodolgy & solid principle.
 using nodejs for server, typescript for OOP implementation, and docker for container

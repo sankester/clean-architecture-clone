@@ -1,4 +1,5 @@
 import { SingupController } from '@adapter/controller/account/SignUpController';
+import { ValidateControllerProxy } from '@adapter/controller/proxy/ValidateControllerProxy';
 import { SignUpPresenter } from '@adapter/presentation/presenters/account/SignUpPresenter';
 import { Handler } from '../../protocol/Handler';
 import { makeDbAddAccount } from '../../usecases/account/makeDbAddAccount';
@@ -10,10 +11,15 @@ export const makeSignUptHandler = (): Handler => {
 
   const controller = new SingupController(
     presenter,
-    makeSignUpValidation(),
     makeDbAddAccount(),
     makeDbAuthentication()
   );
 
-  return { controller, presenter };
+  const validateProxy = new ValidateControllerProxy(
+    makeSignUpValidation(),
+    controller,
+    presenter
+  );
+
+  return { controller: validateProxy, presenter };
 };

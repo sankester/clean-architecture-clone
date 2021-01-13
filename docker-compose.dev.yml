@@ -13,12 +13,13 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - "./config:/usr/app/config:rw"
       - "./src:/usr/app/src"
       - "./tests:/usr/app/test"
+      - "/usr/app/node_modules"
     environment:
       - MONGO_URL=mongodb://mongo-server/cleandb
       - PRIVATE_KEY_PASSPHRASE=clean-pass
+      - IN_CONTAINER=true
     networks:
       - app-network
     depends_on:
@@ -31,7 +32,7 @@ services:
     ports:
       - 27017
     volumes:
-      - ./docker/mongodb:/data/db:delegated
+      - "./docker/mongodb:/data/db"
     networks:
       - app-network
   # setup redis

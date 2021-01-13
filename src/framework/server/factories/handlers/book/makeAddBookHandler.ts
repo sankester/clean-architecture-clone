@@ -1,4 +1,5 @@
 import { AddBookController } from '@adapter/controller';
+import { ValidateControllerProxy } from '@adapter/controller/proxy/ValidateControllerProxy';
 import { AddBookPresenter } from '@adapter/presentation/presenters/book/AddBookPresenter';
 import { Handler } from '../../protocol/Handler';
 import { makeDbAddBook } from '../../usecases/book/makeDbAddBook';
@@ -6,14 +7,11 @@ import { makeAddBookValidation } from '../../validations/book/makeAddBookValidat
 
 export const makeAddBookHandler = (): Handler => {
   const presenter = new AddBookPresenter();
-  const controller = new AddBookController(
-    presenter,
+  const controller = new AddBookController(presenter, makeDbAddBook());
+  const validateProxy = new ValidateControllerProxy(
     makeAddBookValidation(),
-    makeDbAddBook()
-  );
-
-  return {
     controller,
-    presenter,
-  };
+    presenter
+  );
+  return { controller: validateProxy, presenter };
 };

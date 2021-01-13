@@ -18,6 +18,4 @@ export const getPrivateSecret = () => {
   };
 };
 
-export const getPublicKey = () => {
-  return fs.readFileSync(config.publicKeyFile);
-};
+export const getPublicKey = () => fs.readFileSync(config.publicKeyFile);

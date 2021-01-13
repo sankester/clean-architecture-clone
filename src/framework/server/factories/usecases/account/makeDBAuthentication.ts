@@ -1,6 +1,6 @@
 import { DbAuthentication } from '@application/usecases/account/DbAuthentication';
 import { Authentication } from '@entities/usecases/account/Authentication';
-import config from '@framework/config/index';
+import config from '@framework/config';
 import { MongoAccountRepository } from '@framework/db/mongodb/repository/MongoAccountRepository';
 import { BcryptAdapter } from '@framework/library/bcrypt/index';
 import { JwtSslAdapter } from '@framework/library/jwt/JwtSslAdapter';
