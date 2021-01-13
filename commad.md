@@ -6,7 +6,7 @@
 openssl genpkey -algorithm RSA -aes256 -pass pass:clean-pass -out config/keys/private.pem;
 ```
 
-> pass : is unique code than you set
+> pass : is unique code that you set
 
 ### generate rsa public key :
 

@@ -9,7 +9,6 @@
   "scripts": {
     "start": "ENV_FILE=./config/.env.prod node ./dist/framework/server/server.js",
     "dev": "ENV_FILE=./config/.env.dev nodemon ./dist/framework/server/server.js",
-    "dev:ts": "ENV_FILE=./config/.env.dev nodemon ./src/framework/server/server.ts",
     "build": "rm -rf ./dist && tsc -p tsconfig-build.json",
     "watch": "rm -rf ./dist && tsc-watch -p tsconfig-build.json --onSuccess 'yarn dev'",
     "tests": "ENV_FILE=./config/.env.test jest",

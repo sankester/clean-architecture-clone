@@ -1,6 +1,26 @@
 # Clean architecture
 
-Simple clean architecture with nodejs and typescript
+Simple app with clean achitecture metodolgy & solid principle.
+using nodejs for server, typescript for OOP implementation, and docker for container
+
+## Scripts
+
+> This application by default uses Docker and Docker Compose, so make sure Docker and Docker Compose are installed on your system
+
+| Script   | Description                                                                 |
+| -------- | --------------------------------------------------------------------------- |
+| start    | start server in prod mode execute file after builder, make sure build first |
+| dev      | start server with development mode                                          |
+| build    | build script from `typescript`                                              |
+| watch    | build script from `typescript` and start server with `dev` mode             |
+| tests    | run all tests with `jest`                                                   |
+| tests:co | run all tests and generate `coverage`                                       |
+| dev:up   | start `docker` for developmnet                                              |
+| dev:down | stop `docker` for development                                               |
+
+## Command
+
+look in [`command.md`](https://github.com/sankester/clean-architecture-clone/blob/master/commad.md) for used command
 
 ## Layering
 
