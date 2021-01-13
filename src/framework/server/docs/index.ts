@@ -26,7 +26,11 @@ export default {
   tags: [
     {
       name: 'Book',
-      description: 'Endpoint Book Entity',
+      description: 'Endpoint For Book Entity',
+    },
+    {
+      name: 'Account',
+      description: 'Endpoint For Account',
     },
   ],
   paths,

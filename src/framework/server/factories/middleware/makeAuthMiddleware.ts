@@ -1,8 +1,8 @@
+import { AuthMiddleware } from '@adapter/middleware/AuthMiddleware';
 import { Middleware } from '@adapter/protocol/Middleware';
-import { JwtAdapter } from '../../../library/jwt/index';
-import { AuthMiddleware } from '../../../../adapter/middleware/AuthMiddleware';
+import { JwtSslAdapter } from '@framework/library/jwt/JwtSslAdapter';
 
 export const makeAuthMiddleware = (): Middleware => {
-  const decrypter = new JwtAdapter('secret');
+  const decrypter = new JwtSslAdapter();
   return new AuthMiddleware(decrypter);
 };

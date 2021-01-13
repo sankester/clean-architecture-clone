@@ -36,6 +36,14 @@ interface Config {
     useCreateIndex: boolean;
     autoIndex: boolean;
   };
+  // openssl rsa
+  privateKeyFile: string;
+  privateKeyPassphrase: string;
+  publicKeyFile: string;
+  // jwt
+  tokenExpiresIn: number;
+  // bcrypt
+  bcryptSalt: number;
 }
 
 const config: Config = {
@@ -51,6 +59,14 @@ const config: Config = {
     useCreateIndex: parsedEnv.MONGO_CREATE_INDEX as boolean,
     autoIndex: parsedEnv.MONGO_AUTO_INDEX as boolean,
   },
+  // openssl rsa
+  privateKeyFile: parsedEnv.PRIVATE_KEY_FILE as string,
+  privateKeyPassphrase: parsedEnv.PRIVATE_KEY_PASSPHRASE as string,
+  publicKeyFile: parsedEnv.PUBLIC_KEY_FILE as string,
+  // jwt
+  tokenExpiresIn: parsedEnv.TOKEN_EXPIRES_IN as number,
+  // bcrypt
+  bcryptSalt: parsedEnv.BCRYPT_SALT as number,
 };
 
 export default config;

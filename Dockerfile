@@ -1,8 +1,8 @@
 FROM node:14.15.1-alpine
 
-RUN apk add --no-cache g++ make python openssl
+RUN apk add --no-cache g++ make python
 
-WORKDIR /app
+WORKDIR /usr/app
 
 COPY package.json ./
 COPY yarn.lock ./

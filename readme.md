@@ -243,6 +243,7 @@ API docs in **`http:localhost:3000/api-docs`**
 ### For Deveploper
 
 - typescript
+- tsc-watch - _run watch in detach mode_
 - nodemon
 - mongodb-memory-server - _use mongodb in memory_
 - tsconfig-paths - _module aliases for typescript_
