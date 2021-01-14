@@ -241,7 +241,7 @@ API docs in **`http:localhost:3000/api-docs`**
 
 - Proxy
 
-  ex: in validation contorller, authentication, auth middleware
+  ex: in validation controller, authentication, auth middleware
 
 - Dependency Injection
 
