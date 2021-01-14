@@ -104,7 +104,7 @@ API docs in **`http:localhost:3000/api-docs`**
   ```js
   {
     accessToken: string,
-    name: string
+    expiredAt: datestring
   }
   ```
 
@@ -130,7 +130,7 @@ API docs in **`http:localhost:3000/api-docs`**
   ```js
   {
     accessToken: string,
-    name: string
+    expiredAt: datestring
   }
 
   ```
@@ -213,37 +213,43 @@ API docs in **`http:localhost:3000/api-docs`**
 
 ## Design Pattern
 
-- Singleton
+- **Singleton**
 
   ex: in connection database
 
-- Factory
+- **Factory**
 
   ex: in make controller in framework etc.
 
-- Abstract Factory
+- **Abstract Factory**
 
-- Builder
+- **Builder**
 
   ex: in HttpBodyBuilder class
 
-- Adapter
+- **Adapter**
 
   ex: router, controller etc
 
-- Composite
+- **Composite**
 
   ex: in validation etc
 
-- Template Method
+- **Template Method**
 
   ex: in presentasion
 
-- Proxy
+- **Proxy**
 
   ex: in validation controller, authentication, auth middleware
 
-- Dependency Injection
+- **Dependency Injection**
+
+  ex: in many comunicated class
+
+- **Reponsitory Pattern**
+
+  ex: all transaction with database
 
 ## Packages
 
