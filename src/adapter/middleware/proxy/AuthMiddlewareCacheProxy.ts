@@ -3,13 +3,15 @@ import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { Response } from '@adapter/presentation/protocol/Response';
 import { Middleware } from '@adapter/protocol/Middleware';
-import { CacheDriver } from '@application/protocol/cache/CacheDriver';
+import { CacheDriverSet } from '@application/protocol/cache/CacheDriverSet';
 import { ResponseBody } from '../../presentation/protocol/ResponseBody';
+import { CacheDriverGet } from '../../../application/protocol/cache/CacheDriverGet';
 
 export class AuthMiddlewaCacheProxy implements Middleware {
   constructor(
     private readonly middleware: Middleware,
-    private readonly cacheDriver: CacheDriver
+    private readonly cacheDriverSet: CacheDriverSet,
+    private readonly cacheDriverGet: CacheDriverGet
   ) {}
 
   async handle(httpRequest: AuthMiddlewaCacheProxy.Request): Promise<Response> {
@@ -17,7 +19,7 @@ export class AuthMiddlewaCacheProxy implements Middleware {
     try {
       const { accessToken } = httpRequest;
       if (accessToken) {
-        const account = await this.cacheDriver.get(accessToken);
+        const account = await this.cacheDriverGet.get(accessToken);
         if (account) {
           const authData = JSON.parse(account);
           return ok(makeBodyBuilder().setData(authData).build());
@@ -28,7 +30,7 @@ export class AuthMiddlewaCacheProxy implements Middleware {
           const d = body.data as { id: string; exp: number };
           const expireAfter = d.exp - Math.round(new Date().valueOf() / 1000);
           // save token in cache
-          await this.cacheDriver.set(
+          await this.cacheDriverSet.set(
             accessToken,
             JSON.stringify({ id: d.id }),
             expireAfter
@@ -39,8 +41,6 @@ export class AuthMiddlewaCacheProxy implements Middleware {
       }
       return forbidden(new AccessDeniedError());
     } catch (error) {
-      console.log(error);
-
       return serverError(error);
     }
   }

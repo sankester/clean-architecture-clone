@@ -1,5 +1,5 @@
 import { DbAuthentication } from '@application/usecases/account/DbAuthentication';
-import { DBAuthenticationCacheProxy } from '@application/usecases/account/proxy/DbAuthenticationCacheProxy';
+import { DbAuthenticationCacheProxy } from '@application/usecases/account/proxy/DbAuthenticationCacheProxy';
 import { Authentication } from '@entities/usecases/account/Authentication';
 import config from '@framework/config';
 import { MongoAccountRepository } from '@framework/db/mongodb/repository/MongoAccountRepository';
@@ -19,7 +19,7 @@ export const makeDbAuthentication = (): Authentication => {
     expiration
   );
 
-  return new DBAuthenticationCacheProxy(
+  return new DbAuthenticationCacheProxy(
     dbAuthentication,
     RedisCacheDriver,
     expiration

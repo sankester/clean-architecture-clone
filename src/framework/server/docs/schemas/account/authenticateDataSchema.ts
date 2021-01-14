@@ -4,7 +4,7 @@ export const authenticateDataSchema = {
     accessToken: {
       type: 'string',
     },
-    name: {
+    expiredAt: {
       type: 'string',
     },
   },

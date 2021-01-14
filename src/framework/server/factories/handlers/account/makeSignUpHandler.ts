@@ -3,7 +3,7 @@ import { ValidateControllerProxy } from '@adapter/controller/proxy/ValidateContr
 import { SignUpPresenter } from '@adapter/presentation/presenters/account/SignUpPresenter';
 import { Handler } from '../../protocol/Handler';
 import { makeDbAddAccount } from '../../usecases/account/makeDbAddAccount';
-import { makeDbAuthentication } from '../../usecases/account/makeDBAuthentication';
+import { makeDbAuthentication } from '../../usecases/account/makeDbAuthentication';
 import { makeSignUpValidation } from '../../validations/account/makeSignUpValidation';
 
 export const makeSignUptHandler = (): Handler => {

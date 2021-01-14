@@ -1,13 +1,15 @@
 /* istanbul ignore file */
+
+import { CacheDriverGet } from '@application/protocol/cache/CacheDriverGet';
 import config from '@framework/config';
 import * as r from 'redis';
-import { CacheDriver } from '../../../application/protocol/cache/CacheDriver';
+import { CacheDriverSet } from '../../../application/protocol/cache/CacheDriverSet';
 import { logger } from '../../library/winston/index';
 
 const redis: typeof r =
   config.redisUrl === 'redis-mock' ? require('redis-mock') : require('redis');
 
-export class RedisCacheDriver implements CacheDriver {
+export class RedisCacheDriver implements CacheDriverSet, CacheDriverGet {
   private static _instance: RedisCacheDriver;
 
   private _client?: r.RedisClient;

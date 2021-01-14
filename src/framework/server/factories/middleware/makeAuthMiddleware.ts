@@ -7,5 +7,9 @@ import RedisCacheDriver from '@framework/db/redis/index';
 export const makeAuthMiddleware = (): Middleware => {
   const decrypter = new JwtSslAdapter();
   const middleware = new AuthMiddleware(decrypter);
-  return new AuthMiddlewaCacheProxy(middleware, RedisCacheDriver);
+  return new AuthMiddlewaCacheProxy(
+    middleware,
+    RedisCacheDriver,
+    RedisCacheDriver
+  );
 };

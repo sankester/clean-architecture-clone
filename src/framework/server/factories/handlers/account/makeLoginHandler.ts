@@ -2,7 +2,7 @@ import { LoginController } from '@adapter/controller/account/LoginController';
 import { ValidateControllerProxy } from '@adapter/controller/proxy/ValidateControllerProxy';
 import { LoginPresenter } from '@adapter/presentation/presenters/account/LoginPresenter';
 import { Handler } from '../../protocol/Handler';
-import { makeDbAuthentication } from '../../usecases/account/makeDBAuthentication';
+import { makeDbAuthentication } from '../../usecases/account/makeDbAuthentication';
 import { makeLoginValidation } from '../../validations/account/makeLoginValidation';
 
 export const makeLoginHandler = (): Handler => {

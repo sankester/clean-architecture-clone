@@ -1,10 +1,10 @@
 import { Authentication } from '@entities/usecases/account/Authentication';
-import { CacheDriver } from '../../../protocol/cache/CacheDriver';
+import { CacheDriverSet } from '../../../protocol/cache/CacheDriverSet';
 
-export class DBAuthenticationCacheProxy implements Authentication {
+export class DbAuthenticationCacheProxy implements Authentication {
   constructor(
     private readonly authentication: Authentication,
-    private readonly cacheDriver: CacheDriver,
+    private readonly cacheDriverSet: CacheDriverSet,
     private readonly expiratedTime: number
   ) {}
   async auth(
@@ -13,7 +13,7 @@ export class DBAuthenticationCacheProxy implements Authentication {
     try {
       const isValid = await this.authentication.auth(authParams);
       if (isValid !== null) {
-        this.cacheDriver.set(
+        await this.cacheDriverSet.set(
           isValid.accessToken,
           JSON.stringify({ id: isValid.accountId }),
           this.expiratedTime

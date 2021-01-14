@@ -6,6 +6,7 @@ import { hash } from 'bcrypt';
 import faker from 'faker';
 import request from 'supertest';
 import { mockAddAccountParams } from '../../../entities/mock/mock-account';
+import RedisCacheDriver from '../../../../src/framework/db/redis/index';
 
 const mockAccountDatabase = async () => {
   const docs = await AccountModel.create([
@@ -17,10 +18,12 @@ const mockAccountDatabase = async () => {
 
 describe('Account Route Test', () => {
   beforeAll(async () => {
+    await RedisCacheDriver.open();
     await MongoConnection.open();
   });
 
   afterAll(async () => {
+    await RedisCacheDriver.close();
     await MongoConnection.close();
   });
 
