@@ -10,6 +10,7 @@ export namespace Authentication {
 
   export type Result = {
     accessToken: string;
-    name: string;
+    expiredAt: Date;
+    accountId: string;
   } | null;
 }

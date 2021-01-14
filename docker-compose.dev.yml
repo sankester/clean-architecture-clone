@@ -3,7 +3,7 @@ networks:
   app-network:
 
 services:
-  # setup aps
+  # setup app
   clean-architecture-clone:
     container_name: clean_architecture_clone
     build:
@@ -15,15 +15,16 @@ services:
     volumes:
       - "./src:/usr/app/src"
       - "./tests:/usr/app/test"
-      - "/usr/app/node_modules"
+      - "clean-architecture-clone-data:/usr/app/node_modules"
     environment:
       - MONGO_URL=mongodb://mongo-server/cleandb
+      - REDIS_URL=redis://redis-server:6379
       - PRIVATE_KEY_PASSPHRASE=clean-pass
-      - IN_CONTAINER=true
     networks:
       - app-network
     depends_on:
       - mongo-server
+      - redis-server
   # setup mongo
   mongo-server:
     image: mongo
@@ -32,15 +33,28 @@ services:
     ports:
       - 27017
     volumes:
-      - "./docker/mongodb:/data/db"
+      - "mongo-server-data:/data/db"
     networks:
       - app-network
   # setup redis
   redis-server:
     image: redis
+    container_name: redis_server
     restart: "no"
+    volumes:
+      - "redis-server-data:/data"
     ports:
       - 6379
     command: redis-server --save
     networks:
       - app-network
+volumes:
+  mongo-server-data:
+    driver: local
+    name: mongo-server-data
+  redis-server-data:
+    driver: local
+    name: redis-server-data
+  clean-architecture-clone-data:
+    driver: local
+    name: clean-architecture-clone-data

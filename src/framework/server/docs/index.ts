@@ -25,12 +25,12 @@ export default {
   ],
   tags: [
     {
-      name: 'Book',
-      description: 'Endpoint For Book Entity',
-    },
-    {
       name: 'Account',
       description: 'Endpoint For Account',
+    },
+    {
+      name: 'Book',
+      description: 'Endpoint For Book Entity',
     },
   ],
   paths,

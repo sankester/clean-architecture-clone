@@ -7,7 +7,16 @@ export class LoginPresenter extends Presenter {
   transform(data: LoginPresenter.Data): void {
     const body = makeBodyBuilder();
     if (data) {
-      this.setOutput(makeResponseFactory().ok(body.setData(data).build()));
+      this.setOutput(
+        makeResponseFactory().ok(
+          body
+            .setData({
+              accessToken: data.accessToken,
+              expiredAt: data.expiredAt,
+            })
+            .build()
+        )
+      );
     } else {
       this.setOutput(makeResponseFactory().unauthorized());
     }

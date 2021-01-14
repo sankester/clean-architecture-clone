@@ -44,6 +44,8 @@ interface Config {
   tokenExpiresIn: number;
   // bcrypt
   bcryptSalt: number;
+  // redis
+  redisUrl: string;
 }
 
 const config: Config = {
@@ -67,6 +69,8 @@ const config: Config = {
   tokenExpiresIn: parsedEnv.TOKEN_EXPIRES_IN as number,
   // bcrypt
   bcryptSalt: parsedEnv.BCRYPT_SALT as number,
+  // redis
+  redisUrl: parsedEnv.REDIS_URL as string,
 };
 
 export default config;

@@ -36,7 +36,7 @@ describe('Account Route Test', () => {
         .expect(200);
       expect(response.body).toHaveProperty('data');
       expect(response.body.data).toHaveProperty('accessToken');
-      expect(response.body.data).toHaveProperty('name');
+      expect(response.body.data).toHaveProperty('expiredAt');
     });
 
     test('should response 400 on invalid params', async () => {

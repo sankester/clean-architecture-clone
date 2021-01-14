@@ -14,7 +14,12 @@ describe('Sign Up Presenter Test', () => {
     subject.transform(data);
     const response = subject.getResponse();
     const expected = makeResponseFactory().ok(
-      makeBodyBuilder().setData(data).build()
+      makeBodyBuilder()
+        .setData({
+          accessToken: data?.accessToken,
+          expiredAt: data?.expiredAt,
+        })
+        .build()
     );
     expect(response).toMatchObject(expected);
   });

@@ -7,7 +7,8 @@ export class DbAuthentication implements Authentication {
   constructor(
     private readonly loadAccountByEmailRepository: LoadAcountByEmailRepository,
     private readonly hashCompare: HashCompare,
-    private readonly encrypter: Encrypter
+    private readonly encrypter: Encrypter,
+    private readonly expiratedTime: number
   ) {}
 
   async auth(
@@ -22,10 +23,13 @@ export class DbAuthentication implements Authentication {
         account.password
       );
       if (isValid) {
+        const expiredAt = new Date();
         const accessToken = await this.encrypter.encrypt(account.id);
+        expiredAt.setSeconds(expiredAt.getSeconds() + this.expiratedTime);
         return {
           accessToken,
-          name: account.name,
+          expiredAt,
+          accountId: account.id,
         };
       }
     }

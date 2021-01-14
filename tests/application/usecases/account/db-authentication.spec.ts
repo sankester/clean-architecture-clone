@@ -19,7 +19,8 @@ const makeSubjectTest = (): SubjectTest => {
   const subject = new DbAuthentication(
     loadAccountByEmailRepositorySpy,
     hashCompareSpy,
-    encrypterSpy
+    encrypterSpy,
+    60 * 60 * 24 * 14
   );
 
   return {
@@ -58,10 +59,10 @@ describe('DbAuthentication Test', () => {
       loadAccountByEmailRepositorySpy,
     } = makeSubjectTest();
     const tokenData = await subject.auth(mockAuthentcationParams());
-    expect(tokenData).toMatchObject({
-      accessToken: encrypterSpy.ciphertext,
-      name: (loadAccountByEmailRepositorySpy.result as any).name,
-    });
+    expect(tokenData?.accessToken).toBe(encrypterSpy.ciphertext);
+    expect(tokenData?.accountId).toBe(
+      loadAccountByEmailRepositorySpy.result?.id
+    );
   });
 
   it('shoul call HasCompare with correct params', async () => {

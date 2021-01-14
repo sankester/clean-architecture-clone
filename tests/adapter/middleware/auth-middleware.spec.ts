@@ -1,11 +1,11 @@
-import { AuthMiddleware } from '../../../src/adapter/middleware/AuthMiddleware';
-import { Middleware } from '../../../src/adapter/protocol/Middleware';
-import { DecrypterSpy } from '../../application/mock/mock-cryptograpy';
+import { AuthMiddleware } from '@adapter/middleware/AuthMiddleware';
+import { AccessDeniedError } from '@adapter/presentation/errors/AccessDeniedError';
+import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { Middleware } from '@adapter/protocol/Middleware';
 import faker from 'faker';
+import { DecrypterSpy } from '../../application/mock/mock-cryptograpy';
 import { throwError } from '../../entities/mock/test-helper';
-import { makeResponseFactory } from '../../../src/adapter/presentation/helpers/makeResponseFactory';
-import { AccessDeniedError } from '../../../src/adapter/presentation/errors/AccessDeniedError';
-import { makeBodyBuilder } from '../../../src/adapter/presentation/helpers/makeBodyBuiler';
 
 type SubjectTest = {
   subject: Middleware;

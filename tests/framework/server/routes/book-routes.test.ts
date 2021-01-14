@@ -5,6 +5,7 @@ import { DeleteBookPresenter } from '@adapter/presentation/presenters/book/Delet
 import { UpdateBookPresenter } from '@adapter/presentation/presenters/book/UpdateBookPresenter';
 import MongoConnection from '@framework/db/mongodb/connection/index';
 import BookModel from '@framework/db/mongodb/models/BookModel';
+import RedisCacheDriver from '@framework/db/redis/index';
 import app from '@framework/server/setup/app';
 import { mockAddBookParams } from '@tests/entities/mock';
 import FakeObjectId from 'bson-objectid';
@@ -23,10 +24,12 @@ const mockBookDatabase = async () => {
 
 describe('Book Route Test', () => {
   beforeAll(async () => {
+    await RedisCacheDriver.open();
     await MongoConnection.open();
   });
 
   afterAll(async () => {
+    await RedisCacheDriver.close();
     await MongoConnection.close();
   });
 

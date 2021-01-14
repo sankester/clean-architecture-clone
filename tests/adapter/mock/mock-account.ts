@@ -1,8 +1,8 @@
-import { AddAccount } from '@entities/usecases/account/AddAccount';
+import { LoginController } from '@adapter/controller/account/LoginController';
 import { SingupController } from '@adapter/controller/account/SignUpController';
+import { AddAccount } from '@entities/usecases/account/AddAccount';
+import { Authentication } from '@entities/usecases/account/Authentication';
 import faker from 'faker';
-import { Authentication } from '../../../src/entities/usecases/account/Authentication';
-import { LoginController } from '../../../src/adapter/controller/account/LoginController';
 
 export class AddAccountSpy implements AddAccount {
   params: AddAccount.Params;
@@ -16,7 +16,8 @@ export class AddAccountSpy implements AddAccount {
 export class AuthenticationSpy implements Authentication {
   result: Authentication.Result = {
     accessToken: faker.random.uuid(),
-    name: faker.name.firstName(),
+    accountId: faker.random.uuid(),
+    expiredAt: new Date(),
   };
   authParams: Authentication.Params;
   async auth(

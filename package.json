@@ -14,7 +14,7 @@
     "tests": "ENV_FILE=./config/.env.test jest",
     "tests:co": "ENV_FILE=./config/.env.test jest --coverage",
     "dev:up": "docker-compose -f docker-compose.dev.yml up --build clean-architecture-clone",
-    "dev:down": "docker-compose -f docker-compose.dev.yml down"  
+    "dev:down": "docker-compose -f docker-compose.dev.yml down"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -30,6 +30,7 @@
     "mongoose": "^5.11.10",
     "morgan": "^1.10.0",
     "morgan-body": "^2.6.4",
+    "redis": "^3.0.2",
     "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3"
   },
@@ -42,6 +43,7 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/morgan": "^1.9.2",
     "@types/node": "^14.14.19",
+    "@types/redis-mock": "^0.17.0",
     "@types/supertest": "^2.0.10",
     "@types/swagger-ui-express": "^4.1.2",
     "@types/validator": "^13.1.2",
@@ -56,6 +58,7 @@
     "mongodb-memory-server": "^6.9.2",
     "nodemon": "^2.0.6",
     "prettier": "^2.2.1",
+    "redis-mock": "^0.56.3",
     "supertest": "^6.0.1",
     "ts-jest": "^26.4.4",
     "tsc-watch": "^4.2.9",

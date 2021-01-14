@@ -3,5 +3,6 @@ import faker from 'faker';
 
 export const mockAuthenticationPresenter = (): SignUpPresenter.Data => ({
   accessToken: faker.random.uuid(),
-  name: faker.name.firstName(),
+  accountId: faker.random.uuid(),
+  expiredAt: new Date(),
 });

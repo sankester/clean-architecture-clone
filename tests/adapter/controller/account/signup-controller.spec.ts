@@ -79,7 +79,12 @@ describe('Sign Up Controller Test', () => {
     await subject.handle(data);
     const response = presenter.getResponse();
     const expected = makeResponseFactory().ok(
-      makeBodyBuilder().setData(authenticationSpy.result).build()
+      makeBodyBuilder()
+        .setData({
+          accessToken: authenticationSpy.result?.accessToken,
+          expiredAt: authenticationSpy.result?.expiredAt,
+        })
+        .build()
     );
     expect(response).toMatchObject(expected);
   });

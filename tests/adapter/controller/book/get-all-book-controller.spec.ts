@@ -1,11 +1,11 @@
 import { GetAllBookController } from '@adapter/controller';
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { GetAllBookPresenter } from '@adapter/presentation/presenters/book/GetAllBookPresenter';
 import { Controller } from '@adapter/protocol/Controller';
+import { Presenter } from '@adapter/protocol/Presenter';
 import { throwError } from '../../../entities/mock/test-helper';
 import { GetAllBookSpy } from '../../mock/mock-book';
-import { Presenter } from '@adapter/protocol/Presenter';
-import { GetAllBookPresenter } from '@adapter/presentation/presenters/book/GetAllBookPresenter';
 
 type SubjectType = {
   subject: Controller;

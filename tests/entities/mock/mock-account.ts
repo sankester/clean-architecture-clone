@@ -1,6 +1,6 @@
 import { AddAccount } from '@entities/usecases/account/AddAccount';
 import faker from 'faker';
-import { Authentication } from '../../../src/entities/usecases/account/Authentication';
+import { Authentication } from '@entities/usecases/account/Authentication';
 
 export const mockAddAccountParams = (): AddAccount.Params => {
   return {

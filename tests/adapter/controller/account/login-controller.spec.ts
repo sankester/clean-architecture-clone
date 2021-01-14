@@ -25,31 +25,6 @@ const makeSubjectTest = (): SubjectType => {
 };
 
 describe('Login Controller Test', () => {
-  // it('should call validation with correct request', async () => {
-  //   const { subject, validationSpy } = makeSubjectTest();
-  //   const data = mockLoginRequest();
-  //   await subject.handle(data);
-  //   expect(validationSpy.input).toMatchObject(data);
-  // });
-
-  // it('should response 400 bad request if invalid validation', async () => {
-  //   const { subject, presenter, validationSpy } = makeSubjectTest();
-  //   validationSpy.error = new Error();
-  //   await subject.handle(mockLoginRequest());
-  //   const response = presenter.getResponse();
-  //   const expected = makeResponseFactory().badRequest(new Error());
-  //   expect(response).toMatchObject(expected);
-  // });
-
-  // it('should response 500 server error if validationSpy throws', async () => {
-  //   const { subject, presenter, validationSpy } = makeSubjectTest();
-  //   jest.spyOn(validationSpy, 'validate').mockImplementationOnce(throwError);
-  //   await subject.handle(mockLoginRequest());
-  //   const response = presenter.getResponse();
-  //   const expected = makeResponseFactory().serverError(new Error());
-  //   expect(response).toMatchObject(expected);
-  // });
-
   it('call authentication with correct params', async () => {
     const { subject, authenticationSpy } = makeSubjectTest();
     const data = mockLoginRequest();
@@ -66,7 +41,12 @@ describe('Login Controller Test', () => {
     await subject.handle(data);
     const response = presenter.getResponse();
     const expected = makeResponseFactory().ok(
-      makeBodyBuilder().setData(authenticationSpy.result).build()
+      makeBodyBuilder()
+        .setData({
+          accessToken: authenticationSpy.result?.accessToken,
+          expiredAt: authenticationSpy.result?.expiredAt,
+        })
+        .build()
     );
     expect(response).toMatchObject(expected);
   });

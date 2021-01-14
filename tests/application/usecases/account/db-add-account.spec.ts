@@ -1,12 +1,12 @@
 import { DbAddAccount } from '@application/usecases/account/DbAddAccount';
 import { AddAccount } from '@entities/usecases/account/AddAccount';
+import { throwError } from '../../../entities/mock/test-helper';
 import { HasherSpy } from '../../mock/mock-cryptograpy';
 import {
   AddAccountReposiyorySpy,
   CheckAccountByEmailRepositorySpy,
 } from '../../mock/mock-db-account';
 import { mockAddAccountParams } from './../../../entities/mock/mock-account';
-import { throwError } from '../../../entities/mock/test-helper';
 
 type SubjectTesType = {
   subject: AddAccount;
