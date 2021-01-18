@@ -1,10 +1,12 @@
 import { AddBookRepository } from '@application/protocol/repositories/book/AddBookRepository';
 import { DeleteBookRepository } from '@application/protocol/repositories/book/DeleteBookRepository';
+import { GetAllBookRepository } from '@application/protocol/repositories/book/GetAllBookRepository';
+import { GetBookByIdRepository } from '@application/protocol/repositories/book/GetBookByIdRepository';
 import { UpdateBookRepository } from '@application/protocol/repositories/book/UpdateBookRepository';
 import { Book } from '@entities/models/Book';
-import { mockListBook } from '../../entities/mock/mock-book';
-import { GetAllBookRepository } from '@application/protocol/repositories/book/GetAllBookRepository';
 import { GetAllBook } from '@entities/usecases/book/GetAllBook';
+import { GetBookById } from '@entities/usecases/book/GetBookById';
+import { mockListBook, mockBookModel } from '../../entities/mock/mock-book';
 
 export class AddBookRepositorySpy implements AddBookRepository {
   params: AddBookRepository.Params;
@@ -55,6 +57,15 @@ export class DeleteBookRepositorySpy implements DeleteBookRepository {
 export class GetAllBookRepositorySpy implements GetAllBookRepository {
   result: Book[] = mockListBook();
   async findAll(): Promise<GetAllBook.Return> {
+    return this.result;
+  }
+}
+
+export class GetBookByIdRepositorySpy implements GetBookByIdRepository {
+  result: Book | null = mockBookModel();
+  id: string;
+  async getById(id: string): Promise<GetBookById.Result> {
+    this.id = id;
     return this.result;
   }
 }

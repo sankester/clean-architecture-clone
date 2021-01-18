@@ -25,18 +25,20 @@ export class AuthMiddlewaCacheProxy implements Middleware {
           return ok(makeBodyBuilder().setData(authData).build());
         } else {
           const response = await this.middleware.handle(httpRequest);
-          const body = response.body as ResponseBody;
-          // parsing data
-          const d = body.data as { id: string; exp: number };
-          const expireAfter = d.exp - Math.round(new Date().valueOf() / 1000);
-          // save token in cache
-          await this.cacheDriverSet.set(
-            accessToken,
-            JSON.stringify({ id: d.id }),
-            expireAfter
-          );
-          // return respose
-          return response;
+          if (response.code === 200) {
+            const body = response.body as ResponseBody;
+            // parsing data
+            const d = body.data as { id: string; exp: number };
+            const expireAfter = d.exp - Math.round(new Date().valueOf() / 1000);
+            // save token in cache
+            await this.cacheDriverSet.set(
+              accessToken,
+              JSON.stringify({ id: d.id }),
+              expireAfter
+            );
+            // return respose
+            return response;
+          }
         }
       }
       return forbidden(new AccessDeniedError());

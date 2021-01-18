@@ -1,4 +1,46 @@
-export const bookUpdateDeletePath = {
+export const bookGetUpdateDeletePath = {
+  get: {
+    tags: ['Book'],
+    summary: 'Get detail book',
+    description: 'Get detail data book by id',
+    parameters: [
+      {
+        in: 'path',
+        name: 'bookId',
+        descriptio: 'ID of Book',
+        required: true,
+        scheme: {
+          type: 'string',
+        },
+      },
+    ],
+    responses: {
+      200: {
+        description: 'Success load book',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                data: {
+                  $ref: '#/schemas/book',
+                },
+              },
+            },
+          },
+        },
+      },
+      403: {
+        $ref: '#/components/forbidden',
+      },
+      400: {
+        $ref: '#/components/badRequest',
+      },
+      500: {
+        $ref: '#/components/serverError',
+      },
+    },
+  },
   put: {
     security: [
       {

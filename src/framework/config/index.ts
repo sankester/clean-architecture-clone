@@ -46,6 +46,7 @@ interface Config {
   bcryptSalt: number;
   // redis
   redisUrl: string;
+  defaultExpirationTime: number;
 }
 
 const config: Config = {
@@ -71,6 +72,8 @@ const config: Config = {
   bcryptSalt: parsedEnv.BCRYPT_SALT as number,
   // redis
   redisUrl: parsedEnv.REDIS_URL as string,
+  // cache
+  defaultExpirationTime: parsedEnv.DEFAULT_EXPIRATION_TIME as number,
 };
 
 export default config;

@@ -38,6 +38,14 @@ describe('AuthMiddleware Test', () => {
     expect(decrypterSpy.ciphertext).toBe(request.accessToken);
   });
 
+  it('should return 403 forbidden access when decrypter failed', async () => {
+    const { subject, decrypterSpy } = makeSubjectTest();
+    decrypterSpy.plaintext = '';
+    const response = await subject.handle({});
+    const expected = makeResponseFactory().forbidden(new AccessDeniedError());
+    expect(response).toMatchObject(expected);
+  });
+
   it('should throw and return 500 internal server error decrypt throws', async () => {
     const { subject, decrypterSpy } = makeSubjectTest();
     jest.spyOn(decrypterSpy, 'descypt').mockImplementationOnce(throwError);

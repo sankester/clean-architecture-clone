@@ -1,6 +1,15 @@
-import { CacheDriverSet } from '@application/protocol/cache/CacheDriverSet';
 import { CacheDriverGet } from '@application/protocol/cache/CacheDriverGet';
+import { CacheDriverSet } from '@application/protocol/cache/CacheDriverSet';
 import faker from 'faker';
+import { mockBookModel } from '../../entities/mock/mock-book';
+
+export const mockAuthCache = () => {
+  return JSON.stringify({ id: faker.random.uuid() });
+};
+
+export const mockBookByIdCache = () => {
+  return JSON.stringify(mockBookModel());
+};
 
 export class CacheDiverSetSpy implements CacheDriverSet {
   key: string;
@@ -16,7 +25,7 @@ export class CacheDiverSetSpy implements CacheDriverSet {
 
 export class CacheDriverGetSpy implements CacheDriverGet {
   key: string;
-  value: string | undefined = JSON.stringify({ id: faker.random.uuid() });
+  value: string | undefined;
   async get(key: string): Promise<string | undefined> {
     this.key = key;
     return this.value;

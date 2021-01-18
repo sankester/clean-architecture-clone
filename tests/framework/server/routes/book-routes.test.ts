@@ -58,8 +58,44 @@ describe('Book Route Test', () => {
     });
   });
 
+  describe('GET /api/book/:bookId', () => {
+    test('should return 200 with book data', async () => {
+      try {
+        const docs = await mockBookDatabase();
+        const res = await request(app)
+          .get(`/api/book/${docs[0]._id}`)
+          .expect(200);
+
+        expect(res.body.data).toMatchObject({
+          id: docs[0]._id.toString(),
+          title: docs[0].title,
+          author: docs[0].author,
+          issn: docs[0].issn,
+        });
+      } catch (error) {
+        throw error;
+      }
+    });
+
+    test('Should response 204 when get all data', async () => {
+      await request(app)
+        .get(`/api/book/${FakeObjectId.generate()}`)
+        .expect(204);
+    });
+
+    test('should response 400 on invalid params', async () => {
+      const res = await request(app)
+        .get(`/api/book/${faker.random.uuid()}`)
+        .expect(400);
+
+      expect(res.body).toHaveProperty('error');
+      expect(res.body.error.type).toBe(HTTP_RESPONSE_ERROR.BAD_REQUEST.TYPE);
+      expect(res.body.error.message).toMatch(/(?=.*bookId)/);
+    });
+  });
+
   describe('POST /api/book', () => {
-    it('should response 201 on success', async () => {
+    test('should response 201 on success', async () => {
       const accessToken = await mockAccessToken();
       const params = mockAddBookParams();
       const res = await request(app)
@@ -73,7 +109,7 @@ describe('Book Route Test', () => {
       expect(res.body).toMatchObject(expectedRes);
     });
 
-    it('should response 400 on invalid params', async () => {
+    test('should response 400 on invalid params', async () => {
       const accessToken = await mockAccessToken();
       const params = {
         title: faker.lorem.words(),
@@ -88,7 +124,7 @@ describe('Book Route Test', () => {
       expect(res.body.error.message).toMatch(/(?=.*author)(?=.*issn)/);
     });
 
-    it('should response 403 on invalid token', async () => {
+    test('should response 403 on invalid token', async () => {
       const params = {
         title: faker.lorem.words(),
       };
@@ -97,7 +133,7 @@ describe('Book Route Test', () => {
   });
 
   describe('PUT /api/book/:bookId', () => {
-    it('should response 200 on success update', async () => {
+    test('should response 200 on success update', async () => {
       const accessToken = await mockAccessToken();
       const docs = await mockBookDatabase();
 
@@ -119,7 +155,7 @@ describe('Book Route Test', () => {
       });
     });
 
-    it('should response 400 on invalid params', async () => {
+    test('should response 400 on invalid params', async () => {
       const accessToken = await mockAccessToken();
       const docs = await mockBookDatabase();
 
@@ -137,7 +173,7 @@ describe('Book Route Test', () => {
       expect(res.body.error.message).toMatch(/(?=.*author)(?=.*issn)/);
     });
 
-    it('should response 403 on invalid token', async () => {
+    test('should response 403 on invalid token', async () => {
       const params = {
         title: faker.lorem.words(),
       };
@@ -149,7 +185,7 @@ describe('Book Route Test', () => {
   });
 
   describe('DELETE /api/:bookId', () => {
-    it('should response 200 on success', async () => {
+    test('should response 200 on success', async () => {
       const accessToken = await mockAccessToken();
       const docs = await mockBookDatabase();
       const res = await request(app)
@@ -160,7 +196,7 @@ describe('Book Route Test', () => {
       expect(res.body.success.message).toBe(DeleteBookPresenter.SuccesMessage);
     });
 
-    it('should response 200 error on not found entity', async () => {
+    test('should response 200 error on not found entity', async () => {
       const accessToken = await mockAccessToken();
       const res = await request(app)
         .delete(`/api/book/${FakeObjectId.generate()}`)
@@ -172,7 +208,7 @@ describe('Book Route Test', () => {
       expect(res.body.error.message).toBe(DeleteBookPresenter.ErrorMessage);
     });
 
-    it('should response 400 on invalid params', async () => {
+    test('should response 400 on invalid params', async () => {
       const accessToken = await mockAccessToken();
       const res = await request(app)
         .delete(`/api/book/${faker.random.uuid()}`)
@@ -184,7 +220,7 @@ describe('Book Route Test', () => {
       expect(res.body.error.message).toMatch(/(?=.*bookId)/);
     });
 
-    it('should response 403 on invalid token', async () => {
+    test('should response 403 on invalid token', async () => {
       await request(app).delete(`/api/book/${faker.random.uuid()}`).expect(403);
     });
   });

@@ -2,6 +2,7 @@ import { AddBookRepository } from '@application/protocol/repositories/book/AddBo
 import { DeleteBookRepository } from '@application/protocol/repositories/book/DeleteBookRepository';
 import { GetAllBookRepository } from '@application/protocol/repositories/book/GetAllBookRepository';
 import { UpdateBookRepository } from '@application/protocol/repositories/book/UpdateBookRepository';
+import { GetBookById } from '@entities/usecases/book/GetBookById';
 import BookModel from '@framework/db/mongodb/models/BookModel';
 
 export class MongoBookRepository
@@ -9,10 +10,16 @@ export class MongoBookRepository
     AddBookRepository,
     UpdateBookRepository,
     DeleteBookRepository,
-    GetAllBookRepository {
+    GetAllBookRepository,
+    GetBookById {
   async findAll(): Promise<GetAllBookRepository.Return> {
     const docs = await BookModel.find();
     return docs as any;
+  }
+
+  async getById(id: string): Promise<GetBookById.Result> {
+    const data: any = await BookModel.findById(id);
+    return data;
   }
 
   async add(data: AddBookRepository.Params): Promise<AddBookRepository.Result> {

@@ -1,14 +1,15 @@
 import { AuthMiddlewaCacheProxy } from '@adapter/middleware/proxy/AuthMiddlewareCacheProxy';
+import { AccessDeniedError } from '@adapter/presentation/errors/AccessDeniedError';
+import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import faker from 'faker';
 import {
   CacheDiverSetSpy,
   CacheDriverGetSpy,
+  mockAuthCache,
 } from '../../../application/mock/mock-cache-driver';
-import { AuthMiddlewareSpy } from '../../mock/mock-adapter';
-import { makeResponseFactory } from '../../../../src/adapter/presentation/helpers/makeResponseFactory';
-import { AccessDeniedError } from '../../../../src/adapter/presentation/errors/AccessDeniedError';
-import faker from 'faker';
 import { throwError } from '../../../entities/mock/test-helper';
-import { makeBodyBuilder } from '../../../../src/adapter/presentation/helpers/makeBodyBuiler';
+import { AuthMiddlewareSpy } from '../../mock/mock-adapter';
 
 type SubjectTest = {
   subject: AuthMiddlewaCacheProxy;
@@ -21,6 +22,7 @@ const makeSubjectTest = (): SubjectTest => {
   const authMiddlewareSpy = new AuthMiddlewareSpy();
   const cacheDriverSetSpy = new CacheDiverSetSpy();
   const cacheDriverGetSpy = new CacheDriverGetSpy();
+  cacheDriverGetSpy.value = mockAuthCache();
   const subject = new AuthMiddlewaCacheProxy(
     authMiddlewareSpy,
     cacheDriverSetSpy,
@@ -76,6 +78,15 @@ describe('Auth Middleware Cache Proxy Tests', () => {
     const param = mockAuthMiddlewareRequest();
     await subject.handle(param);
     expect(authMiddlewareSpy.httpRequest).toMatchObject(param);
+  });
+
+  it('should return 403 forbidden access when middleware handle response fail', async () => {
+    const { subject, authMiddlewareSpy, cacheDriverGetSpy } = makeSubjectTest();
+    cacheDriverGetSpy.value = undefined;
+    authMiddlewareSpy.response = makeResponseFactory().serverError(new Error());
+    const response = await subject.handle(mockAuthMiddlewareRequest());
+    const expected = makeResponseFactory().forbidden(new AccessDeniedError());
+    expect(response).toMatchObject(expected);
   });
 
   it('should return server error if middleware throws', async () => {

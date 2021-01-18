@@ -110,4 +110,29 @@ describe('MongoBookReponsitory Test.', () => {
       expect(result).toEqual([]);
     });
   });
+
+  describe('Get By Id Function', () => {
+    it('should load book data on success', async () => {
+      const { subject, model } = makeSubjectTest();
+      const bookModel = new model(mockAddBookParams());
+      const data = await bookModel.save();
+      const result = await subject.getById(data.id);
+      expect(result?.id).toBe(data.id);
+      expect(result?.title).toBe(data.title);
+      expect(result?.author).toBe(data.author);
+      expect(result?.issn).toBe(data.issn);
+    });
+
+    it('should retun null on not found data', async () => {
+      const { subject } = makeSubjectTest();
+      const result = await subject.getById(FakeObjectId.generate());
+      expect(result).toBeNull();
+    });
+
+    it('should error when bookId invalid objectId', async () => {
+      const { subject } = makeSubjectTest();
+      const promise = subject.getById(faker.random.uuid());
+      await expect(promise).rejects.toThrowError(/ObjectId/);
+    });
+  });
 });

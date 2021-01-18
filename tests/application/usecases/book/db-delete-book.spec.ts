@@ -1,8 +1,8 @@
 import { DbDeleteBook } from '@application/usecases/book/DbDeleteBook';
+import { DeleteBook } from '@entities/usecases/book/DeleteBook';
 import faker from 'faker';
 import { throwError } from '../../../entities/mock/test-helper';
 import { DeleteBookRepositorySpy } from '../../mock/mock-db-book';
-import { DeleteBook } from '@entities/usecases/book/DeleteBook';
 
 type SubjectTesType = {
   subject: DeleteBook;
