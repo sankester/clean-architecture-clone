@@ -243,6 +243,14 @@ API docs in **`http:localhost:3000/api-docs`**
 
   ex: in validation controller, authentication, auth middleware
 
+- **Mediator**
+
+  ex: in logging
+
+- **Observer**
+
+  ex: in logging  
+
 - **Dependency Injection**
 
   ex: in many comunicated class

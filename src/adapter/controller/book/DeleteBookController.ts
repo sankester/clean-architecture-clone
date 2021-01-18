@@ -3,6 +3,8 @@ import { Controller } from '@adapter/protocol/Controller';
 import { DeleteBook } from '@entities/usecases/book/DeleteBook';
 import { DeleteBookPresenter } from '../../presentation/presenters/book/DeleteBookPresenter';
 import { Presenter } from '../../protocol/Presenter';
+import EventDispatcher from '../../events/EventDispatcher';
+import { EventListType } from '../../events/EventListType';
 
 export class DeleteBookController implements Controller {
   constructor(
@@ -17,6 +19,7 @@ export class DeleteBookController implements Controller {
       const deleted = await this.deleteBook.delete(bookId);
       this.presenter.transform(deleted);
     } catch (error) {
+      EventDispatcher.publish(EventListType.SERVER_ERROR, this, error);
       this.presenter.setOutput(serverError(error));
     }
   }

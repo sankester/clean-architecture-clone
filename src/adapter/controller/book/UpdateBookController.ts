@@ -3,6 +3,8 @@ import { Controller } from '@adapter/protocol/Controller';
 import { UpdateBook } from '@entities/usecases/book/UpdateBook';
 import { UpdateBookPresenter } from '../../presentation/presenters/book/UpdateBookPresenter';
 import { Presenter } from '../../protocol/Presenter';
+import EventDispatcher from '../../events/EventDispatcher';
+import { EventListType } from '../../events/EventListType';
 
 export class UpdateBookController implements Controller {
   constructor(
@@ -22,6 +24,7 @@ export class UpdateBookController implements Controller {
       const updated = await this.updateBook.update(bookId, params);
       this.presenter.transform(updated);
     } catch (error) {
+      EventDispatcher.publish(EventListType.SERVER_ERROR, this, error);
       this.presenter.setOutput(serverError(error));
     }
   }

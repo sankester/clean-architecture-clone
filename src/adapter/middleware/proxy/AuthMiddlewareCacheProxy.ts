@@ -6,6 +6,8 @@ import { Middleware } from '@adapter/protocol/Middleware';
 import { CacheDriverSet } from '@application/protocol/cache/CacheDriverSet';
 import { ResponseBody } from '../../presentation/protocol/ResponseBody';
 import { CacheDriverGet } from '../../../application/protocol/cache/CacheDriverGet';
+import EventDispatcher from '../../events/EventDispatcher';
+import { EventListType } from '../../events/EventListType';
 
 export class AuthMiddlewaCacheProxy implements Middleware {
   constructor(
@@ -43,6 +45,7 @@ export class AuthMiddlewaCacheProxy implements Middleware {
       }
       return forbidden(new AccessDeniedError());
     } catch (error) {
+      EventDispatcher.publish(EventListType.SERVER_ERROR, this, error);
       return serverError(error);
     }
   }

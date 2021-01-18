@@ -3,6 +3,8 @@ import { makeResponseFactory } from '../../presentation/helpers/makeResponseFact
 import { GetBookByIdPresenter } from '../../presentation/presenters/book/GetBookByIdPresenter';
 import { Controller } from '../../protocol/Controller';
 import { Presenter } from '../../protocol/Presenter';
+import EventDispatcher from '../../events/EventDispatcher';
+import { EventListType } from '../../events/EventListType';
 
 export class GetBookByIdController implements Controller {
   constructor(
@@ -17,6 +19,7 @@ export class GetBookByIdController implements Controller {
       const data = await this.getBookById.getById(bookId);
       this.presenter.transform(data);
     } catch (error) {
+      EventDispatcher.publish(EventListType.SERVER_ERROR, this, error);
       this.presenter.setOutput(serverError(error));
     }
   }

@@ -4,6 +4,8 @@ import { Controller } from '@adapter/protocol/Controller';
 import { GetAllBook } from '@entities/usecases/book/GetAllBook';
 import { GetAllBookPresenter } from '../../presentation/presenters/book/GetAllBookPresenter';
 import { Presenter } from '../../protocol/Presenter';
+import EventDispatcher from '../../events/EventDispatcher';
+import { EventListType } from '../../events/EventListType';
 
 export class GetAllBookController implements Controller {
   constructor(
@@ -17,6 +19,7 @@ export class GetAllBookController implements Controller {
       const docs = await this.getAllBook.findAll();
       this.presenter.transform(docs);
     } catch (error) {
+      EventDispatcher.publish(EventListType.SERVER_ERROR, this, error);
       this.presenter.setOutput(serverError(error));
     }
   }

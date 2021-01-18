@@ -3,6 +3,8 @@ import { Authentication } from '@entities/usecases/account/Authentication';
 import { makeResponseFactory } from '../../presentation/helpers/makeResponseFactory';
 import { Controller } from '../../protocol/Controller';
 import { Presenter } from '../../protocol/Presenter';
+import EventDispatcher from '../../events/EventDispatcher';
+import { EventListType } from '../../events/EventListType';
 
 export class LoginController implements Controller {
   constructor(
@@ -16,6 +18,7 @@ export class LoginController implements Controller {
       const authenticateModel = await this.authentication.auth(request);
       this.presenter.transform(authenticateModel);
     } catch (error) {
+      EventDispatcher.publish(EventListType.SERVER_ERROR, this, error);
       this.presenter.setOutput(serverError(error));
     }
   }

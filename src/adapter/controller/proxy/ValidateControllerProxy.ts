@@ -2,6 +2,8 @@ import { makeResponseFactory } from '../../presentation/helpers/makeResponseFact
 import { Controller } from '../../protocol/Controller';
 import { Presenter } from '../../protocol/Presenter';
 import { Validation } from '../../protocol/Validation';
+import EventDispatcher from '../../events/EventDispatcher';
+import { EventListType } from '../../events/EventListType';
 
 export class ValidateControllerProxy implements Controller {
   constructor(
@@ -20,6 +22,7 @@ export class ValidateControllerProxy implements Controller {
         await this.controller.handle(request);
       }
     } catch (error) {
+      EventDispatcher.publish(EventListType.SERVER_ERROR, this, error);
       this.presenter.setOutput(serverError(error));
     }
   }

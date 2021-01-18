@@ -3,6 +3,8 @@ import { Controller } from '@adapter/protocol/Controller';
 import { AddBook } from '@entities/usecases/book/AddBook';
 import { AddBookPresenter } from '../../presentation/presenters/book/AddBookPresenter';
 import { Presenter } from '../../protocol/Presenter';
+import EventDispatcher from '../../events/EventDispatcher';
+import { EventListType } from '../../events/EventListType';
 
 export class AddBookController implements Controller {
   constructor(
@@ -17,6 +19,7 @@ export class AddBookController implements Controller {
       const isSuccess = await this.addBook.add(request);
       this.presenter.transform(isSuccess);
     } catch (error) {
+      EventDispatcher.publish(EventListType.SERVER_ERROR, this, error);
       this.presenter.setOutput(serverError(error));
     }
   }
