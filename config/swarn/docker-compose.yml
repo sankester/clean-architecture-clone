@@ -1,0 +1,76 @@
+version: "3.8"
+networks:
+  nginx-reverse:
+  app-db:
+
+services:
+  nginx-reverse:
+    image: nginx
+    restart: always
+    deploy:
+      placement:
+        constraints:
+          - "node.role == manager"
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro,delegated
+      - ./nginx-reverse/nginx.conf:/etc/nginx/conf.d/nginx.conf:delegated
+    networks:
+      - nginx-reverse
+    depends_on:
+      - clean-architecture-clone
+  # setup app
+  clean-architecture-clone:
+    image: sankester/clean-architecture-clone:1.0.0
+    build:
+      context: ../../
+      dockerfile: ./Dockerfile
+    restart: always
+    volumes:
+      - "clean-architecture-clone-data:/usr/app/node_modules"
+    environment:
+      - MONGO_URL=mongodb://mongo-server/cleandb
+      - REDIS_URL=redis://redis-server:6379
+      - PRIVATE_KEY_PASSPHRASE=clean-pass
+    networks:
+      - nginx-reverse
+      - app-db
+    depends_on:
+      - mongo-server
+      - redis-server
+  # setup mongo
+  mongo-server:
+    image: mongo
+    restart: always
+    deploy:
+      placement:
+        constraints:
+          - 'node.role == manager'
+    ports:
+      - 27017
+    volumes:
+      - "mongo-server-data:/data/db"
+    networks:
+      - app-db
+  # setup redis
+  redis-server:
+    image: redis
+    restart: always
+    volumes:
+      - "redis-server-data:/data"
+    ports:
+      - 6379
+    command: redis-server --save
+    networks:
+     - app-db
+volumes:
+  mongo-server-data:
+    driver: local
+    name: mongo-server-data
+  redis-server-data:
+    driver: local
+    name: redis-server-data
+  clean-architecture-clone-data:
+    driver: local
+    name: clean-architecture-clone-data

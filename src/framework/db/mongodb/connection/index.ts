@@ -2,10 +2,12 @@
 
 import config from '@framework/config';
 import { logger } from '@framework/library/winston';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 
 mongoose.set('debug', process.env.DEBUG !== undefined);
+
+const mongoServer: any =
+  config.mongo.url === 'inmemory' && require('mongodb-memory-server');
 
 const opts = {
   useNewUrlParser: true,
@@ -22,7 +24,7 @@ const opts = {
 class MongoConnection {
   private static _instance: MongoConnection;
 
-  private _mongoServer?: MongoMemoryServer;
+  private _mongoServer?: any;
 
   static getInstance(): MongoConnection {
     if (!MongoConnection._instance) {
@@ -35,7 +37,7 @@ class MongoConnection {
     try {
       if (config.mongo.url === 'inmemory') {
         logger.debug('connecting to inmemory mongo db');
-        this._mongoServer = new MongoMemoryServer();
+        this._mongoServer = new mongoServer.MongoMemoryServer();
         const mongoUrl = await this._mongoServer.getUri();
         logger.info('mongoUrl:', mongoUrl);
         await mongoose.connect(mongoUrl, opts);

@@ -12,6 +12,7 @@ const start = async () => {
       logger.info(
         'server running in docker, access from http://localhost:3000'
       );
+      logger.info(`run in ${process.env.NODE_ENV} mode`);
       registerListener();
     });
   } catch (error) {

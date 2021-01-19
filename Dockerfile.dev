@@ -11,6 +11,8 @@ RUN yarn install
 
 COPY . .
 
+ENV NODE_ENV=development
+
 EXPOSE 3000
 
 # Default env file
