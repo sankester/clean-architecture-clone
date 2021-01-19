@@ -4,43 +4,51 @@ import { Publisher } from './protocol/Publisher';
 class EventDispatcher implements Publisher {
   private static _evetdispatcher: EventDispatcher;
 
-  static getInstance(): EventDispatcher {
+  /* istanbul ignore next */ static getInstance(): EventDispatcher {
     if (!this._evetdispatcher) {
       this._evetdispatcher = new EventDispatcher();
     }
     return this._evetdispatcher;
   }
 
-  private listeners: Record<string, Array<Listener>> = {};
+  private _listeners: Record<string, Array<Listener>> = {};
 
   constructor() {
-    this.listeners['*'] = [];
+    this._listeners['*'] = [];
   }
 
-  private initEventGroup(event = '*'): void {
-    if (!this.listeners[event]) {
-      this.listeners[event] = [];
+  public get listeners(): Record<string, Array<Listener>> {
+    return this._listeners;
+  }
+
+  /* istanbul ignore next */ private initEventGroup(event = '*'): void {
+    if (!this._listeners[event]) {
+      this._listeners[event] = [];
     }
   }
 
-  private getEventObservers(event = '*'): Listener[] {
+  /* istanbul ignore next */ private getEventObservers(
+    event = '*'
+  ): Listener[] {
     this.initEventGroup(event);
-    const group = this.listeners[event];
-    const all = this.listeners['*'];
+    const group = this._listeners[event];
+    const all = this._listeners['*'];
 
     return Array.prototype.concat(group, all);
   }
 
   attach(listener: Listener, event: string): void {
     this.initEventGroup(event);
-    this.listeners[event].push(listener);
+    this._listeners[event].push(listener);
   }
 
   detach(listener: Listener, event: string): void {
     const listeners = this.getEventObservers(event);
     const observerIndex = listeners.indexOf(listener);
-    if (observerIndex) {
-      this.listeners[event].splice(observerIndex, 1);
+
+    /* istanbul ignore next */
+    if (observerIndex > 0) {
+      this._listeners[event].splice(observerIndex, 1);
     }
   }
 

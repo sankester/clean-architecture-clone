@@ -26,11 +26,12 @@ look in [`command.md`](https://github.com/sankester/clean-architecture-clone/blo
 
 ### Entitiy
 
-- Book
+- `Book`
 
 ### Application Use Cases
 
 - `Get All Book`
+- `Get Book By ID`
 - `Add Book`
 - `Update Book`
 - `Delete Book`
@@ -43,6 +44,7 @@ look in [`command.md`](https://github.com/sankester/clean-architecture-clone/blo
 **Controller**
 
 - `GetAllBookConttroller`
+- `GetBookByIdController`
 - `AddBookController`
 - `UpdateBookController`
 - `DeleteBookController`
@@ -52,6 +54,7 @@ look in [`command.md`](https://github.com/sankester/clean-architecture-clone/blo
 **Presentation**
 
 - `GetAllBookPresenter`
+- `GetBookByIdPresenter`
 - `AddBookPresenter`
 - `UpdateBookPresenter`
 - `DeleteBookPresenter`
@@ -159,6 +162,29 @@ API docs in **`http:localhost:3000/api-docs`**
   }
   ```
 
+- Get Book By ID
+
+  **GET** - `http://localhost:3000/api/book/:bookId`
+
+  Accept: `application/json`
+
+  Content-Type: `application/json`
+
+  Response
+
+  ```js
+  {
+    data: [
+      {
+        id: string,
+        title: string,
+        author: string,
+        issn: string,
+      },
+    ];
+  }
+  ```
+
 - Create Book
 
   **POST** - `http://localhost:3000/api/book`
@@ -215,7 +241,7 @@ API docs in **`http:localhost:3000/api-docs`**
 
 - **Singleton**
 
-  ex: in connection database
+  ex: in connection database and event dispatcher
 
 - **Factory**
 
@@ -249,7 +275,7 @@ API docs in **`http:localhost:3000/api-docs`**
 
 - **Observer**
 
-  ex: in logging  
+  ex: in logging
 
 - **Dependency Injection**
 
