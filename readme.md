@@ -7,16 +7,18 @@ using nodejs for server, typescript for OOP implementation, and docker for conta
 
 > This application by default uses Docker and Docker Compose, so make sure Docker and Docker Compose are installed on your system
 
-| Script   | Description                                                                 |
-| -------- | --------------------------------------------------------------------------- |
-| start    | start server in prod mode execute file after builder, make sure build first |
-| dev      | start server with development mode                                          |
-| build    | build script from `typescript`                                              |
-| watch    | build script from `typescript` and start server with `dev` mode             |
-| tests    | run all tests with `jest`                                                   |
-| tests:co | run all tests and generate `coverage`                                       |
-| dev:up   | start `docker` for developmnet                                              |
-| dev:down | stop `docker` for development                                               |
+| Script    | Description                                                                 |
+| --------- | --------------------------------------------------------------------------- |
+| start     | start server in prod mode execute file after builder, make sure build first |
+| dev       | start server with development mode                                          |
+| build     | build script from `typescript`                                              |
+| watch     | build script from `typescript` and start server with `dev` mode             |
+| tests     | run all tests with `jest`                                                   |
+| tests:co  | run all tests and generate `coverage`                                       |
+| dev:up    | start `docker` for development                                              |
+| dev:down  | stop `docker` for development                                               |
+| prod:up   | start `docker` for production                                               |
+| prod:down | stop `docker` for production                                                |
 
 ## Command
 
