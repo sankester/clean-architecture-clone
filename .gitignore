@@ -4,3 +4,4 @@ dist
 docker
 coverage
 yarn-error.log
+.husky

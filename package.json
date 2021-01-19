@@ -16,7 +16,8 @@
     "dev:up": "docker-compose -f docker-compose.dev.yml up --remove-orphans",
     "dev:down": "docker-compose -f docker-compose.dev.yml down",
     "prod:up": "docker-compose -f ./config/swarn/docker-compose.yml up",
-    "prod:down": "docker-compose -f ./config/swarn/docker-compose.yml down"
+    "prod:down": "docker-compose -f ./config/swarn/docker-compose.yml down",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
