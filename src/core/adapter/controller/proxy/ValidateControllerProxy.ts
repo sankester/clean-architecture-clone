@@ -1,9 +1,9 @@
-import { makeResponseFactory } from '../../presentation/helpers/makeResponseFactory';
-import { Controller } from '../../protocol/Controller';
-import { Presenter } from '../../protocol/Presenter';
-import { Validation } from '../../protocol/Validation';
-import EventDispatcher from '../../events/EventDispatcher';
-import { EventListType } from '../../events/EventListType';
+import EventDispatcher from '@adapter/events/EventDispatcher';
+import { EventListType } from '@adapter/events/EventListType';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { Controller } from '@adapter/protocol/Controller';
+import { Presenter } from '@adapter/protocol/Presenter';
+import { Validation } from '@adapter/protocol/Validation';
 
 export class ValidateControllerProxy implements Controller {
   constructor(

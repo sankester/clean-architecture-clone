@@ -1,7 +1,9 @@
-import app from '@backend/rest/setup/app';
+import { createRestApp } from '@backend/rest';
 import request from 'supertest';
 
 describe('CORS Middleware', () => {
+  const app = createRestApp();
+
   test('Should enable CORS', async () => {
     app.get('/test_cors', (_req, res) => {
       res.send();

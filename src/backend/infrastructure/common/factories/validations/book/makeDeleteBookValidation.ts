@@ -1,5 +1,5 @@
 import { Validation } from '@adapter/protocol/Validation';
-import { DeleteBookDto } from '@backend/rest/factories/validations/dto/book/DeleteBookDto';
+import { DeleteBookDto } from '@backend/infrastructure/common/factories/validations/dto/book/DeleteBookDto';
 import { RequestParamsValidation } from '@adapter/validation/validator/RequestParamsValidation';
 
 export const makeDeleteBookValidation = (): Validation => {

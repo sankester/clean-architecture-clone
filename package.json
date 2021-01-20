@@ -7,10 +7,10 @@
   "private": true,
   "repository": "github:sankester/clean-architecture-clone",
   "scripts": {
-    "rest:start": "ENV_FILE=./config/.env.prod node ./dist/backend/rest/server.js",
-    "rest:dev": "ENV_FILE=./config/.env.dev nodemon ./dist/backend/rest/server.js",
+    "start": "ENV_FILE=./config/.env.prod node ./dist/backend/index.js",
+    "dev": "ENV_FILE=./config/.env.dev nodemon ./dist/backend/index.js",
     "build": "rm -rf ./dist && tsc -p tsconfig-build.json",
-    "rest:watch": "rm -rf ./dist && tsc-watch -p tsconfig-build.json --onSuccess 'yarn rest:dev'",
+    "watch": "rm -rf ./dist && tsc-watch -p tsconfig-build.json --onSuccess 'yarn dev'",
     "tests": "ENV_FILE=./config/.env.test jest",
     "tests:co": "ENV_FILE=./config/.env.test jest --coverage",
     "dev:up": "docker-compose -f docker-compose.dev.yml up --remove-orphans",

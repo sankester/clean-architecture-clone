@@ -1,4 +1,4 @@
-import { makeDeleteBookValidation } from '@backend/rest/factories/validations/book/makeDeleteBookValidation';
+import { makeDeleteBookValidation } from '@backend/infrastructure/common/factories/validations/book/makeDeleteBookValidation';
 import FakeObjectId from 'bson-objectid';
 import faker from 'faker';
 

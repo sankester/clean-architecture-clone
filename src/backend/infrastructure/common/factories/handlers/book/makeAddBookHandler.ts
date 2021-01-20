@@ -1,4 +1,4 @@
-import { AddBookController } from '@adapter/controller';
+import { AddBookController } from '@adapter/controller/book';
 import { ValidateControllerProxy } from '@adapter/controller/proxy/ValidateControllerProxy';
 import { AddBookPresenter } from '@adapter/presentation/presenters/book/AddBookPresenter';
 import { Handler } from '../../protocol/Handler';

@@ -1,7 +1,7 @@
 import { LoadAcountByEmailRepository } from '@application/protocol/repositories/account/LoadAccountByEmailRepository';
 import { Authentication } from '@entities/usecases/account/Authentication';
-import { HashCompare } from '../../protocol/cryptography/HashCompare';
-import { Encrypter } from '../../protocol/cryptography/Encrypter';
+import { HashCompare } from '@application/protocol/cryptography/HashCompare';
+import { Encrypter } from '@application/protocol/cryptography/Encrypter';
 
 export class DbAuthentication implements Authentication {
   constructor(

@@ -1,4 +1,4 @@
-import { makeUpdateBookValidation } from '@backend/rest/factories/validations/book/makeUpdateBookValidation';
+import { makeUpdateBookValidation } from '@backend/infrastructure/common/factories/validations/book/makeUpdateBookValidation';
 import faker from 'faker';
 import { mockUpdateBookRequest } from '../../../../../core/adapter/mock/mock-book';
 

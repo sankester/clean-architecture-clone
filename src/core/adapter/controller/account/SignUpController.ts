@@ -1,12 +1,12 @@
+import EventDispatcher from '@adapter/events/EventDispatcher';
+import { EventListType } from '@adapter/events/EventListType';
 import { EmailInUseError } from '@adapter/presentation/errors/EmailInUseError';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { SignUpPresenter } from '@adapter/presentation/presenters/account/SignUpPresenter';
+import { Controller } from '@adapter/protocol/Controller';
+import { Presenter } from '@adapter/protocol/Presenter';
 import { AddAccount } from '@entities/usecases/account/AddAccount';
 import { Authentication } from '@entities/usecases/account/Authentication';
-import { makeResponseFactory } from '../../presentation/helpers/makeResponseFactory';
-import { Controller } from '../../protocol/Controller';
-import { Presenter } from '../../protocol/Presenter';
-import EventDispatcher from '../../events/EventDispatcher';
-import { EventListType } from '../../events/EventListType';
 
 export class SingupController implements Controller {
   constructor(

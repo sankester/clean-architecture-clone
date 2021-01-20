@@ -1,5 +1,5 @@
 import { GetBookById } from '@entities/usecases/book/GetBookById';
-import { GetBookByIdRepository } from '../../protocol/repositories/book/GetBookByIdRepository';
+import { GetBookByIdRepository } from '@application/protocol/repositories/book/GetBookByIdRepository';
 
 export class DbGetBookById implements GetBookById {
   constructor(private readonly repository: GetBookByIdRepository) {}

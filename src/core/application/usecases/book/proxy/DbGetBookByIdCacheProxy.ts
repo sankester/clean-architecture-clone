@@ -1,6 +1,6 @@
+import { CacheDriverGet } from '@application/protocol/cache/CacheDriverGet';
+import { CacheDriverSet } from '@application/protocol/cache/CacheDriverSet';
 import { GetBookById } from '@entities/usecases/book/GetBookById';
-import { CacheDriverGet } from '../../../protocol/cache/CacheDriverGet';
-import { CacheDriverSet } from '../../../protocol/cache/CacheDriverSet';
 
 export class DbGetBookByIdCacheProxy implements GetBookById {
   constructor(

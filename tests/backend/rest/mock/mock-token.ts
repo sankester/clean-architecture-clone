@@ -1,9 +1,9 @@
 import request from 'supertest';
-import app from '@backend/rest/setup/app';
+import { createRestApp } from '@backend/rest';
 import { mockAddAccountParams } from '../../../core/entities/mock/mock-account';
 
 export const mockAccessToken = async (): Promise<string> => {
-  const response = await request(app)
+  const response = await request(createRestApp())
     .post('/api/signup')
     .send(mockAddAccountParams())
     .expect(200);

@@ -1,7 +1,7 @@
-import { WinstonListener } from '../listeners/WinstonListener';
+import { WinstonListener } from '@backend/infrastructure/common/listeners/WinstonListener';
 import EventDispatcher from '@adapter/events/EventDispatcher';
 import { EventListType } from '@adapter/events/EventListType';
-import { ServerErrorLogListener } from '../listeners/ServerErrorLogListener';
+import { ServerErrorLogListener } from '@backend/infrastructure/common/listeners/ServerErrorLogListener';
 import * as path from 'path';
 
 export default () => {

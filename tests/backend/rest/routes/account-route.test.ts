@@ -2,11 +2,13 @@ import { HTTP_RESPONSE_ERROR } from '@adapter/presentation/constant/HttpResponse
 import MongoConnection from '@backend/infrastructure/db/mongodb/connection/index';
 import AccountModel from '@backend/infrastructure/db/mongodb/models/AccountModel';
 import RedisCacheDriver from '@backend/infrastructure/db/redis/index';
-import app from '@backend/rest/setup/app';
+import { createRestApp } from '@backend/rest';
 import { hash } from 'bcrypt';
 import faker from 'faker';
 import request from 'supertest';
 import { mockAddAccountParams } from '../../../core/entities/mock/mock-account';
+
+const app = createRestApp();
 
 const mockAccountDatabase = async () => {
   const docs = await AccountModel.create([

@@ -1,11 +1,11 @@
+import EventDispatcher from '@adapter/events/EventDispatcher';
+import { EventListType } from '@adapter/events/EventListType';
+import { AccessDeniedError } from '@adapter/presentation/errors/AccessDeniedError';
+import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { Response } from '@adapter/presentation/protocol/Response';
+import { Middleware } from '@adapter/protocol/Middleware';
 import { Decrypter } from '@application/protocol/cryptography/Decrypter';
-import { AccessDeniedError } from '../presentation/errors/AccessDeniedError';
-import { makeResponseFactory } from '../presentation/helpers/makeResponseFactory';
-import { Middleware } from '../protocol/Middleware';
-import { makeBodyBuilder } from '../presentation/helpers/makeBodyBuiler';
-import EventDispatcher from '../events/EventDispatcher';
-import { EventListType } from '../events/EventListType';
 
 export class AuthMiddleware implements Middleware {
   constructor(private readonly descrypter: Decrypter) {}

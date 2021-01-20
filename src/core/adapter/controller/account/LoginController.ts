@@ -1,10 +1,10 @@
+import EventDispatcher from '@adapter/events/EventDispatcher';
+import { EventListType } from '@adapter/events/EventListType';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { LoginPresenter } from '@adapter/presentation/presenters/account/LoginPresenter';
+import { Controller } from '@adapter/protocol/Controller';
+import { Presenter } from '@adapter/protocol/Presenter';
 import { Authentication } from '@entities/usecases/account/Authentication';
-import { makeResponseFactory } from '../../presentation/helpers/makeResponseFactory';
-import { Controller } from '../../protocol/Controller';
-import { Presenter } from '../../protocol/Presenter';
-import EventDispatcher from '../../events/EventDispatcher';
-import { EventListType } from '../../events/EventListType';
 
 export class LoginController implements Controller {
   constructor(

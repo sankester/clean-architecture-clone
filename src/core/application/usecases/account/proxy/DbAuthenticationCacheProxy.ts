@@ -1,5 +1,5 @@
+import { CacheDriverSet } from '@application/protocol/cache/CacheDriverSet';
 import { Authentication } from '@entities/usecases/account/Authentication';
-import { CacheDriverSet } from '../../../protocol/cache/CacheDriverSet';
 
 export class DbAuthenticationCacheProxy implements Authentication {
   constructor(

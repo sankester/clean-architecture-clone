@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Handler } from '../factories/protocol/Handler';
+import { Handler } from '@backend/infrastructure/common/factories/protocol/Handler';
 import { adaptController } from './adaptController';
 import { adaptPresenter } from './adaptPresenter';
 

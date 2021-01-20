@@ -1,4 +1,4 @@
-import { makeSignUpValidation } from '@backend/rest/factories/validations/account/makeSignUpValidation';
+import { makeSignUpValidation } from '@backend/infrastructure/common/factories/validations/account/makeSignUpValidation';
 import { mockSignupRequest } from '../../../../../core/adapter/mock/mock-account';
 
 const makeSubjectTest = () => {

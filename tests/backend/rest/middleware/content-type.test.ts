@@ -1,7 +1,9 @@
 import request from 'supertest';
-import app from '@backend/rest/setup/app';
+import { createRestApp } from '@backend/rest';
 
 describe('Content Type Middleware', () => {
+  const app = createRestApp();
+
   test('Should return default content type as json', async () => {
     app.get('/test_content_type', (_req, res) => {
       res.send('');

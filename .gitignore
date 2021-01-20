@@ -1,6 +1,5 @@
 node_modules
 .vscode
-scripts
 dist
 docker
 coverage

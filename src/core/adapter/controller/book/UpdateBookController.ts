@@ -1,10 +1,10 @@
+import EventDispatcher from '@adapter/events/EventDispatcher';
+import { EventListType } from '@adapter/events/EventListType';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { UpdateBookPresenter } from '@adapter/presentation/presenters/book/UpdateBookPresenter';
 import { Controller } from '@adapter/protocol/Controller';
+import { Presenter } from '@adapter/protocol/Presenter';
 import { UpdateBook } from '@entities/usecases/book/UpdateBook';
-import { UpdateBookPresenter } from '../../presentation/presenters/book/UpdateBookPresenter';
-import { Presenter } from '../../protocol/Presenter';
-import EventDispatcher from '../../events/EventDispatcher';
-import { EventListType } from '../../events/EventListType';
 
 export class UpdateBookController implements Controller {
   constructor(

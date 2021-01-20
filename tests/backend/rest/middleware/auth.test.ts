@@ -1,8 +1,8 @@
-import app from '@backend/rest/setup/app';
-import request from 'supertest';
+import RedisCacheDriver from '@backend/infrastructure/db/redis/index';
+import { createRestApp } from '@backend/rest';
 import { auth } from '@backend/rest/middleware/auth';
 import faker from 'faker';
-import RedisCacheDriver from '@backend/infrastructure/db/redis/index';
+import request from 'supertest';
 
 beforeAll(async () => {
   await RedisCacheDriver.open();
@@ -13,6 +13,7 @@ afterAll(async () => {
 });
 
 describe('Auth Middleware', () => {
+  const app = createRestApp();
   test('Should return 403 if unauthenticated', async () => {
     app.post('/test-auth', auth, (req, res) => {
       res.send(req.body);

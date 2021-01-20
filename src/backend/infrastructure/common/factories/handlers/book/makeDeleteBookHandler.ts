@@ -1,7 +1,7 @@
-import { DeleteBookController } from '@adapter/controller';
+import { DeleteBookController } from '@adapter/controller/book';
 import { ValidateControllerProxy } from '@adapter/controller/proxy/ValidateControllerProxy';
 import { DeleteBookPresenter } from '@adapter/presentation/presenters/book/DeleteBookPresenter';
-import { makeDbDeleteBook } from '@backend/rest/factories/usecases/book/makeDbDeleteBook';
+import { makeDbDeleteBook } from '@backend/infrastructure/common/factories/usecases/book/makeDbDeleteBook';
 import { Handler } from '../../protocol/Handler';
 import { makeDeleteBookValidation } from '../../validations/book/makeDeleteBookValidation';
 

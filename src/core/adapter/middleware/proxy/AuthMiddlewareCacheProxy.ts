@@ -1,13 +1,13 @@
+import EventDispatcher from '@adapter/events/EventDispatcher';
+import { EventListType } from '@adapter/events/EventListType';
 import { AccessDeniedError } from '@adapter/presentation/errors/AccessDeniedError';
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { Response } from '@adapter/presentation/protocol/Response';
+import { ResponseBody } from '@adapter/presentation/protocol/ResponseBody';
 import { Middleware } from '@adapter/protocol/Middleware';
+import { CacheDriverGet } from '@application/protocol/cache/CacheDriverGet';
 import { CacheDriverSet } from '@application/protocol/cache/CacheDriverSet';
-import { ResponseBody } from '../../presentation/protocol/ResponseBody';
-import { CacheDriverGet } from '../../../application/protocol/cache/CacheDriverGet';
-import EventDispatcher from '../../events/EventDispatcher';
-import { EventListType } from '../../events/EventListType';
 
 export class AuthMiddlewaCacheProxy implements Middleware {
   constructor(

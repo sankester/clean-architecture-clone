@@ -1,4 +1,4 @@
-import { makeAddBookValidation } from '@backend/rest/factories/validations/book/makeAddBookValidation';
+import { makeAddBookValidation } from '@backend/infrastructure/common/factories/validations/book/makeAddBookValidation';
 import faker from 'faker';
 import { mockAddBookRequest } from '../../../../../core/adapter/mock/mock-book';
 

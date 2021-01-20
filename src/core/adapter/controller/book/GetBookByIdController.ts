@@ -1,10 +1,10 @@
+import EventDispatcher from '@adapter/events/EventDispatcher';
+import { EventListType } from '@adapter/events/EventListType';
+import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { GetBookByIdPresenter } from '@adapter/presentation/presenters/book/GetBookByIdPresenter';
+import { Controller } from '@adapter/protocol/Controller';
+import { Presenter } from '@adapter/protocol/Presenter';
 import { GetBookById } from '@entities/usecases/book/GetBookById';
-import { makeResponseFactory } from '../../presentation/helpers/makeResponseFactory';
-import { GetBookByIdPresenter } from '../../presentation/presenters/book/GetBookByIdPresenter';
-import { Controller } from '../../protocol/Controller';
-import { Presenter } from '../../protocol/Presenter';
-import EventDispatcher from '../../events/EventDispatcher';
-import { EventListType } from '../../events/EventListType';
 
 export class GetBookByIdController implements Controller {
   constructor(

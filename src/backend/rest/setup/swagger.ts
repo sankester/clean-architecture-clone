@@ -6,5 +6,5 @@ import { noCache } from '../middleware/no-chace';
 
 export default (app: Express): void => {
   logger.debug('setup swagger ui');
-  app.use('/api-docs', noCache, serve, setup(docs), setup(docs));
+  app.use('/api-docs', noCache, serve, setup(docs));
 };

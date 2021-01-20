@@ -1,5 +1,5 @@
-import { GetAllBookController } from '@adapter/controller/';
-import { makeDbGetAllBook } from '@backend/rest/factories/usecases/book/makeDbGetAllBook';
+import { GetAllBookController } from '@adapter/controller/book';
+import { makeDbGetAllBook } from '@backend/infrastructure/common/factories/usecases/book/makeDbGetAllBook';
 import { Handler } from '../../protocol/Handler';
 import { GetAllBookPresenter } from '@adapter/presentation/presenters/book/GetAllBookPresenter';
 

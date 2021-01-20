@@ -1,4 +1,4 @@
-import { makeLoginValidation } from '@backend/rest/factories/validations/account/makeLoginValidation';
+import { makeLoginValidation } from '@backend/infrastructure/common/factories/validations/account/makeLoginValidation';
 import { mockLoginRequest } from '../../../../../core/adapter/mock/mock-account';
 
 const makeSubjectTest = () => {

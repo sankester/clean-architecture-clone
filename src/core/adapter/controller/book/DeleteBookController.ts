@@ -1,10 +1,10 @@
+import EventDispatcher from '@adapter/events/EventDispatcher';
+import { EventListType } from '@adapter/events/EventListType';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { DeleteBookPresenter } from '@adapter/presentation/presenters/book/DeleteBookPresenter';
 import { Controller } from '@adapter/protocol/Controller';
+import { Presenter } from '@adapter/protocol/Presenter';
 import { DeleteBook } from '@entities/usecases/book/DeleteBook';
-import { DeleteBookPresenter } from '../../presentation/presenters/book/DeleteBookPresenter';
-import { Presenter } from '../../protocol/Presenter';
-import EventDispatcher from '../../events/EventDispatcher';
-import { EventListType } from '../../events/EventListType';
 
 export class DeleteBookController implements Controller {
   constructor(

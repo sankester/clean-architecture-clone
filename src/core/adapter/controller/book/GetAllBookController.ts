@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import EventDispatcher from '@adapter/events/EventDispatcher';
+import { EventListType } from '@adapter/events/EventListType';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
+import { GetAllBookPresenter } from '@adapter/presentation/presenters/book/GetAllBookPresenter';
 import { Controller } from '@adapter/protocol/Controller';
+import { Presenter } from '@adapter/protocol/Presenter';
 import { GetAllBook } from '@entities/usecases/book/GetAllBook';
-import { GetAllBookPresenter } from '../../presentation/presenters/book/GetAllBookPresenter';
-import { Presenter } from '../../protocol/Presenter';
-import EventDispatcher from '../../events/EventDispatcher';
-import { EventListType } from '../../events/EventListType';
 
 export class GetAllBookController implements Controller {
   constructor(
