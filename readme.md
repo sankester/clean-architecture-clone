@@ -315,6 +315,7 @@ API docs in **`http:localhost:3000/api-docs`**
 - tsconfig-paths - _module aliases for typescript_
 - eslint, @typescript-eslint/parser, @typescript-eslint/eslint-plugin - _linter_
 - prettier, eslint-config-prettier, eslint-plugin-prettier - _formatter_
+- husky - _git hook_
 
 ### For Test
 

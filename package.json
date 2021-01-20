@@ -7,17 +7,16 @@
   "private": true,
   "repository": "github:sankester/clean-architecture-clone",
   "scripts": {
-    "start": "ENV_FILE=./config/.env.prod node ./dist/framework/server/server.js",
-    "dev": "ENV_FILE=./config/.env.dev nodemon ./dist/framework/server/server.js",
+    "rest:start": "ENV_FILE=./config/.env.prod node ./dist/backend/rest/server.js",
+    "rest:dev": "ENV_FILE=./config/.env.dev nodemon ./dist/backend/rest/server.js",
     "build": "rm -rf ./dist && tsc -p tsconfig-build.json",
-    "watch": "rm -rf ./dist && tsc-watch -p tsconfig-build.json --onSuccess 'yarn dev'",
+    "rest:watch": "rm -rf ./dist && tsc-watch -p tsconfig-build.json --onSuccess 'yarn rest:dev'",
     "tests": "ENV_FILE=./config/.env.test jest",
     "tests:co": "ENV_FILE=./config/.env.test jest --coverage",
     "dev:up": "docker-compose -f docker-compose.dev.yml up --remove-orphans",
     "dev:down": "docker-compose -f docker-compose.dev.yml down",
     "prod:up": "docker-compose -f ./config/swarn/docker-compose.yml up",
-    "prod:down": "docker-compose -f ./config/swarn/docker-compose.yml down",
-    "postinstall": "husky install"
+    "prod:down": "docker-compose -f ./config/swarn/docker-compose.yml down"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -73,9 +72,9 @@
     "node": "14.x"
   },
   "_moduleAliases": {
-    "@entities": "dist/entities/",
-    "@application": "dist/application/",
-    "@adapter": "dist/adapter/",
-    "@framework": "dist/framework/"
+    "@entities": "dist/core/entities/",
+    "@application": "dist/core/application/",
+    "@adapter": "dist/core/adapter/",
+    "@backend": "dist/backend/"
   }
 }

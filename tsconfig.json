@@ -28,16 +28,16 @@
     "baseUrl": ".",
     "paths": {
       "@entities/*": [
-        "src/entities/*",
+        "src/core/entities/*",
       ],
       "@application/*": [
-        "src/application/*",
+        "src/core/application/*",
       ],
       "@adapter/*": [
-        "src/adapter/*",
+        "src/core/adapter/*",
       ],
-      "@framework/*": [
-        "src/framework/*",
+      "@backend/*": [
+        "src/backend/*",
       ],
       "@tests/*": ["tests/*"],
     }
