@@ -1,8 +1,9 @@
+import { createExpressApp } from '@backend/infrastructure/express/createServer';
 import { createRestApp } from '@backend/rest';
 import request from 'supertest';
 
 describe('Body Parser Middleware', () => {
-  const app = createRestApp();
+  const app = createRestApp(createExpressApp());
 
   test('Should parse body as json', async () => {
     app.post('/test_body_parser', (req, res) => {

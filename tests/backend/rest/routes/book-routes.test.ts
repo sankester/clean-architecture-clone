@@ -6,6 +6,7 @@ import { UpdateBookPresenter } from '@adapter/presentation/presenters/book/Updat
 import MongoConnection from '@backend/infrastructure/db/mongodb/connection/index';
 import BookModel from '@backend/infrastructure/db/mongodb/models/BookModel';
 import RedisCacheDriver from '@backend/infrastructure/db/redis/index';
+import { createExpressApp } from '@backend/infrastructure/express/createServer';
 import { createRestApp } from '@backend/rest';
 import { mockAddBookParams } from '@tests/core/entities/mock';
 import FakeObjectId from 'bson-objectid';
@@ -23,7 +24,7 @@ const mockBookDatabase = async () => {
 };
 
 describe('Book Route Test', () => {
-  const app = createRestApp();
+  const app = createRestApp(createExpressApp());
   beforeAll(async () => {
     await RedisCacheDriver.open();
     await MongoConnection.open();

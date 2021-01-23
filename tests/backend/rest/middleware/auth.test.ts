@@ -3,6 +3,7 @@ import { createRestApp } from '@backend/rest';
 import { auth } from '@backend/rest/middleware/auth';
 import faker from 'faker';
 import request from 'supertest';
+import { createExpressApp } from '@backend/infrastructure/express/createServer';
 
 beforeAll(async () => {
   await RedisCacheDriver.open();
@@ -13,7 +14,7 @@ afterAll(async () => {
 });
 
 describe('Auth Middleware', () => {
-  const app = createRestApp();
+  const app = createRestApp(createExpressApp());
   test('Should return 403 if unauthenticated', async () => {
     app.post('/test-auth', auth, (req, res) => {
       res.send(req.body);

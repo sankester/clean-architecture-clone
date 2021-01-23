@@ -1,8 +1,9 @@
-import request from 'supertest';
+import { createExpressApp } from '@backend/infrastructure/express/createServer';
 import { createRestApp } from '@backend/rest';
+import request from 'supertest';
 
 describe('Content Type Middleware', () => {
-  const app = createRestApp();
+  const app = createRestApp(createExpressApp());
 
   test('Should return default content type as json', async () => {
     app.get('/test_content_type', (_req, res) => {

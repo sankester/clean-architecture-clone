@@ -1,9 +1,10 @@
+import { createExpressApp } from '@backend/infrastructure/express/createServer';
 import { createRestApp } from '@backend/rest';
 import { noCache } from '@backend/rest/middleware/no-chace';
 import request from 'supertest';
 
 describe('NoCache Middleware', () => {
-  const app = createRestApp();
+  const app = createRestApp(createExpressApp());
   test('Should disable cache', async () => {
     app.get('/test_no_cache', noCache, (_req, res) => {
       res.send();
