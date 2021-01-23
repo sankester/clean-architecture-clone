@@ -3,26 +3,34 @@
 Simple app with clean achitecture metodolgy & solid principle.
 using nodejs for server, typescript for OOP implementation, and docker for container
 
-## API Architecture
-- REST
-- Graphql
+## Indication
+
+1. Framework Independent
+   - We are trying to implement a server using rest and graphql by using an isolated business process
+2. Testable
+   - perform a test on each layer using jest
+3. UI Independent
+4. Database Independent
+5. External agency independence
 
 ## Scripts
 
 > This application by default uses Docker and Docker Compose, so make sure Docker and Docker Compose are installed on your system
 
-| Script    | Description                                                                 |
-| --------- | --------------------------------------------------------------------------- |
-| start     | start server in prod mode execute file after builder, make sure build first |
-| dev       | start server with development mode                                          |
-| build     | build script from `typescript`                                              |
-| watch     | build script from `typescript` and start server with `dev` mode             |
-| tests     | run all tests with `jest`                                                   |
-| tests:co  | run all tests and generate `coverage`                                       |
-| dev:up    | start `docker` for development                                              |
-| dev:down  | stop `docker` for development                                               |
-| prod:up   | start `docker` for production                                               |
-| prod:down | stop `docker` for production                                                |
+| Script       | Description                                                                 |
+| ------------ | --------------------------------------------------------------------------- |
+| start        | start server in prod mode execute file after builder, make sure build first |
+| dev          | start server with development mode                                          |
+| build        | build script from `typescript`                                              |
+| watch        | build script from `typescript` and start server with `dev` mode             |
+| tests        | run all tests with `jest`                                                   |
+| tests:co     | run all tests and generate `coverage`                                       |
+| dev:up       | start `docker` for development                                              |
+| dev:down     | stop `docker` for development                                               |
+| prod:up      | start `docker` for production                                               |
+| prod:down    | stop `docker` for production                                                |
+| localdb:up   | start `docker` for database without docker-compose                          |
+| localdb:down | stop `docker` for database without docker-compose                           |
 
 ## Command
 
@@ -30,7 +38,9 @@ look in [`command.md`](https://github.com/sankester/clean-architecture-clone/blo
 
 ## Layering
 
-### Entitiy
+Encapsulate `entity`, `application`, and `adapter` layer in folder `core`, and `framework & driver` layer in folder `backend`
+
+### Entity
 
 - `Book`
 
@@ -76,172 +86,15 @@ look in [`command.md`](https://github.com/sankester/clean-architecture-clone/blo
 
 **Framework**
 
-- `Express`
+- `Rest` - [detail doc]()
+  - using express
+- `Graphql`
+  - using `apollo server` and `graphql-modules`
 
 **Database**
 
 - `Mongodb`
-
-## API Swagger Docs
-
-API docs in **`http:localhost:3000/api-docs`**
-
-## API Contract
-
-### Account
-
-- Signup
-
-  **POST** - `http://localhost:3000/api/signup`
-
-  Accept: `application/json`
-
-  Content-Type: `application/json`
-
-  Request Body
-
-  ```js
-  {
-      name: string,
-      email: string,
-      password: string
-  }
-  ```
-
-  Response
-
-  ```js
-  {
-    accessToken: string,
-    expiredAt: datestring
-  }
-  ```
-
-- Login
-
-  **POST** - `http://localhost:3000/api/login`
-
-  Accept: `application/json`
-
-  Content-Type: `application/json`
-
-  Request Body
-
-  ```js
-  {
-      email: string,
-      password: string
-  }
-  ```
-
-  Response
-
-  ```js
-  {
-    accessToken: string,
-    expiredAt: datestring
-  }
-
-  ```
-
-### Book
-
-- Get All Book
-
-  **GET** - `http://localhost:3000/api/book`
-
-  Accept: `application/json`
-
-  Content-Type: `application/json`
-
-  Response
-
-  ```js
-  {
-    data: [
-      {
-        title: string,
-        author: string,
-        issn: string,
-      },
-    ];
-  }
-  ```
-
-- Get Book By ID
-
-  **GET** - `http://localhost:3000/api/book/:bookId`
-
-  Accept: `application/json`
-
-  Content-Type: `application/json`
-
-  Response
-
-  ```js
-  {
-    data: [
-      {
-        id: string,
-        title: string,
-        author: string,
-        issn: string,
-      },
-    ];
-  }
-  ```
-
-- Create Book
-
-  **POST** - `http://localhost:3000/api/book`
-
-  Accept: `application/json`
-
-  Content-Type: `application/json`
-
-  Request Body
-
-  ```js
-  {
-      title: string,
-      author: string,
-      issn: string
-  }
-  ```
-
-- update Book
-
-  **PUT** - `http://localhost:3000/api/book/{bookId}`
-
-  Accept: `application/json`
-
-  Content-Type: `application/json`
-
-  Request Params
-
-  - `bookId: string`
-
-  Request Body
-
-  ```js
-  {
-      title: string,
-      author: string,
-      issn: string
-  }
-  ```
-
-- Delete Book
-
-  **DELETE** - `http://localhost:3000/api/book/{bookId}`
-
-  Accept: `application/json`
-
-  Content-Type: `application/json`
-
-  Request Params
-
-  - `bookId: string`
+- `Redis`
 
 ## Design Pattern
 
@@ -293,7 +146,7 @@ API docs in **`http:localhost:3000/api-docs`**
 
 ## Packages
 
-### Default
+### Default & Production
 
 - bcrypt - _for hashing_
 - jsonwebtoken - _for encrypting_
@@ -309,6 +162,8 @@ API docs in **`http:localhost:3000/api-docs`**
 - winston - _custom system logger_
 - swagger-ui-express - _api documentation_
 - class-validator & class-transformer - _validate input request_
+- apollo-server-express - _graphql server_
+- gprahpql-modules - _toolling manage graphql_
 
 ### For Deveploper
 
