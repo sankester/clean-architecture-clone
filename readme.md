@@ -7,6 +7,7 @@ using nodejs for server, typescript for OOP implementation, and docker for conta
 
 1. Framework Independent
    - We are trying to implement a server using rest and graphql by using an isolated business process
+     see [detail rest](https://github.com/sankester/clean-architecture-clone/blob/master/docs/Rest.md) and [detail graphql]()
 2. Testable
    - perform a test on each layer using jest
 3. UI Independent
@@ -87,7 +88,7 @@ Encapsulate `entity`, `application`, and `adapter` layer in folder `core`, and `
 **Framework**
 
 - `Rest` - [detail doc](https://github.com/sankester/clean-architecture-clone/blob/master/docs/Rest.md)
-  - using express
+  - using `express` and `swagger` (for api docs)
 - `Graphql`
   - using `apollo server` and `graphql-modules`
 
