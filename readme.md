@@ -3,6 +3,10 @@
 Simple app with clean achitecture metodolgy & solid principle.
 using nodejs for server, typescript for OOP implementation, and docker for container
 
+## API Architecture
+- REST
+- Graphql
+
 ## Scripts
 
 > This application by default uses Docker and Docker Compose, so make sure Docker and Docker Compose are installed on your system

@@ -1,6 +1,7 @@
 import { Listener } from '@adapter/events/protocol/Listener';
 import fs from 'fs';
 import * as path from 'path';
+import { logger } from '../../winston/index';
 
 export class ServerErrorLogListener implements Listener {
   constructor(private filePath: string) {
@@ -10,12 +11,20 @@ export class ServerErrorLogListener implements Listener {
   private initialize() {
     const dir = path.dirname(this.filePath);
     if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, {
-        recursive: true,
-      });
-    }
-    if (!fs.existsSync(this.filePath)) {
-      fs.openSync(this.filePath, 'w');
+      fs.mkdir(
+        dir,
+        {
+          recursive: true,
+        },
+        (err) => {
+          if (err) logger.error(`${err}`);
+          if (!fs.existsSync(this.filePath)) {
+            fs.writeFile(this.filePath, '', (err) => {
+              logger.error(`${err}`);
+            });
+          }
+        }
+      );
     }
   }
 

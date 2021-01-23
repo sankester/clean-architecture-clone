@@ -1,4 +1,4 @@
-import { GetAllBookController } from '@adapter/controller';
+import { GetAllBookController } from '@adapter/controller/book';
 import { makeBodyBuilder } from '@adapter/presentation/helpers/makeBodyBuiler';
 import { makeResponseFactory } from '@adapter/presentation/helpers/makeResponseFactory';
 import { GetAllBookPresenter } from '@adapter/presentation/presenters/book/GetAllBookPresenter';

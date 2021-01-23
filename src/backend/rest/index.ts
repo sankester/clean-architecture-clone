@@ -1,9 +1,7 @@
-import { createExpressApp } from '@backend/infrastructure/express/createServer';
-import setup from './setup';
 import { Express } from 'express';
+import setup from './setup';
 
-export const createRestApp = (): Express => {
-  const expressApp = createExpressApp();
+export const createRestApp = (expressApp: Express): Express => {
   setup(expressApp);
   return expressApp;
 };

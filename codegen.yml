@@ -1,0 +1,25 @@
+overwrite: true
+schema: 'src/backend/graphql/**/*.graphql'
+generates:
+  src/backend/graphql/modules:
+    preset: graphql-modules
+    presetConfig:
+      baseTypesPath: ../generated-types/graphql.ts # Where to create the complete schema types
+      filename: generated-types/module-types.ts
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+      - "typescript-mongodb"
+    hooks:
+      afterAllFileWrite:
+        - eslint --fix
+        - prettier --write  
+  # src/backend/graphql/schema/schema.graphql:
+  #   plugins:
+  #     - schema-ast   
+  # ./graphql.schema.json:
+  #   plugins:
+  #     - "introspection"
+# config:
+#   scalars:
+#     DateTime: Date
